@@ -19,6 +19,8 @@ public class Question implements Serializable {
 
     private Integer subjectId;
 
+    private Integer paperId;
+
     private Integer score;
 
     private Integer gradeLevel;
@@ -36,6 +38,14 @@ public class Question implements Serializable {
     private Date createTime;
 
     private Boolean deleted;
+
+    public Integer getPaperId() {
+        return paperId;
+    }
+
+    public void setPaperId(Integer paperId) {
+        this.paperId = paperId;
+    }
 
     public Integer getId() {
         return id;

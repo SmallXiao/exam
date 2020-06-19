@@ -7,6 +7,7 @@ import com.alvis.exam.domain.Question;
 import com.alvis.exam.domain.TextContent;
 import com.alvis.exam.domain.enums.QuestionTypeEnum;
 import com.alvis.exam.domain.question.QuestionObject;
+import com.alvis.exam.service.ExamPaperService;
 import com.alvis.exam.service.QuestionService;
 import com.alvis.exam.service.TextContentService;
 import com.alvis.exam.utility.*;
@@ -27,6 +28,7 @@ public class QuestionController extends BaseApiController {
 
     private final QuestionService questionService;
     private final TextContentService textContentService;
+    private final ExamPaperService examPaperService;
 
     @RequestMapping(value = "/page", method = RequestMethod.POST)
     public RestResponse<PageInfo<QuestionResponseVM>> pageList(@RequestBody QuestionPageRequestVM model) {
@@ -38,6 +40,9 @@ public class QuestionController extends BaseApiController {
             TextContent textContent = textContentService.selectById(q.getInfoTextContentId());
             QuestionObject questionObject = JsonUtil.toJsonObject(textContent.getContent(), QuestionObject.class);
             String clearHtml = HtmlUtil.clear(questionObject.getTitleContent());
+            Integer paperId = q.getPaperId();
+            String PapaerName = examPaperService.getPapaerNameById(paperId);
+            vm.setPaperName(PapaerName);
             vm.setShortTitle(clearHtml);
             return vm;
         });

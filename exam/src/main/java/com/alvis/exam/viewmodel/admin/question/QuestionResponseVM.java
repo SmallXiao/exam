@@ -16,6 +16,8 @@ public class QuestionResponseVM extends BaseVM {
 
     private Integer subjectId;
 
+    private String paperName;
+
     private Integer createUser;
 
     private String score;
