@@ -129,6 +129,7 @@ export default {
     if (id && parseInt(id) !== 0) {
       _this.formLoading = true
       questionApi.select(id).then(re => {
+        console.log(re.response)
         _this.form = re.response
         _this.formLoading = false
       })

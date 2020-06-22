@@ -121,11 +121,18 @@ public class QuestionServiceImpl extends BaseServiceImpl<Question> implements Qu
         QuestionTypeEnum questionTypeEnum = QuestionTypeEnum.fromCode(question.getQuestionType());
         switch (questionTypeEnum) {
             case SingleChoice:
+                questionEditRequestVM.setCorrect(questionObject.getCorrect());
+                break;
             case TrueFalse:
-                questionEditRequestVM.setCorrect(question.getCorrect());
+                if (questionObject.getCorrect().contains("正确")) {
+                    questionEditRequestVM.setCorrect("A");
+                }else {
+                    questionEditRequestVM.setCorrect("B");
+                }
+                //questionEditRequestVM.setCorrect(questionObject.getCorrect());
                 break;
             case MultipleChoice:
-                questionEditRequestVM.setCorrectArray(ExamUtil.contentToArray(question.getCorrect()));
+                questionEditRequestVM.setCorrectArray(ExamUtil.contentToArray(questionObject.getCorrect()));
                 break;
             case GapFilling:
                 List<String> correctContent = questionObject.getQuestionItemObjects().stream().map(d -> d.getContent()).collect(Collectors.toList());
