@@ -43,5 +43,8 @@ public interface ExamPaperMapper extends BaseMapper<ExamPaper> {
     int clearTaskPaper(@Param("paperIds") List<Integer> paperIds);
 
     String getPapaerNameById(Integer paperId);
+
+    List<ExamPaper> getExamPaperList(String paperName);
+
 }
 

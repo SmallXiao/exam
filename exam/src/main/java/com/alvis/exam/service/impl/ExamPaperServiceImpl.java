@@ -168,6 +168,11 @@ public class ExamPaperServiceImpl extends BaseServiceImpl<ExamPaper> implements 
         return examPaperMapper.getPapaerNameById(paperId);
     }
 
+    @Override
+    public List<ExamPaper> getExamPaperList(String paperName) {
+        return examPaperMapper.getExamPaperList(paperName);
+    }
+
     private void examPaperFromVM(ExamPaperEditRequestVM examPaperEditRequestVM, ExamPaper examPaper, List<ExamPaperTitleItemVM> titleItemsVM) {
         Integer gradeLevel = subjectService.levelBySubjectId(examPaperEditRequestVM.getSubjectId());
         Integer questionCount = titleItemsVM.stream()

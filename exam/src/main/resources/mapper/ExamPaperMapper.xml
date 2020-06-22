@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.alvis.exam.domain.ExamPaper">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="flag" jdbcType="VARCHAR" property="flag" />
     <result column="subject_id" jdbcType="INTEGER" property="subjectId" />
     <result column="paper_type" jdbcType="INTEGER" property="paperType" />
     <result column="grade_level" jdbcType="INTEGER" property="gradeLevel" />
@@ -21,7 +22,7 @@
   <sql id="Base_Column_List">
     id, name, subject_id, paper_type, grade_level, score, question_count, suggest_time,
     limit_start_time, limit_end_time, frame_text_content_id, create_user, create_time,
-    deleted, task_exam_id
+    deleted, task_exam_id, flag
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
@@ -313,6 +314,12 @@
       select name from t_exam_paper where id = #{paperId}
     </select>
 
+    <select id="getExamPaperList" resultType="com.alvis.exam.domain.ExamPaper">
+      select
+      <include refid="Base_Column_List" />
+      from t_exam_paper
+      where name like concat('%',#{paperName},'%')
+    </select>
 
     <update id="updateTaskPaper">
     update t_exam_paper set task_exam_id = #{taskId} where id in

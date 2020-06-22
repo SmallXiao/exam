@@ -15,10 +15,11 @@
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
+    <result column="flag" jdbcType="VARCHAR" property="flag" />
   </resultMap>
   <sql id="Base_Column_List">
     id, question_type, subject_id, paper_id, score, grade_level, difficult, correct, info_text_content_id,
-    create_user, status, create_time, deleted
+    create_user, status, create_time, deleted ,flag
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
@@ -178,9 +179,7 @@
 
 
 
-
-  <select id="page" resultMap="BaseResultMap" parameterType="com.alvis.exam.viewmodel.admin.question.QuestionPageRequestVM">
-    SELECT
+<!--SELECT
     <include refid="Base_Column_List"/>
     FROM t_question
     <where>
@@ -196,6 +195,30 @@
       </if>
       <if test="questionType != null ">
         and question_type= #{questionType}
+      </if>
+    </where>-->
+  <select id="page" resultType="com.alvis.exam.viewmodel.admin.question.QuestionResponseVM">
+    select q.id,
+      q.question_type questionType,
+      q.subject_id subjectId,
+      q.paper_id paperId,
+      q.score, q.correct,
+      q.info_text_content_id infoTextContentId,
+      q.deleted ,
+      q.flag,
+      q.name,
+      s.name subjectName,
+      e.name paperName
+      from t_question q left join t_subject s on q.subject_id = s.id left join t_exam_paper e on q.paper_id = e.id
+    <where>
+      <if test="subjectName != null ">
+        and s.name like concat('%',#{subjectName},'%')
+      </if>
+      <if test="paperName != null ">
+        and e.name like concat('%',#{paperName},'%')
+      </if>
+      <if test="questionType != null ">
+        and q.question_type = #{questionType}
       </if>
     </where>
   </select>
@@ -224,6 +247,20 @@
 					WHERE  deleted=0  and  create_time  between  #{startTime}  and  #{endTime}
 				) a
 		GROUP BY create_time
-	</select>
+  </select>
+
+  <select id="getQuestionList" resultType="com.alvis.exam.viewmodel.admin.question.QuestionResponseVM">
+    select q.name,q.question_type questionType,s.name subjectName,e.name paperName
+       from t_question q left join t_subject s on q.subject_id = s.id left join t_exam_paper e on q.paper_id = e.id
+     <where>
+       <if test="subjectName != null ">
+         and s.name like concat('%',#{subjectName},'%')
+       </if>
+       <if test="paperName != null ">
+         and e.name like concat('%',#{paperName},'%')
+       </if>
+       limit #{pageIndex} * 10 -10,#{pageSize}
+     </where>
+  </select>
 
 </mapper>

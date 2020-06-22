@@ -17,6 +17,15 @@ public class Subject implements Serializable {
     private Integer itemOrder;
 
     private Boolean deleted;
+    private String flag;
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
+    }
 
     public Integer getId() {
         return id;

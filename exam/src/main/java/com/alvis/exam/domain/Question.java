@@ -39,6 +39,16 @@ public class Question implements Serializable {
 
     private Boolean deleted;
 
+    private String flag;
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
+    }
+
     public Integer getPaperId() {
         return paperId;
     }
