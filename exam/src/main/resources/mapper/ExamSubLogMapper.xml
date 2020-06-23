@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alvis.exam.repository.ExamSubLogMapper">
+
+    <insert id="insert" parameterType="com.alvis.exam.domain.statistics.ExamSubLog"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into t_exam_sub_log
+        (main_id, subject_id, question_id, answer, iscorrect)
+        values
+        (#{mainId},#{subjectId},#{questionId},#{answer},#{iscorrect})
+    </insert>
+
+
+</mapper>

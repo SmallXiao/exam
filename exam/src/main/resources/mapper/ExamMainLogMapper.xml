@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alvis.exam.repository.ExamMainLogMapper">
+
+    <insert id="insert" parameterType="com.alvis.exam.domain.statistics.ExamMainLog"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into t_exam_main_log
+            (year,month,day,user_id,user_name, department_id, department_name, start_time, end_time, spend_time, status, error_count, create_time)
+        values
+        (#{year},#{month},#{day},#{userId},#{userName},#{departmentId}, #{departmentName}, #{startTime},
+         #{endTime}, #{spendTime},#{status}, #{errorCount},#{createTime})
+    </insert>
+
+
+</mapper>
