@@ -3,12 +3,12 @@ import subjectApi from '@/api/subject'
 const state = {
   subjects: []
 }
-
+/* + ' ( ' + item.levelName + ' )' */
 const getters = {
   subjectEnumFormat: (state) => (key) => {
     for (let item of state.subjects) {
       if (item.id === key) {
-        return item.name + ' ( ' + item.levelName + ' )'
+        return item.name
       }
     }
     return null

@@ -18,6 +18,7 @@ import com.alvis.exam.utility.ExamUtil;
 import com.alvis.exam.viewmodel.admin.question.QuestionEditItemVM;
 import com.alvis.exam.viewmodel.admin.question.QuestionEditRequestVM;
 import com.alvis.exam.viewmodel.admin.question.QuestionPageRequestVM;
+import com.alvis.exam.viewmodel.admin.question.QuestionResponseVM;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.modelmapper.ModelMapper;
@@ -46,8 +47,8 @@ public class QuestionServiceImpl extends BaseServiceImpl<Question> implements Qu
     }
 
     @Override
-    public PageInfo<Question> page(QuestionPageRequestVM requestVM) {
-        return PageHelper.startPage(requestVM.getPageIndex(), requestVM.getPageSize(), "id desc").doSelectPageInfo(() ->
+    public PageInfo<QuestionResponseVM> page(QuestionPageRequestVM requestVM) {
+        return PageHelper.startPage(requestVM.getPageIndex(), requestVM.getPageSize(), "q.id desc").doSelectPageInfo(() ->
                 questionMapper.page(requestVM)
         );
     }
@@ -120,11 +121,18 @@ public class QuestionServiceImpl extends BaseServiceImpl<Question> implements Qu
         QuestionTypeEnum questionTypeEnum = QuestionTypeEnum.fromCode(question.getQuestionType());
         switch (questionTypeEnum) {
             case SingleChoice:
+                questionEditRequestVM.setCorrect(questionObject.getCorrect());
+                break;
             case TrueFalse:
-                questionEditRequestVM.setCorrect(question.getCorrect());
+                if (questionObject.getCorrect().contains("正确")) {
+                    questionEditRequestVM.setCorrect("A");
+                }else {
+                    questionEditRequestVM.setCorrect("B");
+                }
+                //questionEditRequestVM.setCorrect(questionObject.getCorrect());
                 break;
             case MultipleChoice:
-                questionEditRequestVM.setCorrectArray(ExamUtil.contentToArray(question.getCorrect()));
+                questionEditRequestVM.setCorrectArray(ExamUtil.contentToArray(questionObject.getCorrect()));
                 break;
             case GapFilling:
                 List<String> correctContent = questionObject.getQuestionItemObjects().stream().map(d -> d.getContent()).collect(Collectors.toList());
@@ -185,6 +193,11 @@ public class QuestionServiceImpl extends BaseServiceImpl<Question> implements Qu
             KeyValue keyValue = mouthCount.stream().filter(kv -> kv.getName().equals(md)).findAny().orElse(null);
             return null == keyValue ? 0 : keyValue.getValue();
         }).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<QuestionResponseVM> getQuestionList(QuestionPageRequestVM model) {
+        return questionMapper.getQuestionList(model);
     }
 
 

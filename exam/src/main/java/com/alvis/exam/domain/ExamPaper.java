@@ -10,6 +10,7 @@ public class ExamPaper implements Serializable {
     private Integer id;
 
     private String name;
+    private String flag;
 
     private Integer subjectId;
 
@@ -36,6 +37,14 @@ public class ExamPaper implements Serializable {
     private Boolean deleted;
 
     private Integer taskExamId;
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
+    }
 
     public Integer getId() {
         return id;

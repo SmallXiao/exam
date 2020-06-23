@@ -1,17 +1,17 @@
 <template>
   <div class="app-container">
     <el-form :model="form" ref="form" label-width="100px" v-loading="formLoading" :rules="rules">
-      <el-form-item label="年级：" prop="gradeLevel" required>
+      <!--<el-form-item label="年级：" prop="gradeLevel" required>
         <el-select v-model="form.gradeLevel" placeholder="年级"  @change="levelChange" clearable>
           <el-option v-for="item in levelEnum" :key="item.key" :value="item.key" :label="item.value"></el-option>
         </el-select>
-      </el-form-item>
-      <el-form-item label="学科：" prop="subjectId" required>
+      </el-form-item>-->
+      <el-form-item label="试卷大纲：" prop="subjectId" required>
         <el-select v-model="form.subjectId" placeholder="学科" >
-          <el-option v-for="item in subjectFilter" :key="item.id" :value="item.id" :label="item.name+' ( '+item.levelName+' )'"></el-option>
+          <el-option v-for="item in subjectFilter" :key="item.id" :value="item.id" :label="item.name"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="题干：" prop="title" required>
+      <el-form-item label="试卷名称：" prop="title" required>
         <el-input v-model="form.title"   @focus="inputClick(form,'title')" />
       </el-form-item>
       <el-form-item label="选项：" required>
@@ -21,7 +21,7 @@
            <el-button type="danger" size="mini" class="question-item-remove" icon="el-icon-delete" @click="questionItemRemove(index)"></el-button>
         </el-form-item>
       </el-form-item>
-      <el-form-item label="解析：" prop="analyze" required>
+      <!--<el-form-item label="解析：" prop="analyze" required>
         <el-input v-model="form.analyze"  @focus="inputClick(form,'analyze')" />
       </el-form-item>
       <el-form-item label="分数：" prop="score" required>
@@ -29,7 +29,7 @@
       </el-form-item>
       <el-form-item label="难度：" required>
         <el-rate v-model="form.difficult" class="question-item-rate"></el-rate>
-      </el-form-item>
+      </el-form-item>-->
       <el-form-item label="正确答案：" prop="correct" required>
         <el-radio-group v-model="form.correct">
           <el-radio  v-for="item in form.items"  :key="item.prefix"  :label="item.prefix">{{item.prefix}}</el-radio>

@@ -59,4 +59,9 @@ public class SubjectServiceImpl extends BaseServiceImpl<Subject> implements Subj
         );
     }
 
+    @Override
+    public List<Subject> getSubjectList(String subjectName) {
+        return subjectMapper.getSubjectList(subjectName);
+    }
+
 }

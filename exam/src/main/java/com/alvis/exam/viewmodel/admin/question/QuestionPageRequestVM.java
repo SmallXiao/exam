@@ -10,4 +10,12 @@ public class QuestionPageRequestVM extends BasePage {
     private Integer level;
     private Integer subjectId;
     private Integer questionType;
+
+    private String subjectName;
+    private String paperName;
+
+    private Integer startIndex;
+
+
+
 }

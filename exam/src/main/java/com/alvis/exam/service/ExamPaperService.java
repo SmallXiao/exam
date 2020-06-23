@@ -29,4 +29,9 @@ public interface ExamPaperService extends BaseService<ExamPaper> {
     Integer selectAllCount();
 
     List<Integer> selectMothCount();
+
+    String getPapaerNameById(Integer paperId);
+
+    List<ExamPaper> getExamPaperList(String paperName);
 }
+

@@ -8,12 +8,13 @@
     <result column="level_name" jdbcType="VARCHAR" property="levelName" />
     <result column="item_order" jdbcType="INTEGER" property="itemOrder" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
+    <result column="flag" jdbcType="VARCHAR" property="flag" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, level, level_name, item_order, deleted
+    id, name, level, level_name, item_order, deleted ,flag
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from t_subject
     where id = #{id,jdbcType=INTEGER}
@@ -23,10 +24,10 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.alvis.exam.domain.Subject"  useGeneratedKeys="true" keyProperty="id">
-    insert into t_subject (id, name, level, 
+    insert into t_subject (id, name, level,
       level_name, item_order, deleted
       )
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER},
       #{levelName,jdbcType=VARCHAR}, #{itemOrder,jdbcType=INTEGER}, #{deleted,jdbcType=BIT}
       )
   </insert>
@@ -133,5 +134,12 @@
       </if>
     </where>
   </select>
+
+    <select id="getSubjectList" resultType="com.alvis.exam.domain.Subject">
+      select
+      <include refid="Base_Column_List" />
+      from t_subject
+      where name like concat('%',#{subjectName},'%')
+    </select>
 
 </mapper>
