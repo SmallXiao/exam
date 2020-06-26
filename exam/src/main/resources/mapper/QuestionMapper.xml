@@ -178,25 +178,38 @@
   </update>
 
 
-
-<!--SELECT
-    <include refid="Base_Column_List"/>
-    FROM t_question
+  <select id="questionpage" resultType="com.alvis.exam.viewmodel.admin.question.QuestionResponseVM">
+    select
+    <include refid="Base_Column_List" />
+    from t_question
     <where>
-        and deleted=0
-      <if test="id != null ">
-        and id= #{id}
+      <if test="subjectName != null">
+        and subjectName like concat('%',#{subjectName},'%')
       </if>
-      <if test="level != null ">
-        and grade_level= #{level}
+      <if test="supplier != null">
+        and supplier = #{supplier},
       </if>
-      <if test="subjectId != null ">
-        and subject_id= #{subjectId}
-      </if>
-      <if test="questionType != null ">
-        and question_type= #{questionType}
-      </if>
-    </where>-->
+    </where>
+  </select>
+
+  <!--SELECT
+      <include refid="Base_Column_List"/>
+      FROM t_question
+      <where>
+          and deleted=0
+        <if test="id != null ">
+          and id= #{id}
+        </if>
+        <if test="level != null ">
+          and grade_level= #{level}
+        </if>
+        <if test="subjectId != null ">
+          and subject_id= #{subjectId}
+        </if>
+        <if test="questionType != null ">
+          and question_type= #{questionType}
+        </if>
+      </where>-->
   <select id="page" resultType="com.alvis.exam.viewmodel.admin.question.QuestionResponseVM">
     select q.id,
       q.question_type questionType,
@@ -207,12 +220,16 @@
       q.deleted ,
       q.flag,
       q.name,
+      q.correct,
       s.name subjectName,
       e.name paperName
       from t_question q left join t_subject s on q.subject_id = s.id left join t_exam_paper e on q.paper_id = e.id
     <where>
-      <if test="subjectName != null ">
-        and s.name like concat('%',#{subjectName},'%')
+      <if test="subjectId != null ">
+        and q.subject_id = #{subjectId}
+      </if>
+      <if test="questionName != null ">
+        and q.name like concat('%',#{questionName},'%')
       </if>
       <if test="paperName != null ">
         and e.name like concat('%',#{paperName},'%')
@@ -261,6 +278,13 @@
        </if>
        limit #{pageIndex} * 10 -10,#{pageSize}
      </where>
+  </select>
+
+  <select id="getCount" resultType="java.lang.Integer">
+        select count(*)  from t_question
+        <where>
+          subject_id = #{id}
+        </where>
   </select>
 
 </mapper>

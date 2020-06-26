@@ -14,6 +14,8 @@ import com.alvis.exam.service.QuestionService;
 import com.alvis.exam.service.SubjectService;
 import com.alvis.exam.service.TextContentService;
 import com.alvis.exam.utility.*;
+import com.alvis.exam.viewmodel.admin.education.SubjectPageRequestVM;
+import com.alvis.exam.viewmodel.admin.education.SubjectResponseVM;
 import com.alvis.exam.viewmodel.admin.question.QuestionEditRequestVM;
 import com.alvis.exam.viewmodel.admin.question.QuestionPageRequestVM;
 import com.alvis.exam.viewmodel.admin.question.QuestionResponseVM;
@@ -33,6 +35,20 @@ public class QuestionController extends BaseApiController {
 
     private final QuestionService questionService;
     private final TextContentService textContentService;
+    private final SubjectService subjectService;
+
+    @RequestMapping(value = "/subjectpageList", method = RequestMethod.POST)
+    public RestResponse<PageInfo<SubjectResponseVM>> subjectpageList(@RequestBody SubjectPageRequestVM model) {
+        PageInfo<Subject> pageInfo = subjectService.page(model);
+        PageInfo<SubjectResponseVM> page = PageInfoHelper.copyMap(pageInfo, q -> {
+            int questionCount = questionService.getCount(q.getId());
+            SubjectResponseVM vm = modelMapper.map(q, SubjectResponseVM.class);
+            vm.setQuestionCount(questionCount);
+            vm.setSubjectName(q.getName());
+            return vm;
+        });
+        return RestResponse.ok(page);
+    }
 
     @RequestMapping(value = "/page", method = RequestMethod.POST)
     public RestResponse<PageInfo<QuestionResponseVM>> pageList(@RequestBody QuestionPageRequestVM model) {

@@ -2172,3 +2172,21 @@ Caused by: io.lettuce.core.RedisCommandTimeoutException: Command timed out after
 2020-06-22 21:12:09.440 DEBUG 15216 --- [XNIO-1 task-17] r.c.a.e.repository.QuestionMapper.page   : ==>  Preparing: SELECT q.id, q.question_type questionType, q.subject_id subjectId, q.paper_id paperId, q.score, q.correct, q.info_text_content_id infoTextContentId, q.deleted, q.flag, q.name, s.name subjectName, e.name paperName FROM t_question q LEFT JOIN t_subject s ON q.subject_id = s.id LEFT JOIN t_exam_paper e ON q.paper_id = e.id order by q.id desc LIMIT ? 
 2020-06-22 21:12:09.441 DEBUG 15216 --- [XNIO-1 task-17] r.c.a.e.repository.QuestionMapper.page   : ==> Parameters: 10(Integer)
 2020-06-22 21:12:09.442 DEBUG 15216 --- [XNIO-1 task-17] r.c.a.e.repository.QuestionMapper.page   : <==      Total: 10
+2020-06-22 21:15:26.339 DEBUG 15216 --- [XNIO-1 task-18] r.c.a.e.r.SubjectMapper.allSubject       : ==>  Preparing: select id, name, level, level_name, item_order, deleted ,flag from t_subject 
+2020-06-22 21:15:26.340 DEBUG 15216 --- [XNIO-1 task-18] r.c.a.e.r.SubjectMapper.allSubject       : ==> Parameters: 
+2020-06-22 21:15:26.340 DEBUG 15216 --- [XNIO-1 task-19] r.c.a.e.r.Q.selectByPrimaryKey           : ==>  Preparing: select id, question_type, subject_id, paper_id, score, grade_level, difficult, correct, info_text_content_id, create_user, status, create_time, deleted ,flag from t_question where id = ? 
+2020-06-22 21:15:26.341 DEBUG 15216 --- [XNIO-1 task-19] r.c.a.e.r.Q.selectByPrimaryKey           : ==> Parameters: 2831(Integer)
+2020-06-22 21:15:26.342 DEBUG 15216 --- [XNIO-1 task-18] r.c.a.e.r.SubjectMapper.allSubject       : <==      Total: 10
+2020-06-22 21:15:26.342 DEBUG 15216 --- [XNIO-1 task-19] r.c.a.e.r.Q.selectByPrimaryKey           : <==      Total: 1
+2020-06-22 21:15:28.880 DEBUG 15216 --- [XNIO-1 task-20] r.c.a.e.r.SubjectMapper.allSubject       : ==>  Preparing: select id, name, level, level_name, item_order, deleted ,flag from t_subject 
+2020-06-22 21:15:28.881 DEBUG 15216 --- [XNIO-1 task-20] r.c.a.e.r.SubjectMapper.allSubject       : ==> Parameters: 
+2020-06-22 21:15:28.882 DEBUG 15216 --- [XNIO-1 task-20] r.c.a.e.r.SubjectMapper.allSubject       : <==      Total: 10
+2020-06-22 21:15:29.183 DEBUG 15216 --- [XNIO-1 task-21] r.c.a.e.r.QuestionMapper.page_COUNT      : ==>  Preparing: SELECT count(0) FROM t_question q LEFT JOIN t_subject s ON q.subject_id = s.id LEFT JOIN t_exam_paper e ON q.paper_id = e.id 
+2020-06-22 21:15:29.183 DEBUG 15216 --- [XNIO-1 task-21] r.c.a.e.r.QuestionMapper.page_COUNT      : ==> Parameters: 
+2020-06-22 21:15:29.225 DEBUG 15216 --- [XNIO-1 task-21] r.c.a.e.r.QuestionMapper.page_COUNT      : <==      Total: 1
+2020-06-22 21:15:29.229 DEBUG 15216 --- [XNIO-1 task-21] r.c.a.e.repository.QuestionMapper.page   : ==>  Preparing: SELECT q.id, q.question_type questionType, q.subject_id subjectId, q.paper_id paperId, q.score, q.correct, q.info_text_content_id infoTextContentId, q.deleted, q.flag, q.name, s.name subjectName, e.name paperName FROM t_question q LEFT JOIN t_subject s ON q.subject_id = s.id LEFT JOIN t_exam_paper e ON q.paper_id = e.id order by q.id desc LIMIT ? 
+2020-06-22 21:15:29.229 DEBUG 15216 --- [XNIO-1 task-21] r.c.a.e.repository.QuestionMapper.page   : ==> Parameters: 10(Integer)
+2020-06-22 21:15:29.231 DEBUG 15216 --- [XNIO-1 task-21] r.c.a.e.repository.QuestionMapper.page   : <==      Total: 10
+2020-06-22 21:15:39.079  INFO 15216 --- [Thread-20] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-06-22 21:15:39.086  INFO 15216 --- [Thread-20] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-06-22 21:15:40.204  INFO 15216 --- [Thread-20] io.undertow.servlet                      : Destroying Spring FrameworkServlet 'dispatcherServlet'
