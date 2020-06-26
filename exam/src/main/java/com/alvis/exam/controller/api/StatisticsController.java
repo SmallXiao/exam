@@ -2,6 +2,12 @@ package com.alvis.exam.controller.api;
 
 import com.alvis.exam.base.RestResponse;
 import com.alvis.exam.service.StatisticsService;
+
+import com.alvis.exam.viewmodel.api.statistics.MonthlyReportResponseVM;
+import com.alvis.exam.viewmodel.api.statistics.ReportRequestVM;
+import com.alvis.exam.viewmodel.api.statistics.ReportResponseVM;
+import com.alvis.exam.viewmodel.api.statistics.WrongQuestionResponseVM;
+
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
