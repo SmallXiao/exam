@@ -3552,3 +3552,411 @@ Caused by: org.apache.ibatis.reflection.ReflectionException: There is no getter 
 2020-06-27 02:54:39.456  INFO 292 --- [Thread-23] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2020-06-27 02:54:39.464  INFO 292 --- [Thread-23] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
 2020-06-27 02:54:40.584  INFO 292 --- [Thread-23] io.undertow.servlet                      : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2020-06-27 02:55:00.424  INFO 10492 --- [restartedMain] com.alvis.exam.ExamApplication           : Starting ExamApplication on wufeng with PID 10492 (F:\exam\exam\target\classes started by wufeng in F:\exam\exam)
+2020-06-27 02:55:00.428  INFO 10492 --- [restartedMain] com.alvis.exam.ExamApplication           : The following profiles are active: dev
+2020-06-27 02:55:00.497  INFO 10492 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-06-27 02:55:00.497  INFO 10492 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-06-27 02:55:01.810  INFO 10492 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-06-27 02:55:01.814  INFO 10492 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-06-27 02:55:01.934  INFO 10492 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 97ms. Found 0 repository interfaces.
+2020-06-27 02:55:02.591  INFO 10492 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'cacheConfig' of type [com.alvis.exam.configuration.spring.cache.CacheConfig$$EnhancerBySpringCGLIB$$924932b1] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-27 02:55:02.605  INFO 10492 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$2a257df4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-27 02:55:03.049  WARN 10492 --- [restartedMain] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2020-06-27 02:55:03.082  INFO 10492 --- [restartedMain] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2020-06-27 02:55:03.083  INFO 10492 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2586 ms
+2020-06-27 02:55:04.795  INFO 10492 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4ec19fd1, org.springframework.security.web.context.SecurityContextPersistenceFilter@2dafab25, org.springframework.security.web.header.HeaderWriterFilter@60661b99, org.springframework.web.filter.CorsFilter@3fbbdbd4, org.springframework.security.web.authentication.logout.LogoutFilter@1c6fd6e7, com.alvis.exam.configuration.spring.security.RestLoginAuthenticationFilter@7966b106, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@3dfa2397, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@11978e3e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2eb350dd, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@7f1e782e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@505e9dfc, org.springframework.security.web.session.SessionManagementFilter@326a9d2d, org.springframework.security.web.access.ExceptionTranslationFilter@3ef734e1, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5ca102b5]
+2020-06-27 02:55:05.438  INFO 10492 --- [restartedMain] io.lettuce.core.EpollProvider            : Starting without optional epoll library
+2020-06-27 02:55:05.440  INFO 10492 --- [restartedMain] io.lettuce.core.KqueueProvider           : Starting without optional kqueue library
+2020-06-27 02:55:07.549  INFO 10492 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-06-27 02:55:08.208  INFO 10492 --- [restartedMain] s.a.ScheduledAnnotationBeanPostProcessor : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-06-27 02:55:08.252  INFO 10492 --- [restartedMain] org.xnio                                 : XNIO version 3.3.8.Final
+2020-06-27 02:55:08.269  INFO 10492 --- [restartedMain] org.xnio.nio                             : XNIO NIO Implementation Version 3.3.8.Final
+2020-06-27 02:55:08.344  INFO 10492 --- [restartedMain] o.s.b.w.e.u.UndertowServletWebServer     : Undertow started on port(s) 8000 (http) with context path ''
+2020-06-27 02:55:08.349  INFO 10492 --- [restartedMain] com.alvis.exam.ExamApplication           : Started ExamApplication in 8.767 seconds (JVM running for 10.744)
+2020-06-27 02:55:39.559  INFO 13240 --- [restartedMain] com.alvis.exam.ExamApplication           : Starting ExamApplication on wufeng with PID 13240 (F:\exam\exam\target\classes started by wufeng in F:\exam\exam)
+2020-06-27 02:55:39.564  INFO 13240 --- [restartedMain] com.alvis.exam.ExamApplication           : The following profiles are active: dev
+2020-06-27 02:55:39.641  INFO 13240 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-06-27 02:55:39.642  INFO 13240 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-06-27 02:55:40.984  INFO 13240 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-06-27 02:55:40.988  INFO 13240 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-06-27 02:55:41.096  INFO 13240 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 87ms. Found 0 repository interfaces.
+2020-06-27 02:55:41.729  INFO 13240 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'cacheConfig' of type [com.alvis.exam.configuration.spring.cache.CacheConfig$$EnhancerBySpringCGLIB$$f5823f34] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-27 02:55:41.745  INFO 13240 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$8d5e8a77] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-27 02:55:42.118  WARN 13240 --- [restartedMain] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2020-06-27 02:55:42.148  INFO 13240 --- [restartedMain] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2020-06-27 02:55:42.148  INFO 13240 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2506 ms
+2020-06-27 02:55:43.880  INFO 13240 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2ad3c499, org.springframework.security.web.context.SecurityContextPersistenceFilter@24c28e14, org.springframework.security.web.header.HeaderWriterFilter@14c6ea7b, org.springframework.web.filter.CorsFilter@3fe84d21, org.springframework.security.web.authentication.logout.LogoutFilter@47e62168, com.alvis.exam.configuration.spring.security.RestLoginAuthenticationFilter@126f12ec, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@de8849, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@141b72fb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@24a76962, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@4d1a984, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2d876eea, org.springframework.security.web.session.SessionManagementFilter@191dcb75, org.springframework.security.web.access.ExceptionTranslationFilter@3145537f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@36f5699f]
+2020-06-27 02:55:44.451  INFO 13240 --- [restartedMain] io.lettuce.core.EpollProvider            : Starting without optional epoll library
+2020-06-27 02:55:44.453  INFO 13240 --- [restartedMain] io.lettuce.core.KqueueProvider           : Starting without optional kqueue library
+2020-06-27 02:55:45.888  INFO 13240 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-06-27 02:55:46.500  INFO 13240 --- [restartedMain] s.a.ScheduledAnnotationBeanPostProcessor : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-06-27 02:55:46.537  INFO 13240 --- [restartedMain] org.xnio                                 : XNIO version 3.3.8.Final
+2020-06-27 02:55:46.550  INFO 13240 --- [restartedMain] org.xnio.nio                             : XNIO NIO Implementation Version 3.3.8.Final
+2020-06-27 02:55:46.617  INFO 13240 --- [restartedMain] o.s.b.w.e.u.UndertowServletWebServer     : Undertow started on port(s) 8000 (http) with context path ''
+2020-06-27 02:55:46.621  INFO 13240 --- [restartedMain] com.alvis.exam.ExamApplication           : Started ExamApplication in 7.953 seconds (JVM running for 10.109)
+2020-06-27 02:56:51.177  INFO 13240 --- [XNIO-1 task-1] io.undertow.servlet                      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-27 02:56:51.177  INFO 13240 --- [XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-06-27 02:56:51.188  INFO 13240 --- [XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 11 ms
+2020-06-27 02:56:51.323  INFO 13240 --- [XNIO-1 task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-06-27 02:56:51.498  INFO 13240 --- [XNIO-1 task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-06-27 02:56:51.509 DEBUG 13240 --- [XNIO-1 task-1] r.c.a.e.r.E.selectAllCount               : ==>  Preparing: SELECT count(*) from t_exam_paper where deleted=0 
+2020-06-27 02:56:51.539 DEBUG 13240 --- [XNIO-1 task-1] r.c.a.e.r.E.selectAllCount               : ==> Parameters: 
+2020-06-27 02:56:51.572 DEBUG 13240 --- [XNIO-1 task-1] r.c.a.e.r.E.selectAllCount               : <==      Total: 1
+2020-06-27 02:56:51.576 DEBUG 13240 --- [XNIO-1 task-1] r.c.a.e.r.QuestionMapper.selectAllCount  : ==>  Preparing: SELECT count(*) from t_question where deleted=0 
+2020-06-27 02:56:51.577 DEBUG 13240 --- [XNIO-1 task-1] r.c.a.e.r.QuestionMapper.selectAllCount  : ==> Parameters: 
+2020-06-27 02:56:51.620 DEBUG 13240 --- [XNIO-1 task-1] r.c.a.e.r.QuestionMapper.selectAllCount  : <==      Total: 1
+2020-06-27 02:56:51.621 DEBUG 13240 --- [XNIO-1 task-1] r.c.a.e.r.E.selectAllCount               : ==>  Preparing: SELECT count(*) from t_exam_paper_answer 
+2020-06-27 02:56:51.621 DEBUG 13240 --- [XNIO-1 task-1] r.c.a.e.r.E.selectAllCount               : ==> Parameters: 
+2020-06-27 02:56:51.622 DEBUG 13240 --- [XNIO-1 task-1] r.c.a.e.r.E.selectAllCount               : <==      Total: 1
+2020-06-27 02:56:51.623 DEBUG 13240 --- [XNIO-1 task-1] r.c.a.e.r.E.selectAllCount               : ==>  Preparing: SELECT count(*) from t_exam_paper_question_customer_answer 
+2020-06-27 02:56:51.623 DEBUG 13240 --- [XNIO-1 task-1] r.c.a.e.r.E.selectAllCount               : ==> Parameters: 
+2020-06-27 02:56:51.624 DEBUG 13240 --- [XNIO-1 task-1] r.c.a.e.r.E.selectAllCount               : <==      Total: 1
+2020-06-27 02:56:51.631 DEBUG 13240 --- [XNIO-1 task-1] r.c.a.e.r.U.selectCountByDate            : ==>  Preparing: SELECT create_time as name,COUNT(create_time) as value from ( SELECT DATE_FORMAT(create_time,'%Y-%m-%d') as create_time from t_user_event_log WHERE create_time between ? and ? ) a GROUP BY create_time 
+2020-06-27 02:56:51.635 DEBUG 13240 --- [XNIO-1 task-1] r.c.a.e.r.U.selectCountByDate            : ==> Parameters: 2020-06-01 00:00:00.0(Timestamp), 2020-06-30 23:59:59.0(Timestamp)
+2020-06-27 02:56:51.638 DEBUG 13240 --- [XNIO-1 task-1] r.c.a.e.r.U.selectCountByDate            : <==      Total: 3
+2020-06-27 02:56:51.641 DEBUG 13240 --- [XNIO-1 task-1] r.c.a.e.r.E.selectCountByDate            : ==>  Preparing: SELECT create_time as name,COUNT(create_time) as value from ( SELECT DATE_FORMAT(create_time,'%Y-%m-%d') as create_time from t_exam_paper_question_customer_answer WHERE create_time between ? and ? ) a GROUP BY create_time 
+2020-06-27 02:56:51.642 DEBUG 13240 --- [XNIO-1 task-1] r.c.a.e.r.E.selectCountByDate            : ==> Parameters: 2020-06-01 00:00:00.0(Timestamp), 2020-06-30 23:59:59.0(Timestamp)
+2020-06-27 02:56:51.643 DEBUG 13240 --- [XNIO-1 task-1] r.c.a.e.r.E.selectCountByDate            : <==      Total: 1
+2020-06-27 02:56:52.759 DEBUG 13240 --- [XNIO-1 task-2] r.c.a.e.r.SubjectMapper.allSubject       : ==>  Preparing: select id, name,supplier, level, level_name, item_order, deleted ,flag,create_time createTime, update_time updateTime from t_subject 
+2020-06-27 02:56:52.759 DEBUG 13240 --- [XNIO-1 task-2] r.c.a.e.r.SubjectMapper.allSubject       : ==> Parameters: 
+2020-06-27 02:56:52.768 DEBUG 13240 --- [XNIO-1 task-2] r.c.a.e.r.SubjectMapper.allSubject       : <==      Total: 10
+2020-06-27 02:56:53.175 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.SubjectMapper.page_COUNT       : ==>  Preparing: SELECT count(0) FROM t_subject 
+2020-06-27 02:56:53.175 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.SubjectMapper.page_COUNT       : ==> Parameters: 
+2020-06-27 02:56:53.176 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.SubjectMapper.page_COUNT       : <==      Total: 1
+2020-06-27 02:56:53.183 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.repository.SubjectMapper.page    : ==>  Preparing: SELECT id, name, supplier, level, level_name, item_order, deleted, flag, create_time createTime, update_time updateTime FROM t_subject order by id desc LIMIT ? 
+2020-06-27 02:56:53.183 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.repository.SubjectMapper.page    : ==> Parameters: 10(Integer)
+2020-06-27 02:56:53.188 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.repository.SubjectMapper.page    : <==      Total: 10
+2020-06-27 02:56:53.190 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 02:56:53.190 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 10(Integer)
+2020-06-27 02:56:53.232 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 02:56:53.275 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 02:56:53.275 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 9(Integer)
+2020-06-27 02:56:53.319 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 02:56:53.320 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 02:56:53.320 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 8(Integer)
+2020-06-27 02:56:53.359 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 02:56:53.360 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 02:56:53.360 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 7(Integer)
+2020-06-27 02:56:53.402 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 02:56:53.404 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 02:56:53.404 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 6(Integer)
+2020-06-27 02:56:53.443 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 02:56:53.444 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 02:56:53.444 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 5(Integer)
+2020-06-27 02:56:53.484 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 02:56:53.487 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 02:56:53.488 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 4(Integer)
+2020-06-27 02:56:53.528 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 02:56:53.531 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 02:56:53.531 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 3(Integer)
+2020-06-27 02:56:53.573 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 02:56:53.574 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 02:56:53.575 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 2(Integer)
+2020-06-27 02:56:53.618 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 02:56:53.619 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 02:56:53.619 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 1(Integer)
+2020-06-27 02:56:53.658 DEBUG 13240 --- [XNIO-1 task-3] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 02:56:55.409 DEBUG 13240 --- [XNIO-1 task-4] r.c.a.e.r.SubjectMapper.allSubject       : ==>  Preparing: select id, name,supplier, level, level_name, item_order, deleted ,flag,create_time createTime, update_time updateTime from t_subject 
+2020-06-27 02:56:55.410 DEBUG 13240 --- [XNIO-1 task-4] r.c.a.e.r.SubjectMapper.allSubject       : ==> Parameters: 
+2020-06-27 02:56:55.415 DEBUG 13240 --- [XNIO-1 task-4] r.c.a.e.r.SubjectMapper.allSubject       : <==      Total: 10
+2020-06-27 02:56:55.638 DEBUG 13240 --- [XNIO-1 task-5] r.c.a.e.r.QuestionMapper.page_COUNT      : ==>  Preparing: SELECT count(0) FROM t_question q LEFT JOIN t_subject s ON q.subject_id = s.id LEFT JOIN t_exam_paper e ON q.paper_id = e.id 
+2020-06-27 02:56:55.638 DEBUG 13240 --- [XNIO-1 task-5] r.c.a.e.r.QuestionMapper.page_COUNT      : ==> Parameters: 
+2020-06-27 02:56:55.683 DEBUG 13240 --- [XNIO-1 task-5] r.c.a.e.r.QuestionMapper.page_COUNT      : <==      Total: 1
+2020-06-27 02:56:55.686 DEBUG 13240 --- [XNIO-1 task-5] r.c.a.e.repository.QuestionMapper.page   : ==>  Preparing: SELECT q.id, q.question_type questionType, q.subject_id subjectId, q.paper_id paperId, q.score, q.correct, q.info_text_content_id infoTextContentId, q.deleted, q.flag, q.name, q.correct, s.name subjectName, e.name paperName FROM t_question q LEFT JOIN t_subject s ON q.subject_id = s.id LEFT JOIN t_exam_paper e ON q.paper_id = e.id order by q.id desc LIMIT ? 
+2020-06-27 02:56:55.686 DEBUG 13240 --- [XNIO-1 task-5] r.c.a.e.repository.QuestionMapper.page   : ==> Parameters: 10(Integer)
+2020-06-27 02:56:55.691 DEBUG 13240 --- [XNIO-1 task-5] r.c.a.e.repository.QuestionMapper.page   : <==      Total: 10
+2020-06-27 02:59:27.277  INFO 13240 --- [Thread-22] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-06-27 02:59:27.284  INFO 13240 --- [Thread-22] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-06-27 02:59:31.695  INFO 3220 --- [restartedMain] com.alvis.exam.ExamApplication           : Starting ExamApplication on wufeng with PID 3220 (F:\exam\exam\target\classes started by wufeng in F:\exam\exam)
+2020-06-27 02:59:31.700  INFO 3220 --- [restartedMain] com.alvis.exam.ExamApplication           : The following profiles are active: dev
+2020-06-27 02:59:31.886  INFO 3220 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-06-27 02:59:31.886  INFO 3220 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-06-27 02:59:33.852  INFO 3220 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-06-27 02:59:33.856  INFO 3220 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-06-27 02:59:33.991  INFO 3220 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 109ms. Found 0 repository interfaces.
+2020-06-27 02:59:34.890  INFO 3220 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'cacheConfig' of type [com.alvis.exam.configuration.spring.cache.CacheConfig$$EnhancerBySpringCGLIB$$91c98388] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-27 02:59:34.909  INFO 3220 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$29a5cecb] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-06-27 02:59:35.542  WARN 3220 --- [restartedMain] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2020-06-27 02:59:35.606  INFO 3220 --- [restartedMain] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2020-06-27 02:59:35.606  INFO 3220 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3720 ms
+2020-06-27 02:59:37.782  INFO 3220 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@31465ff2, org.springframework.security.web.context.SecurityContextPersistenceFilter@26fa4fa0, org.springframework.security.web.header.HeaderWriterFilter@775dad92, org.springframework.web.filter.CorsFilter@1f315c78, org.springframework.security.web.authentication.logout.LogoutFilter@51d63ae4, com.alvis.exam.configuration.spring.security.RestLoginAuthenticationFilter@75bbc20d, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1562147c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3509d861, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6d6a6c5c, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@5e805f73, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@220576ad, org.springframework.security.web.session.SessionManagementFilter@79d4c2dd, org.springframework.security.web.access.ExceptionTranslationFilter@71767d5, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4e55059f]
+2020-06-27 02:59:38.786  INFO 3220 --- [restartedMain] io.lettuce.core.EpollProvider            : Starting without optional epoll library
+2020-06-27 02:59:38.789  INFO 3220 --- [restartedMain] io.lettuce.core.KqueueProvider           : Starting without optional kqueue library
+2020-06-27 02:59:41.888  INFO 3220 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-06-27 02:59:42.645  INFO 3220 --- [restartedMain] s.a.ScheduledAnnotationBeanPostProcessor : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-06-27 02:59:42.709  INFO 3220 --- [restartedMain] org.xnio                                 : XNIO version 3.3.8.Final
+2020-06-27 02:59:42.736  INFO 3220 --- [restartedMain] org.xnio.nio                             : XNIO NIO Implementation Version 3.3.8.Final
+2020-06-27 02:59:42.839  INFO 3220 --- [restartedMain] o.s.b.w.e.u.UndertowServletWebServer     : Undertow started on port(s) 8000 (http) with context path ''
+2020-06-27 02:59:42.845  INFO 3220 --- [restartedMain] com.alvis.exam.ExamApplication           : Started ExamApplication in 12.519 seconds (JVM running for 14.887)
+2020-06-27 02:59:43.002  INFO 3220 --- [XNIO-1 task-1] io.undertow.servlet                      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-27 02:59:43.002  INFO 3220 --- [XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-06-27 02:59:43.017  INFO 3220 --- [XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 14 ms
+2020-06-27 02:59:43.169  INFO 3220 --- [XNIO-1 task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-06-27 02:59:43.400  INFO 3220 --- [XNIO-1 task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-06-27 02:59:43.414 DEBUG 3220 --- [XNIO-1 task-1] r.c.a.e.r.E.selectAllCount               : ==>  Preparing: SELECT count(*) from t_exam_paper where deleted=0 
+2020-06-27 02:59:43.414 DEBUG 3220 --- [XNIO-1 task-3] r.c.a.e.r.SubjectMapper.allSubject       : ==>  Preparing: select id, name,supplier, level, level_name, item_order, deleted ,flag,create_time createTime, update_time updateTime from t_subject 
+2020-06-27 02:59:43.456 DEBUG 3220 --- [XNIO-1 task-1] r.c.a.e.r.E.selectAllCount               : ==> Parameters: 
+2020-06-27 02:59:43.456 DEBUG 3220 --- [XNIO-1 task-3] r.c.a.e.r.SubjectMapper.allSubject       : ==> Parameters: 
+2020-06-27 02:59:43.461 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.SubjectMapper.page_COUNT       : ==>  Preparing: SELECT count(0) FROM t_subject 
+2020-06-27 02:59:43.462 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.SubjectMapper.page_COUNT       : ==> Parameters: 
+2020-06-27 02:59:43.492 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.SubjectMapper.page_COUNT       : <==      Total: 1
+2020-06-27 02:59:43.492 DEBUG 3220 --- [XNIO-1 task-1] r.c.a.e.r.E.selectAllCount               : <==      Total: 1
+2020-06-27 02:59:43.494 DEBUG 3220 --- [XNIO-1 task-1] r.c.a.e.r.QuestionMapper.selectAllCount  : ==>  Preparing: SELECT count(*) from t_question where deleted=0 
+2020-06-27 02:59:43.495 DEBUG 3220 --- [XNIO-1 task-1] r.c.a.e.r.QuestionMapper.selectAllCount  : ==> Parameters: 
+2020-06-27 02:59:43.499 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.repository.SubjectMapper.page    : ==>  Preparing: SELECT id, name, supplier, level, level_name, item_order, deleted, flag, create_time createTime, update_time updateTime FROM t_subject order by id desc LIMIT ? 
+2020-06-27 02:59:43.500 DEBUG 3220 --- [XNIO-1 task-3] r.c.a.e.r.SubjectMapper.allSubject       : <==      Total: 10
+2020-06-27 02:59:43.500 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.repository.SubjectMapper.page    : ==> Parameters: 10(Integer)
+2020-06-27 02:59:43.510 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.repository.SubjectMapper.page    : <==      Total: 10
+2020-06-27 02:59:43.514 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 02:59:43.514 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 10(Integer)
+2020-06-27 02:59:43.559 DEBUG 3220 --- [XNIO-1 task-1] r.c.a.e.r.QuestionMapper.selectAllCount  : <==      Total: 1
+2020-06-27 02:59:43.560 DEBUG 3220 --- [XNIO-1 task-1] r.c.a.e.r.E.selectAllCount               : ==>  Preparing: SELECT count(*) from t_exam_paper_answer 
+2020-06-27 02:59:43.561 DEBUG 3220 --- [XNIO-1 task-1] r.c.a.e.r.E.selectAllCount               : ==> Parameters: 
+2020-06-27 02:59:43.562 DEBUG 3220 --- [XNIO-1 task-1] r.c.a.e.r.E.selectAllCount               : <==      Total: 1
+2020-06-27 02:59:43.563 DEBUG 3220 --- [XNIO-1 task-1] r.c.a.e.r.E.selectAllCount               : ==>  Preparing: SELECT count(*) from t_exam_paper_question_customer_answer 
+2020-06-27 02:59:43.563 DEBUG 3220 --- [XNIO-1 task-1] r.c.a.e.r.E.selectAllCount               : ==> Parameters: 
+2020-06-27 02:59:43.564 DEBUG 3220 --- [XNIO-1 task-1] r.c.a.e.r.E.selectAllCount               : <==      Total: 1
+2020-06-27 02:59:43.571 DEBUG 3220 --- [XNIO-1 task-1] r.c.a.e.r.U.selectCountByDate            : ==>  Preparing: SELECT create_time as name,COUNT(create_time) as value from ( SELECT DATE_FORMAT(create_time,'%Y-%m-%d') as create_time from t_user_event_log WHERE create_time between ? and ? ) a GROUP BY create_time 
+2020-06-27 02:59:43.573 DEBUG 3220 --- [XNIO-1 task-1] r.c.a.e.r.U.selectCountByDate            : ==> Parameters: 2020-06-01 00:00:00.0(Timestamp), 2020-06-30 23:59:59.0(Timestamp)
+2020-06-27 02:59:43.575 DEBUG 3220 --- [XNIO-1 task-1] r.c.a.e.r.U.selectCountByDate            : <==      Total: 3
+2020-06-27 02:59:43.579 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 02:59:43.581 DEBUG 3220 --- [XNIO-1 task-1] r.c.a.e.r.E.selectCountByDate            : ==>  Preparing: SELECT create_time as name,COUNT(create_time) as value from ( SELECT DATE_FORMAT(create_time,'%Y-%m-%d') as create_time from t_exam_paper_question_customer_answer WHERE create_time between ? and ? ) a GROUP BY create_time 
+2020-06-27 02:59:43.582 DEBUG 3220 --- [XNIO-1 task-1] r.c.a.e.r.E.selectCountByDate            : ==> Parameters: 2020-06-01 00:00:00.0(Timestamp), 2020-06-30 23:59:59.0(Timestamp)
+2020-06-27 02:59:43.584 DEBUG 3220 --- [XNIO-1 task-1] r.c.a.e.r.E.selectCountByDate            : <==      Total: 1
+2020-06-27 02:59:43.650 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 02:59:43.651 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 9(Integer)
+2020-06-27 02:59:43.708 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 02:59:43.710 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 02:59:43.710 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 8(Integer)
+2020-06-27 02:59:43.768 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 02:59:43.769 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 02:59:43.770 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 7(Integer)
+2020-06-27 02:59:43.828 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 02:59:43.830 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 02:59:43.830 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 6(Integer)
+2020-06-27 02:59:43.894 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 02:59:43.895 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 02:59:43.896 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 5(Integer)
+2020-06-27 02:59:43.956 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 02:59:43.960 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 02:59:43.961 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 4(Integer)
+2020-06-27 02:59:44.028 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 02:59:44.032 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 02:59:44.033 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 3(Integer)
+2020-06-27 02:59:44.098 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 02:59:44.101 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 02:59:44.101 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 2(Integer)
+2020-06-27 02:59:44.198 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 02:59:44.200 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 02:59:44.200 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 1(Integer)
+2020-06-27 02:59:44.266 DEBUG 3220 --- [XNIO-1 task-2] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 02:59:47.047 DEBUG 3220 --- [XNIO-1 task-4] r.c.a.e.r.SubjectMapper.allSubject       : ==>  Preparing: select id, name,supplier, level, level_name, item_order, deleted ,flag,create_time createTime, update_time updateTime from t_subject 
+2020-06-27 02:59:47.048 DEBUG 3220 --- [XNIO-1 task-4] r.c.a.e.r.SubjectMapper.allSubject       : ==> Parameters: 
+2020-06-27 02:59:47.051 DEBUG 3220 --- [XNIO-1 task-4] r.c.a.e.r.SubjectMapper.allSubject       : <==      Total: 10
+2020-06-27 02:59:47.361 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.QuestionMapper.page_COUNT      : ==>  Preparing: SELECT count(0) FROM t_question q LEFT JOIN t_subject s ON q.subject_id = s.id LEFT JOIN t_exam_paper e ON q.paper_id = e.id WHERE q.subject_id = ? 
+2020-06-27 02:59:47.362 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.QuestionMapper.page_COUNT      : ==> Parameters: 6(Integer)
+2020-06-27 02:59:47.402 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.QuestionMapper.page_COUNT      : <==      Total: 1
+2020-06-27 02:59:47.405 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.repository.QuestionMapper.page   : ==>  Preparing: SELECT q.id, q.question_type questionType, q.subject_id subjectId, q.paper_id paperId, q.score, q.correct, q.info_text_content_id infoTextContentId, q.deleted, q.flag, q.name, q.correct, s.name subjectName, e.name paperName FROM t_question q LEFT JOIN t_subject s ON q.subject_id = s.id LEFT JOIN t_exam_paper e ON q.paper_id = e.id WHERE q.subject_id = ? order by q.id desc LIMIT ? 
+2020-06-27 02:59:47.406 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.repository.QuestionMapper.page   : ==> Parameters: 6(Integer), 10(Integer)
+2020-06-27 02:59:47.415 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.repository.QuestionMapper.page   : <==      Total: 10
+2020-06-27 02:59:47.428 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 02:59:47.428 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2332(Integer)
+2020-06-27 02:59:47.430 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 02:59:47.451 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 02:59:47.452 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2331(Integer)
+2020-06-27 02:59:47.453 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 02:59:47.456 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 02:59:47.456 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2330(Integer)
+2020-06-27 02:59:47.457 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 02:59:47.459 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 02:59:47.459 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2329(Integer)
+2020-06-27 02:59:47.460 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 02:59:47.462 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 02:59:47.463 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2328(Integer)
+2020-06-27 02:59:47.464 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 02:59:47.467 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 02:59:47.468 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2327(Integer)
+2020-06-27 02:59:47.469 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 02:59:47.472 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 02:59:47.472 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2326(Integer)
+2020-06-27 02:59:47.473 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 02:59:47.475 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 02:59:47.476 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2325(Integer)
+2020-06-27 02:59:47.476 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 02:59:47.480 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 02:59:47.480 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2324(Integer)
+2020-06-27 02:59:47.482 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 02:59:47.485 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 02:59:47.485 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2323(Integer)
+2020-06-27 02:59:47.486 DEBUG 3220 --- [XNIO-1 task-5] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 02:59:56.781 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.QuestionMapper.page_COUNT      : ==>  Preparing: SELECT count(0) FROM t_question q LEFT JOIN t_subject s ON q.subject_id = s.id LEFT JOIN t_exam_paper e ON q.paper_id = e.id WHERE q.subject_id = ? AND q.question_type = ? 
+2020-06-27 02:59:56.781 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.QuestionMapper.page_COUNT      : ==> Parameters: 6(Integer), 1(Integer)
+2020-06-27 02:59:56.823 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.QuestionMapper.page_COUNT      : <==      Total: 1
+2020-06-27 02:59:56.826 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.repository.QuestionMapper.page   : ==>  Preparing: SELECT q.id, q.question_type questionType, q.subject_id subjectId, q.paper_id paperId, q.score, q.correct, q.info_text_content_id infoTextContentId, q.deleted, q.flag, q.name, q.correct, s.name subjectName, e.name paperName FROM t_question q LEFT JOIN t_subject s ON q.subject_id = s.id LEFT JOIN t_exam_paper e ON q.paper_id = e.id WHERE q.subject_id = ? AND q.question_type = ? order by q.id desc LIMIT ? 
+2020-06-27 02:59:56.826 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.repository.QuestionMapper.page   : ==> Parameters: 6(Integer), 1(Integer), 10(Integer)
+2020-06-27 02:59:56.837 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.repository.QuestionMapper.page   : <==      Total: 10
+2020-06-27 02:59:56.838 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 02:59:56.838 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2292(Integer)
+2020-06-27 02:59:56.839 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 02:59:56.842 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 02:59:56.842 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2291(Integer)
+2020-06-27 02:59:56.843 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 02:59:56.847 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 02:59:56.847 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2290(Integer)
+2020-06-27 02:59:56.849 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 02:59:56.852 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 02:59:56.852 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2289(Integer)
+2020-06-27 02:59:56.853 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 02:59:56.856 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 02:59:56.856 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2288(Integer)
+2020-06-27 02:59:56.857 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 02:59:56.860 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 02:59:56.861 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2287(Integer)
+2020-06-27 02:59:56.864 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 02:59:56.869 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 02:59:56.869 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2286(Integer)
+2020-06-27 02:59:56.870 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 02:59:56.873 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 02:59:56.873 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2285(Integer)
+2020-06-27 02:59:56.874 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 02:59:56.876 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 02:59:56.877 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2284(Integer)
+2020-06-27 02:59:56.878 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 02:59:56.882 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 02:59:56.882 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2283(Integer)
+2020-06-27 02:59:56.883 DEBUG 3220 --- [XNIO-1 task-6] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 03:00:26.948 DEBUG 3220 --- [XNIO-1 task-7] r.c.a.e.r.SubjectMapper.allSubject       : ==>  Preparing: select id, name,supplier, level, level_name, item_order, deleted ,flag,create_time createTime, update_time updateTime from t_subject 
+2020-06-27 03:00:26.949 DEBUG 3220 --- [XNIO-1 task-7] r.c.a.e.r.SubjectMapper.allSubject       : ==> Parameters: 
+2020-06-27 03:00:26.950 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.SubjectMapper.page_COUNT       : ==>  Preparing: SELECT count(0) FROM t_subject 
+2020-06-27 03:00:26.950 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.SubjectMapper.page_COUNT       : ==> Parameters: 
+2020-06-27 03:00:26.951 DEBUG 3220 --- [XNIO-1 task-7] r.c.a.e.r.SubjectMapper.allSubject       : <==      Total: 10
+2020-06-27 03:00:26.951 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.SubjectMapper.page_COUNT       : <==      Total: 1
+2020-06-27 03:00:26.952 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.repository.SubjectMapper.page    : ==>  Preparing: SELECT id, name, supplier, level, level_name, item_order, deleted, flag, create_time createTime, update_time updateTime FROM t_subject order by id desc LIMIT ? 
+2020-06-27 03:00:26.953 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.repository.SubjectMapper.page    : ==> Parameters: 10(Integer)
+2020-06-27 03:00:26.956 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.repository.SubjectMapper.page    : <==      Total: 10
+2020-06-27 03:00:26.956 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 03:00:26.957 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 10(Integer)
+2020-06-27 03:00:27.006 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 03:00:27.007 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 03:00:27.007 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 9(Integer)
+2020-06-27 03:00:27.045 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 03:00:27.046 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 03:00:27.046 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 8(Integer)
+2020-06-27 03:00:27.085 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 03:00:27.087 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 03:00:27.087 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 7(Integer)
+2020-06-27 03:00:27.133 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 03:00:27.134 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 03:00:27.135 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 6(Integer)
+2020-06-27 03:00:27.179 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 03:00:27.180 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 03:00:27.180 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 5(Integer)
+2020-06-27 03:00:27.220 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 03:00:27.225 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 03:00:27.225 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 4(Integer)
+2020-06-27 03:00:27.270 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 03:00:27.271 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 03:00:27.272 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 3(Integer)
+2020-06-27 03:00:27.311 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 03:00:27.312 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 03:00:27.312 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 2(Integer)
+2020-06-27 03:00:27.351 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 03:00:27.352 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 03:00:27.353 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 1(Integer)
+2020-06-27 03:00:27.399 DEBUG 3220 --- [XNIO-1 task-8] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 03:00:27.516 DEBUG 3220 --- [XNIO-1 task-9] r.c.a.e.r.E.selectAllCount               : ==>  Preparing: SELECT count(*) from t_exam_paper where deleted=0 
+2020-06-27 03:00:27.516 DEBUG 3220 --- [XNIO-1 task-9] r.c.a.e.r.E.selectAllCount               : ==> Parameters: 
+2020-06-27 03:00:27.517 DEBUG 3220 --- [XNIO-1 task-9] r.c.a.e.r.E.selectAllCount               : <==      Total: 1
+2020-06-27 03:00:27.517 DEBUG 3220 --- [XNIO-1 task-9] r.c.a.e.r.QuestionMapper.selectAllCount  : ==>  Preparing: SELECT count(*) from t_question where deleted=0 
+2020-06-27 03:00:27.517 DEBUG 3220 --- [XNIO-1 task-9] r.c.a.e.r.QuestionMapper.selectAllCount  : ==> Parameters: 
+2020-06-27 03:00:27.565 DEBUG 3220 --- [XNIO-1 task-9] r.c.a.e.r.QuestionMapper.selectAllCount  : <==      Total: 1
+2020-06-27 03:00:27.566 DEBUG 3220 --- [XNIO-1 task-9] r.c.a.e.r.E.selectAllCount               : ==>  Preparing: SELECT count(*) from t_exam_paper_answer 
+2020-06-27 03:00:27.566 DEBUG 3220 --- [XNIO-1 task-9] r.c.a.e.r.E.selectAllCount               : ==> Parameters: 
+2020-06-27 03:00:27.567 DEBUG 3220 --- [XNIO-1 task-9] r.c.a.e.r.E.selectAllCount               : <==      Total: 1
+2020-06-27 03:00:27.567 DEBUG 3220 --- [XNIO-1 task-9] r.c.a.e.r.E.selectAllCount               : ==>  Preparing: SELECT count(*) from t_exam_paper_question_customer_answer 
+2020-06-27 03:00:27.567 DEBUG 3220 --- [XNIO-1 task-9] r.c.a.e.r.E.selectAllCount               : ==> Parameters: 
+2020-06-27 03:00:27.568 DEBUG 3220 --- [XNIO-1 task-9] r.c.a.e.r.E.selectAllCount               : <==      Total: 1
+2020-06-27 03:00:27.569 DEBUG 3220 --- [XNIO-1 task-9] r.c.a.e.r.U.selectCountByDate            : ==>  Preparing: SELECT create_time as name,COUNT(create_time) as value from ( SELECT DATE_FORMAT(create_time,'%Y-%m-%d') as create_time from t_user_event_log WHERE create_time between ? and ? ) a GROUP BY create_time 
+2020-06-27 03:00:27.570 DEBUG 3220 --- [XNIO-1 task-9] r.c.a.e.r.U.selectCountByDate            : ==> Parameters: 2020-06-01 00:00:00.0(Timestamp), 2020-06-30 23:59:59.0(Timestamp)
+2020-06-27 03:00:27.572 DEBUG 3220 --- [XNIO-1 task-9] r.c.a.e.r.U.selectCountByDate            : <==      Total: 3
+2020-06-27 03:00:27.574 DEBUG 3220 --- [XNIO-1 task-9] r.c.a.e.r.E.selectCountByDate            : ==>  Preparing: SELECT create_time as name,COUNT(create_time) as value from ( SELECT DATE_FORMAT(create_time,'%Y-%m-%d') as create_time from t_exam_paper_question_customer_answer WHERE create_time between ? and ? ) a GROUP BY create_time 
+2020-06-27 03:00:27.574 DEBUG 3220 --- [XNIO-1 task-9] r.c.a.e.r.E.selectCountByDate            : ==> Parameters: 2020-06-01 00:00:00.0(Timestamp), 2020-06-30 23:59:59.0(Timestamp)
+2020-06-27 03:00:27.576 DEBUG 3220 --- [XNIO-1 task-9] r.c.a.e.r.E.selectCountByDate            : <==      Total: 1
+2020-06-27 03:00:29.399 DEBUG 3220 --- [XNIO-1 task-11] r.c.a.e.r.SubjectMapper.allSubject       : ==>  Preparing: select id, name,supplier, level, level_name, item_order, deleted ,flag,create_time createTime, update_time updateTime from t_subject 
+2020-06-27 03:00:29.400 DEBUG 3220 --- [XNIO-1 task-11] r.c.a.e.r.SubjectMapper.allSubject       : ==> Parameters: 
+2020-06-27 03:00:29.401 DEBUG 3220 --- [XNIO-1 task-11] r.c.a.e.r.SubjectMapper.allSubject       : <==      Total: 10
+2020-06-27 03:00:29.403 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.QuestionMapper.page_COUNT      : ==>  Preparing: SELECT count(0) FROM t_question q LEFT JOIN t_subject s ON q.subject_id = s.id LEFT JOIN t_exam_paper e ON q.paper_id = e.id 
+2020-06-27 03:00:29.403 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.QuestionMapper.page_COUNT      : ==> Parameters: 
+2020-06-27 03:00:29.451 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.QuestionMapper.page_COUNT      : <==      Total: 1
+2020-06-27 03:00:29.455 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.repository.QuestionMapper.page   : ==>  Preparing: SELECT q.id, q.question_type questionType, q.subject_id subjectId, q.paper_id paperId, q.score, q.correct, q.info_text_content_id infoTextContentId, q.deleted, q.flag, q.name, q.correct, s.name subjectName, e.name paperName FROM t_question q LEFT JOIN t_subject s ON q.subject_id = s.id LEFT JOIN t_exam_paper e ON q.paper_id = e.id order by q.id desc LIMIT ? 
+2020-06-27 03:00:29.456 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.repository.QuestionMapper.page   : ==> Parameters: 10(Integer)
+2020-06-27 03:00:29.458 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.repository.QuestionMapper.page   : <==      Total: 10
+2020-06-27 03:00:29.459 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 03:00:29.460 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2831(Integer)
+2020-06-27 03:00:29.460 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 03:00:29.462 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 03:00:29.463 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2830(Integer)
+2020-06-27 03:00:29.463 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 03:00:29.466 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 03:00:29.466 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2829(Integer)
+2020-06-27 03:00:29.466 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 03:00:29.469 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 03:00:29.470 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2828(Integer)
+2020-06-27 03:00:29.471 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 03:00:29.474 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 03:00:29.474 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2827(Integer)
+2020-06-27 03:00:29.475 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 03:00:29.477 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 03:00:29.478 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2826(Integer)
+2020-06-27 03:00:29.478 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 03:00:29.480 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 03:00:29.481 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2825(Integer)
+2020-06-27 03:00:29.481 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 03:00:29.483 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 03:00:29.484 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2824(Integer)
+2020-06-27 03:00:29.485 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 03:00:29.488 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 03:00:29.489 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2823(Integer)
+2020-06-27 03:00:29.490 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 03:00:29.492 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : ==>  Preparing: select id, content, create_time from t_text_content where id = ? 
+2020-06-27 03:00:29.492 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : ==> Parameters: 2822(Integer)
+2020-06-27 03:00:29.493 DEBUG 3220 --- [XNIO-1 task-10] r.c.a.e.r.T.selectByPrimaryKey           : <==      Total: 1
+2020-06-27 03:00:32.280 DEBUG 3220 --- [XNIO-1 task-12] r.c.a.e.r.SubjectMapper.allSubject       : ==>  Preparing: select id, name,supplier, level, level_name, item_order, deleted ,flag,create_time createTime, update_time updateTime from t_subject 
+2020-06-27 03:00:32.280 DEBUG 3220 --- [XNIO-1 task-12] r.c.a.e.r.SubjectMapper.allSubject       : ==> Parameters: 
+2020-06-27 03:00:32.282 DEBUG 3220 --- [XNIO-1 task-12] r.c.a.e.r.SubjectMapper.allSubject       : <==      Total: 10
+2020-06-27 03:00:32.583 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.SubjectMapper.page_COUNT       : ==>  Preparing: SELECT count(0) FROM t_subject 
+2020-06-27 03:00:32.583 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.SubjectMapper.page_COUNT       : ==> Parameters: 
+2020-06-27 03:00:32.583 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.SubjectMapper.page_COUNT       : <==      Total: 1
+2020-06-27 03:00:32.585 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.repository.SubjectMapper.page    : ==>  Preparing: SELECT id, name, supplier, level, level_name, item_order, deleted, flag, create_time createTime, update_time updateTime FROM t_subject order by id desc LIMIT ? 
+2020-06-27 03:00:32.585 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.repository.SubjectMapper.page    : ==> Parameters: 10(Integer)
+2020-06-27 03:00:32.587 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.repository.SubjectMapper.page    : <==      Total: 10
+2020-06-27 03:00:32.588 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 03:00:32.588 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 10(Integer)
+2020-06-27 03:00:32.625 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 03:00:32.626 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 03:00:32.626 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 9(Integer)
+2020-06-27 03:00:32.662 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 03:00:32.662 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 03:00:32.663 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 8(Integer)
+2020-06-27 03:00:32.702 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 03:00:32.703 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 03:00:32.704 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 7(Integer)
+2020-06-27 03:00:32.743 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 03:00:32.743 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 03:00:32.743 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 6(Integer)
+2020-06-27 03:00:32.786 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 03:00:32.787 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 03:00:32.787 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 5(Integer)
+2020-06-27 03:00:32.833 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 03:00:32.834 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 03:00:32.835 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 4(Integer)
+2020-06-27 03:00:32.873 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 03:00:32.873 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 03:00:32.874 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 3(Integer)
+2020-06-27 03:00:32.915 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 03:00:32.916 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 03:00:32.916 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 2(Integer)
+2020-06-27 03:00:32.956 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
+2020-06-27 03:00:32.957 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : ==>  Preparing: select count(*) from t_question WHERE subject_id = ? 
+2020-06-27 03:00:32.957 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : ==> Parameters: 1(Integer)
+2020-06-27 03:00:33.002 DEBUG 3220 --- [XNIO-1 task-13] r.c.a.e.r.QuestionMapper.getCount        : <==      Total: 1
