@@ -35,7 +35,7 @@ public class RestAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
         User springUser = (User) authentication.getPrincipal();
         com.alvis.exam.domain.User user = userService.getUserByUserName(springUser.getUsername());
         UserEventLog userEventLog = new UserEventLog(user.getId(), user.getUserName(), user.getRealName(), new Date());
-        userEventLog.setContent(user.getUserName() + " 登录了车管考试系统");
+        userEventLog.setContent(user.getUserName() + " 登录了学之思考试系统");
         eventPublisher.publishEvent(new UserEvent(userEventLog));
         com.alvis.exam.domain.User newUser = new com.alvis.exam.domain.User();
         newUser.setUserName(user.getUserName());
