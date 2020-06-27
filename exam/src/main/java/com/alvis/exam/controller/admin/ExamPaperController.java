@@ -86,9 +86,12 @@ public class ExamPaperController extends BaseApiController {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        Map<?, ?> map = YamlUtil.loadYaml("application.yml");
+        String a = "1.2.3";
+        String[] split = a.split("\\.");
+        System.out.println(split[2]);
+        /*Map<?, ?> map = YamlUtil.loadYaml("application.yml");
         String value = String.valueOf(YamlUtil.getProperty(map, "filePath"));
-        System.out.println(value);
+        System.out.println(value);*/
     }
     @RequestMapping(value = "/page", method = RequestMethod.POST)
     public RestResponse<PageInfo<ExamResponseVM>> pageList(@RequestBody ExamPaperPageRequestVM model) {
@@ -173,7 +176,33 @@ public class ExamPaperController extends BaseApiController {
             if (StringUtils.isBlank(wordTitle)){
                 continue;
             }
-            if (wordTitle.trim().startsWith("一、")) {
+
+            boolean two = false;
+            boolean three = false;
+            boolean four = false;
+            boolean firstNum = StringUtils.isNumeric(wordTitle.trim().charAt(0) + "");
+            if(firstNum){
+                String substring = wordTitle.trim().substring(0, 8);
+
+                int i = substring.trim().indexOf(".");
+                String substring1 = wordTitle.substring(i+1);
+                String s = substring1.charAt(0) + "";
+                if(!StringUtils.isNumeric(s)){
+                    two = true;
+                }else {
+                   String[] split = substring.split("\\.");
+                    if(split.length == 2){
+                        three = true;
+                    }else {
+                        four = true;
+                    }
+                }
+            }
+            System.out.println(wordTitle);
+            System.out.println(wordTitle);
+            System.out.println(wordTitle);
+
+            if (wordTitle.trim().startsWith("一级标题")) {
                 XWPFParagraph para1 = doc.createParagraph();
                 para1.setStyle("1");
                 XWPFRun run1 = para1.createRun();
@@ -184,7 +213,7 @@ public class ExamPaperController extends BaseApiController {
                 run1.setText(wordTitle+"["+subject+"]");
             }
 
-            if (StringUtils.isNumeric(wordTitle.charAt(0)+"") && !StringUtils.isNumeric(wordTitle.charAt(2)+"")) {
+            if (two) {
                 question = 0;
                 textContent = 0;
                 XWPFParagraph para2 = doc.createParagraph();
@@ -192,14 +221,14 @@ public class ExamPaperController extends BaseApiController {
                 XWPFRun run2 = para2.createRun();
                 examPaper += 1;
                 run2.setText(wordTitle+"["+subject+","+examPaper+"]");
-            }else if (StringUtils.isNumeric(wordTitle.charAt(0)+"") && StringUtils.isNumeric(wordTitle.charAt(2)+"") && !StringUtils.isNumeric(wordTitle.charAt(4)+"")) {
+            }else if (three) {
                 textContent = 0;
                 XWPFParagraph para3 = doc.createParagraph();
                 para3.setStyle("3");
                 XWPFRun run3 = para3.createRun();
                 question += 1;
                 run3.setText(wordTitle+"["+subject+","+examPaper+","+question+"]");
-            }else if (StringUtils.isNumeric(wordTitle.charAt(0)+"") && StringUtils.isNumeric(wordTitle.charAt(2)+"") && StringUtils.isNumeric(wordTitle.charAt(4)+"")) {
+            }else if (four) {
                 XWPFParagraph para4 = doc.createParagraph();
                 para4.setStyle("4");
                 XWPFRun run4 = para4.createRun();
@@ -257,7 +286,7 @@ public class ExamPaperController extends BaseApiController {
             if ("1".equals(style)) {
                 if(!text.contains("套题提供方：")){
                     TSubject tSubject = new TSubject();
-
+                    content = content.replace("一级标题", "");
                     tSubject.setName(content);
                     tSubject.setFlag(flag);
                     tSubject.setSupplier(supplier);
