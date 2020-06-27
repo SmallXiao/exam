@@ -21,14 +21,17 @@
                      :label="item.name+' ( '+item.levelName+' )'"></el-option>
         </el-select>-->
       </el-form-item>
+
       <el-form-item label="套题提供方：">
         <el-input v-model="queryParam.supplier" clearable></el-input>
       </el-form-item>
+
       <el-form-item>
         <el-upload class="upload-demo"
                    :show-file-list="true"
                    :on-success="handleAvatarSuccess"
                    name="file"
+                   :data = "queryParam"
                    action="/api/admin/exam/paper/upload">
           <el-button size="small" type="primary">点击上传套题文件</el-button>
         </el-upload>
@@ -78,6 +81,8 @@ export default {
         id: null,
         level: null,
         subjectId: null,
+        subjectName: null,
+        supplier: null,
         pageIndex: 1,
         pageSize: 10
       },

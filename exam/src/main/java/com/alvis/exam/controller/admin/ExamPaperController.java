@@ -149,7 +149,8 @@ public class ExamPaperController extends BaseApiController {
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public RestResponse upload(MultipartFile file) throws IOException {
+    public RestResponse upload(MultipartFile file,@RequestParam Map map) throws IOException {
+        String supplier = map.get("supplier").toString();
         File newFile = new File(filePath);
         if (!newFile.exists()) {
             newFile.mkdirs();
@@ -246,14 +247,14 @@ public class ExamPaperController extends BaseApiController {
         doc.write(fos);
         fos.close();
 
-        getWordTitles(allpath);
+        getWordTitles(allpath,supplier);
         datahandle();
         return RestResponse.ok();
     }
 
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     @GetMapping("/word")
-    public void getWordTitles(String path) throws IOException {
+    public void getWordTitles(String path,String supplier) throws IOException {
         //String path= "D:/myDoc.docx";
         InputStream is = new FileInputStream(path);
 
@@ -261,7 +262,6 @@ public class ExamPaperController extends BaseApiController {
         List<XWPFParagraph> paras = doc.getParagraphs();
 
         String contentAll = "";
-        String supplier = "";
 
         List<TTextContent> insertTTextContentlist = new ArrayList<>();
         List<TQuestion> insertTQuestionlist = new ArrayList<>();
@@ -272,25 +272,20 @@ public class ExamPaperController extends BaseApiController {
             if (StringUtils.isBlank(text)){
                 continue;
             }
-            if(text.contains("套题提供方：")){
-                supplier = StringUtils.substringAfter(text,"套题提供方：");
-            }
 
             String style = graph.getStyle();
             String flag = StringUtils.substringBetween(text,"[","]");
             String content = StringUtils.substringBefore(text,"[");
 
             if ("1".equals(style)) {
-                if(!text.contains("套题提供方：")){
-                    TSubject tSubject = new TSubject();
-                    content = content.replace("一级标题", "");
-                    tSubject.setName(content);
-                    tSubject.setFlag(flag);
-                    tSubject.setSupplier(supplier);
-                    inserttSubjectlist.add(tSubject);
+                TSubject tSubject = new TSubject();
+                content = content.replace("一级标题", "");
+                tSubject.setName(content);
+                tSubject.setFlag(flag);
+                tSubject.setSupplier(supplier);
+                inserttSubjectlist.add(tSubject);
 
-                    //System.out.println(text+"--["+style+"]");
-                }
+                //System.out.println(text+"--["+style+"]");
             }else if ("2".equals(style)) {
                 String s = flag.split(",")[1] + ".";
                 content = StringUtils.substringAfter(content,s);
@@ -304,9 +299,10 @@ public class ExamPaperController extends BaseApiController {
             }else if ("3".equals(style)) {
                 //System.out.println(text+"--["+style+"]");
             }else if ("4".equals(style)) {
-                String num = flag.substring(flag.indexOf(",") + 1).replace(",", ".");
-                content = StringUtils.substringAfter(content,num);
+                int i = flag.lastIndexOf(",");
+                String substring = flag.substring(0,i).replace(",",".");
 
+                content = StringUtils.substringAfter(content,substring);
                 TQuestion tQuestion = new TQuestion();
                 tQuestion.setName(content);
                 tQuestion.setFlag(flag);
@@ -411,11 +407,6 @@ public class ExamPaperController extends BaseApiController {
             String B = StringUtils.substringBetween(choose,"B、","C、");
             String C = StringUtils.substringBetween(choose,"C、","D、");
             String D = StringUtils.substringAfter(choose,"D、");
-
-            String flag = textContent.getFlag();
-            System.out.println(flag);
-            System.out.println(flag);
-            System.out.println(flag);
 
             String name = textContent.getQuestion();
             if(name.contains("\"")){
