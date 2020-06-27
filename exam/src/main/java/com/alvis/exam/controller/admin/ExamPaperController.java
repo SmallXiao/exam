@@ -198,9 +198,6 @@ public class ExamPaperController extends BaseApiController {
                     }
                 }
             }
-            System.out.println(wordTitle);
-            System.out.println(wordTitle);
-            System.out.println(wordTitle);
 
             if (wordTitle.trim().startsWith("一级标题")) {
                 XWPFParagraph para1 = doc.createParagraph();
