@@ -263,7 +263,7 @@ public class ExamPaperController extends BaseApiController {
                     tSubject.setSupplier(supplier);
                     inserttSubjectlist.add(tSubject);
 
-                    System.out.println(text+"--["+style+"]");
+                    //System.out.println(text+"--["+style+"]");
                 }
             }else if ("2".equals(style)) {
                 String s = flag.split(",")[1] + ".";
@@ -274,9 +274,9 @@ public class ExamPaperController extends BaseApiController {
                 tExamPaper.setFlag(flag);
                 inserttExamPaperlist.add(tExamPaper);
 
-                System.out.println(text+"--["+style+"]");
+                //System.out.println(text+"--["+style+"]");
             }else if ("3".equals(style)) {
-                System.out.println(text+"--["+style+"]");
+                //System.out.println(text+"--["+style+"]");
             }else if ("4".equals(style)) {
                 String num = flag.substring(flag.indexOf(",") + 1).replace(",", ".");
                 content = StringUtils.substringAfter(content,num);
@@ -286,7 +286,7 @@ public class ExamPaperController extends BaseApiController {
                 tQuestion.setFlag(flag);
 
                 insertTQuestionlist.add(tQuestion);
-                System.out.println(text+"--["+style+"]");
+                //System.out.println(text+"--["+style+"]");
             }else {
                 TTextContent textContent = new TTextContent();
                 if (!content.contains("答案：")) {
