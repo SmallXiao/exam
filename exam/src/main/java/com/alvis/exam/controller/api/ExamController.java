@@ -1,8 +1,6 @@
 package com.alvis.exam.controller.api;
 
 import com.alvis.exam.base.RestResponse;
-import com.alvis.exam.service.ExamService;
-import com.alvis.exam.viewmodel.api.exam.ExamMainLogVM;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
