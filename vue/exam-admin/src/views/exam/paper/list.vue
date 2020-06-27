@@ -24,6 +24,15 @@
       <el-form-item label="套题提供方：">
         <el-input v-model="queryParam.supplier" clearable></el-input>
       </el-form-item>
+      <el-form-item>
+        <el-upload class="upload-demo"
+                   :show-file-list="true"
+                   :on-success="handleAvatarSuccess"
+                   name="file"
+                   action="/api/admin/exam/paper/upload">
+          <el-button size="small" type="primary">点击上传套题文件</el-button>
+        </el-upload>
+      </el-form-item>
       <!--<el-form-item label="套题提供方：" >
         <el-select v-model="queryParam.supplier"  clearable>
           <el-option v-for="item in subjectFilter" :key="item.id" :value="item.id" :label="item.name+' ( '+item.levelName+' )'"></el-option>
@@ -83,6 +92,9 @@ export default {
     this.search()
   },
   methods: {
+    handleAvatarSuccess (res, file) {
+      alert('上传成功')
+    },
     submitForm () {
       this.queryParam.pageIndex = 1
       this.search()
