@@ -26,5 +26,5 @@
 
 
 ### Customer ###
-*/log/*
+/log/*.log
 .gitignore
