@@ -3,6 +3,8 @@ package com.alvis.exam.controller.api;
 import com.alvis.exam.base.RestResponse;
 import com.alvis.exam.service.ExamService;
 import com.alvis.exam.viewmodel.api.exam.ExamMainLogVM;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController("ExamController")
 @RequestMapping(value = "/api/exam")
 @AllArgsConstructor
+@Api(tags = "Exam", description = "考试")
 public class ExamController {
 
     @Autowired
@@ -41,6 +44,7 @@ public class ExamController {
      * 保存答题结果
      */
     @PostMapping(value = "save")
+    @ApiOperation("保存答题结果")
     public RestResponse save(@RequestBody ExamMainLogVM examMainLog) {
 
         examService.save(examMainLog);

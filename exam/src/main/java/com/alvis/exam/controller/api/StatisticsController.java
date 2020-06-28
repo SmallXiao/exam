@@ -6,6 +6,7 @@ import com.alvis.exam.viewmodel.api.statistics.MonthlyReportResponseVM;
 import com.alvis.exam.viewmodel.api.statistics.ReportRequestVM;
 import com.alvis.exam.viewmodel.api.statistics.ReportResponseVM;
 import com.alvis.exam.viewmodel.api.statistics.WrongQuestionResponseVM;
+import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,7 @@ import java.util.List;
 @RestController("StatisticsController")
 @RequestMapping(value = "/api/statistics")
 @AllArgsConstructor
+@Api(tags = "Statistics", description = "统计")
 public class StatisticsController {
 
     @Autowired
