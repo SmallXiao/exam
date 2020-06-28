@@ -1,8 +1,28 @@
 package com.alvis.exam.service.impl;
 
+import com.alvis.exam.domain.statistics.ExamMainLog;
+import com.alvis.exam.repository.ExamMainLogMapper;
+import com.alvis.exam.service.ExamMainLogService;
+import org.springframework.stereotype.Service;
+
 /**
  * @Author sunxiao
- * @Date 2020/6/28
+ * @Date 2020/6/17
  **/
-public class ExamMainLogServiceImpl {
+@Service
+public class ExamMainLogServiceImpl extends BaseServiceImpl<ExamMainLog> implements ExamMainLogService {
+
+    private final ExamMainLogMapper examMainLogMapper;
+
+
+    public ExamMainLogServiceImpl(ExamMainLogMapper examMainLogMapper) {
+        super(examMainLogMapper);
+        this.examMainLogMapper = examMainLogMapper;
+    }
+
+
+    @Override
+    public void save(ExamMainLog examMainLog) {
+        examMainLogMapper.insert(examMainLog);
+    }
 }
