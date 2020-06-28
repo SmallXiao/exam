@@ -2,6 +2,9 @@ package com.alvis.exam.repository;
 
 import com.alvis.exam.domain.Subject;
 import com.alvis.exam.viewmodel.admin.education.SubjectPageRequestVM;
+import com.alvis.exam.viewmodel.admin.question.QuestionPageRequestVM;
+import com.alvis.exam.viewmodel.admin.question.QuestionResponseVM;
+import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -27,4 +30,6 @@ public interface SubjectMapper  extends BaseMapper<Subject> {
     List<Subject> page(SubjectPageRequestVM requestVM);
 
     List<Subject> getSubjectList(String subjectName);
+
+    PageInfo<QuestionResponseVM> subjectpage(QuestionPageRequestVM model);
 }

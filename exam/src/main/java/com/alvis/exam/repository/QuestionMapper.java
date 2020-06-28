@@ -33,6 +33,14 @@ public interface QuestionMapper extends BaseMapper<Question> {
     List<KeyValue> selectCountByDate(@Param("startTime") Date startTime,@Param("endTime") Date endTime);
 
     List<QuestionResponseVM> getQuestionList(QuestionPageRequestVM model);
+
+    List<QuestionResponseVM> questionpage(QuestionPageRequestVM requestVM);
+
+    int getCount(Integer id);
 }
+
+
+
+
 
 

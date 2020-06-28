@@ -1,6 +1,10 @@
 package com.alvis.exam.domain;
 
+import lombok.Data;
+
 import java.io.Serializable;
+import java.util.Date;
+@Data
 
 public class Subject implements Serializable {
 
@@ -18,60 +22,9 @@ public class Subject implements Serializable {
 
     private Boolean deleted;
     private String flag;
+    private String supplier;
 
-    public String getFlag() {
-        return flag;
-    }
+    private Date createTime;
+    private Date updateTime;
 
-    public void setFlag(String flag) {
-        this.flag = flag;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public Integer getLevel() {
-        return level;
-    }
-
-    public void setLevel(Integer level) {
-        this.level = level;
-    }
-
-    public String getLevelName() {
-        return levelName;
-    }
-
-    public void setLevelName(String levelName) {
-        this.levelName = levelName == null ? null : levelName.trim();
-    }
-
-    public Integer getItemOrder() {
-        return itemOrder;
-    }
-
-    public void setItemOrder(Integer itemOrder) {
-        this.itemOrder = itemOrder;
-    }
-
-    public Boolean getDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(Boolean deleted) {
-        this.deleted = deleted;
-    }
 }

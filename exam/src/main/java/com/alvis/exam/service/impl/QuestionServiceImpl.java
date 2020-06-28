@@ -53,6 +53,17 @@ public class QuestionServiceImpl extends BaseServiceImpl<Question> implements Qu
         );
     }
 
+    @Override
+    public PageInfo<QuestionResponseVM> questionpage(QuestionPageRequestVM requestVM) {
+        return PageHelper.startPage(requestVM.getPageIndex(), requestVM.getPageSize(), "id desc").doSelectPageInfo(() ->
+                questionMapper.questionpage(requestVM)
+        );
+    }
+
+    @Override
+    public int getCount(Integer id) {
+        return questionMapper.getCount(id);
+    }
 
     @Override
     @Transactional
@@ -199,6 +210,4 @@ public class QuestionServiceImpl extends BaseServiceImpl<Question> implements Qu
     public List<QuestionResponseVM> getQuestionList(QuestionPageRequestVM model) {
         return questionMapper.getQuestionList(model);
     }
-
-
 }

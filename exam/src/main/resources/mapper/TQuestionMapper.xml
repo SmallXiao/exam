@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alvis.exam.repository.TQuestionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.alvis.exam.domain.TQuestion">
+        <id column="id" property="id" />
+        <result column="question_type" property="questionType" />
+        <result column="subject_id" property="subjectId" />
+        <result column="paper_id" property="paperId" />
+        <result column="score" property="score" />
+        <result column="grade_level" property="gradeLevel" />
+        <result column="difficult" property="difficult" />
+        <result column="correct" property="correct" />
+        <result column="info_text_content_id" property="infoTextContentId" />
+        <result column="create_user" property="createUser" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+        <result column="deleted" property="deleted" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, question_type, subject_id, paper_id, score, grade_level, difficult, correct, info_text_content_id, create_user, status, create_time, deleted
+    </sql>
+
+    <insert id="insertData">
+        insert into t_question (name,flag) values(#{name},#{flag})
+    </insert>
+
+    <update id="updateInfoTextContentId">
+        update t_question set info_text_content_id = #{id} where id = #{id}
+    </update>
+
+</mapper>

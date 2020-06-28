@@ -34,5 +34,6 @@ public class QuestionResponseVM extends BaseVM {
     private Integer difficult;
 
     private String shortTitle;
+    private Integer questionCount;
 
 }

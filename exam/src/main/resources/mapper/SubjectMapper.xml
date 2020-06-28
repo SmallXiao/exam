@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.alvis.exam.domain.Subject">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="supplier" jdbcType="VARCHAR" property="supplier" />
     <result column="level" jdbcType="INTEGER" property="level" />
     <result column="level_name" jdbcType="VARCHAR" property="levelName" />
     <result column="item_order" jdbcType="INTEGER" property="itemOrder" />
@@ -11,7 +12,7 @@
     <result column="flag" jdbcType="VARCHAR" property="flag" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, level, level_name, item_order, deleted ,flag
+    id, name,supplier, level, level_name, item_order, deleted ,flag,create_time createTime, update_time updateTime
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
@@ -125,21 +126,35 @@
     <include refid="Base_Column_List"/>
     FROM t_subject
     <where>
-        and deleted=0
       <if test="id != null ">
         and id= #{id}
       </if>
       <if test="level != null ">
         and level= #{level}
       </if>
+      <if test="subjectName != null ">
+        and name like concat('%',#{subjectName},'%')
+      </if>
+      <if test="supplier != null ">
+        and supplier like concat('%',#{supplier},'%')
+      </if>
     </where>
   </select>
 
-    <select id="getSubjectList" resultType="com.alvis.exam.domain.Subject">
-      select
-      <include refid="Base_Column_List" />
-      from t_subject
-      where name like concat('%',#{subjectName},'%')
-    </select>
+  <select id="getSubjectList" resultType="com.alvis.exam.domain.Subject">
+    select
+    <include refid="Base_Column_List" />
+    from t_subject
+    where name like concat('%',#{subjectName},'%')
+  </select>
+  <select id="subjectpage" resultType="com.alvis.exam.viewmodel.admin.question.QuestionResponseVM">
+    select name subjectName from t_subject
+    <where>
+      <if test="subjectName != null ">
+        and name = #{subjectName}
+      </if>
+    </where>
+  </select>
+
 
 </mapper>

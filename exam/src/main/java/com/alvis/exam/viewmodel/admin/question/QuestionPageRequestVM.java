@@ -13,6 +13,7 @@ public class QuestionPageRequestVM extends BasePage {
 
     private String subjectName;
     private String paperName;
+    private String questionName;
 
     private Integer startIndex;
 

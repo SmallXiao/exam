@@ -1,7 +1,6 @@
 package com.alvis.exam.configuration.spring.security;
 
 import com.alvis.exam.base.SystemCode;
-import com.alvis.exam.context.WebContext;
 import com.alvis.exam.domain.UserEventLog;
 import com.alvis.exam.event.UserEvent;
 import com.alvis.exam.service.UserService;

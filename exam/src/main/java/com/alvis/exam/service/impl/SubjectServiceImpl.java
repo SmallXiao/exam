@@ -4,6 +4,8 @@ import com.alvis.exam.domain.Subject;
 import com.alvis.exam.repository.SubjectMapper;
 import com.alvis.exam.service.SubjectService;
 import com.alvis.exam.viewmodel.admin.education.SubjectPageRequestVM;
+import com.alvis.exam.viewmodel.admin.question.QuestionPageRequestVM;
+import com.alvis.exam.viewmodel.admin.question.QuestionResponseVM;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,4 +66,10 @@ public class SubjectServiceImpl extends BaseServiceImpl<Subject> implements Subj
         return subjectMapper.getSubjectList(subjectName);
     }
 
+    @Override
+    public PageInfo<QuestionResponseVM> subjectpage(QuestionPageRequestVM requestVM) {
+        return PageHelper.startPage(requestVM.getPageIndex(), requestVM.getPageSize(), "id desc").doSelectPageInfo(() ->
+                subjectMapper.subjectpage(requestVM)
+        );
+    }
 }

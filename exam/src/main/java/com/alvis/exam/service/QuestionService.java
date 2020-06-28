@@ -25,5 +25,9 @@ public interface QuestionService extends BaseService<Question> {
     List<Integer> selectMothCount();
 
     List<QuestionResponseVM> getQuestionList(QuestionPageRequestVM model);
+
+    PageInfo<QuestionResponseVM> questionpage(QuestionPageRequestVM model);
+
+    int getCount(Integer id);
 }
 
