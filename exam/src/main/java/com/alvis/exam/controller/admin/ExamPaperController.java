@@ -26,7 +26,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.Valid;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -116,16 +115,35 @@ public class ExamPaperController extends BaseApiController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public RestResponse<ExamPaperEditRequestVM> edit(@RequestBody @Valid ExamPaperEditRequestVM model) {
-        ExamPaper examPaper = examPaperService.savePaperFromVM(model, getCurrentUser());
-        ExamPaperEditRequestVM newVM = examPaperService.examPaperToVM(examPaper.getId());
-        return RestResponse.ok(newVM);
+    public RestResponse edit(@RequestBody TSubject subject) {
+        /*ExamPaper examPaper = examPaperService.savePaperFromVM(model, getCurrentUser());
+        ExamPaperEditRequestVM newVM = examPaperService.examPaperToVM(examPaper.getId());*/
+        subjectService.updateById(subject);
+
+        /*TExamPaper texamPaper = new TExamPaper();
+        texamPaper.setSubjectId(tSubject.getId());
+        texamPaper.setName(model.getPaperName());
+
+        texamPaperService.save(texamPaper);*/
+        return RestResponse.ok();
     }
 
     @RequestMapping(value = "/select/{id}", method = RequestMethod.POST)
     public RestResponse<ExamPaperEditRequestVM> select(@PathVariable Integer id) {
         ExamPaperEditRequestVM vm = examPaperService.examPaperToVM(id);
         return RestResponse.ok(vm);
+    }
+
+    @RequestMapping(value = "/select/", method = RequestMethod.POST)
+    public List<TExamPaper> select() {
+        List<TExamPaper> list = texamPaperService.list();
+        return list;
+    }
+
+    @RequestMapping(value = "/insert", method = RequestMethod.POST)
+    public RestResponse<ExamPaperEditRequestVM> insert(@RequestBody TExamPaper texamPaper) {
+        texamPaperService.save(texamPaper);
+        return RestResponse.ok();
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)

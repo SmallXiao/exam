@@ -52,7 +52,7 @@ public class TextContentServiceImpl extends BaseServiceImpl<TextContent> impleme
             List<R> mapList = list.stream().map(mapper).collect(Collectors.toList());
             frameTextContent = JsonUtil.toJsonStr(mapList);
         }
-        TextContent textContent = new TextContent(frameTextContent, now);
+        TextContent textContent = new TextContent(frameTextContent);
         //insertByFilter(textContent);  cache useless
         return textContent;
     }

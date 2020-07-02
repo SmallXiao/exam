@@ -6,12 +6,12 @@
           <el-option v-for="item in levelEnum" :key="item.key" :value="item.key" :label="item.value"></el-option>
         </el-select>
       </el-form-item>-->
-      <el-form-item label="试卷大纲：" prop="subjectId" required>
-        <el-select v-model="form.subjectId" placeholder="学科" >
+      <el-form-item label="套题列表：" prop="subjectId" required>
+        <el-select v-model="form.subjectId" placeholder="套题列表" >
           <el-option v-for="item in subjectFilter" :key="item.id" :value="item.id" :label="item.name"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="试卷名称：" prop="title" required>
+      <el-form-item label="题干：" prop="title" required>
         <el-input v-model="form.title"   @focus="inputClick(form,'title')" />
       </el-form-item>
       <el-form-item label="选项：" required>

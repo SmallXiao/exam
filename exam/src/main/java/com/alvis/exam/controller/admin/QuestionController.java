@@ -3,13 +3,12 @@ package com.alvis.exam.controller.admin;
 import com.alvis.exam.base.BaseApiController;
 import com.alvis.exam.base.RestResponse;
 import com.alvis.exam.base.SystemCode;
-import com.alvis.exam.domain.ExamPaper;
 import com.alvis.exam.domain.Question;
 import com.alvis.exam.domain.Subject;
 import com.alvis.exam.domain.TextContent;
 import com.alvis.exam.domain.enums.QuestionTypeEnum;
 import com.alvis.exam.domain.question.QuestionObject;
-import com.alvis.exam.service.ExamPaperService;
+import com.alvis.exam.service.ITQuestionService;
 import com.alvis.exam.service.QuestionService;
 import com.alvis.exam.service.SubjectService;
 import com.alvis.exam.service.TextContentService;
@@ -22,6 +21,7 @@ import com.alvis.exam.viewmodel.admin.question.QuestionResponseVM;
 import com.github.pagehelper.PageInfo;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -31,6 +31,9 @@ import javax.validation.Valid;
 @RequestMapping(value = "/api/admin/question")
 @AllArgsConstructor
 public class QuestionController extends BaseApiController {
+
+    @Autowired
+    ITQuestionService tquestionService;
 
     private final QuestionService questionService;
     private final TextContentService textContentService;
@@ -79,13 +82,15 @@ public class QuestionController extends BaseApiController {
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public RestResponse edit(@RequestBody @Valid QuestionEditRequestVM model) {
+
         RestResponse validQuestionEditRequestResult = validQuestionEditRequestVM(model);
         if (validQuestionEditRequestResult.getCode() != SystemCode.OK.getCode()) {
             return validQuestionEditRequestResult;
         }
-
+        //examPaperService.update(new LambdaUpdateWrapper<TExamPaper>().set(TExamPaper::getSubjectId,subjectId).eq(TExamPaper::getId,examPaperid));
         if (null == model.getId()) {
             questionService.insertFullQuestion(model, getCurrentUser().getId());
+            //tquestionService.update(new LambdaUpdateWrapper<TQuestion>().set(TQuestion::getName,model.get).eq(TExamPaper::getId,examPaperid))
         } else {
             questionService.updateFullQuestion(model);
         }

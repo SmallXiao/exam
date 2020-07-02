@@ -14,6 +14,8 @@ public class SubjectEditRequestVM extends BaseVM {
     @NotBlank
     private String name;
 
+    private String supplier;
+
     @NotNull
     private Integer level;
 

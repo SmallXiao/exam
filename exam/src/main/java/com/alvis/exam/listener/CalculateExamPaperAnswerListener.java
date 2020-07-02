@@ -9,7 +9,6 @@ import com.alvis.exam.service.ExamPaperQuestionCustomerAnswerService;
 import com.alvis.exam.service.TaskExamCustomerAnswerService;
 import com.alvis.exam.service.TextContentService;
 import lombok.AllArgsConstructor;
-import org.apache.ibatis.type.BooleanTypeHandler;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,7 +42,7 @@ public class CalculateExamPaperAnswerListener implements ApplicationListener<Cal
 
         examPaperAnswerService.insertByFilter(examPaperAnswer);
         examPaperQuestionCustomerAnswers.stream().filter(a -> QuestionTypeEnum.needSaveTextContent(a.getQuestionType())).forEach(d -> {
-            TextContent textContent = new TextContent(d.getAnswer(), now);
+            TextContent textContent = new TextContent(d.getAnswer());
             textContentService.insertByFilter(textContent);
             d.setTextContentId(textContent.getId());
             d.setAnswer(null);

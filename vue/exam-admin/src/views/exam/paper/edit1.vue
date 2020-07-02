@@ -1,29 +1,25 @@
 <template>
   <div class="app-container">
     <el-form :model="form" ref="form" label-width="100px" v-loading="formLoading" :rules="rules">
-      <el-form-item label="套题id："  prop="name" hidden>
-        <el-input v-model="form.id"/>
+      <el-form-item label="套题名称：" prop="subjectId" required>
+        <el-select v-model="form.subjectId" placeholder="套题名称">
+          <el-option v-for="item in subjectFilter" :key="item.id" :value="item.id"
+                     :label="item.name"></el-option>
+        </el-select>
       </el-form-item>
-      <el-form-item label="套题名称："  prop="name" required>
+
+      <el-form-item label="试卷名称："  prop="name" required>
         <el-input v-model="form.name"/>
       </el-form-item>
       <!--<el-form-item label="试卷名称："  prop="paperName" required>
         <el-input v-model="form.paperName"/>
       </el-form-item>-->
-      <el-form-item label="套题提供者："  prop="supplier">
-        <el-input v-model="form.supplier"/>
-      </el-form-item>
       <!--<el-form-item label="年级：" prop="level" required>
         <el-select v-model="form.level" placeholder="年级"  @change="levelChange">
           <el-option v-for="item in levelEnum" :key="item.key" :value="item.key" :label="item.value"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="学科：" prop="subjectId" required>
-        <el-select v-model="form.subjectId" placeholder="学科">
-          <el-option v-for="item in subjectFilter" :key="item.id" :value="item.id"
-                     :label="item.name+' ( '+item.levelName+' )'"></el-option>
-        </el-select>
-      </el-form-item>
+
       <el-form-item label="试卷类型：" prop="paperType" required>
         <el-select v-model="form.paperType" placeholder="试卷类型">
           <el-option v-for="item in paperTypeEnum" :key="item.key" :value="item.key" :label="item.value"></el-option>
@@ -103,7 +99,6 @@ import Pagination from '@/components/Pagination'
 import QuestionShow from '../question/components/Show'
 import examPaperApi from '@/api/examPaper'
 import questionApi from '@/api/question'
-import subjectApi from '@/api/subject'
 
 export default {
   components: { Pagination, QuestionShow },
@@ -116,7 +111,6 @@ export default {
         paperType: 1,
         limitDateTime: [],
         name: null,
-        supplier: null,
         suggestTime: null,
         titleItems: []
       },
@@ -157,14 +151,7 @@ export default {
     }
   },
   created () {
-    /* this.form.id = this.$route.query.id
-    let id = this.$route.query.id */
-    /* subjectApi.insert().then(re => {
-      this.form = re.response
-      alert(this.form.name)
-      this.formLoading = false
-    }) */
-    /* let id = this.$route.query.id
+    let id = this.$route.query.id
     let _this = this
     this.initSubject(function () {
       _this.subjectFilter = _this.subjects
@@ -175,7 +162,7 @@ export default {
         _this.form = re.response
         _this.formLoading = false
       })
-    } */
+    }
   },
   methods: {
     submitForm () {
@@ -183,7 +170,7 @@ export default {
       this.$refs.form.validate((valid) => {
         if (valid) {
           this.formLoading = true
-          subjectApi.insert(this.form).then(re => {
+          examPaperApi.edit1(this.form).then(re => {
             if (re.code === 1) {
               _this.$message.success(re.message)
               _this.delCurrentView(_this).then(() => {
