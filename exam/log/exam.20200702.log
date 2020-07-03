@@ -4236,3 +4236,6 @@ java.io.IOException: UT010029: Stream is closed
 2020-07-02 19:27:53.787  INFO 11056 --- [XNIO-1 task-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 10 ms
 2020-07-02 19:27:53.902  INFO 11056 --- [XNIO-1 task-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
 2020-07-02 19:27:54.057  INFO 11056 --- [XNIO-1 task-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-07-02 19:33:51.927  INFO 11056 --- [Thread-20] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-07-02 19:33:51.932  INFO 11056 --- [Thread-20] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-07-02 19:33:53.063  INFO 11056 --- [Thread-20] io.undertow.servlet                      : Destroying Spring FrameworkServlet 'dispatcherServlet'
