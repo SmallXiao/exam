@@ -90,7 +90,15 @@ public class QuestionServiceImpl extends BaseServiceImpl<Question> implements Qu
         question.setQuestionType(model.getQuestionType());
         question.setStatus(QuestionStatusEnum.OK.getCode());
         question.setScore(1);
-        question.setCorrect(model.getCorrect());
+        if(model.getQuestionType().toString().equals("3")){
+            if(model.getCorrect().equals("A")){
+                question.setCorrect("正确");
+            }else {
+                question.setCorrect("错误");
+            }
+        } else {
+            question.setCorrect(model.getCorrect());
+        }
         question.setDifficult(model.getDifficult());
         question.setInfoTextContentId(infoTextContent.getId());
         question.setCreateUser(userId);
