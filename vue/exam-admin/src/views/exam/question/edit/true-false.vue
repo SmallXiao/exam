@@ -11,6 +11,11 @@
           <el-option v-for="item in subjectFilter" :key="item.id" :value="item.id" :label="item.name"></el-option>
         </el-select>
       </el-form-item>
+      <el-form-item label="试卷列表：" prop="paperId" required>
+        <el-select v-model="form.paperId" placeholder="试卷列表" >
+          <el-option v-for="item in paperList" :key="item.id" :value="item.id +'&'+ item.name" :label="item.name"></el-option>
+        </el-select>
+      </el-form-item>
       <el-form-item label="题干：" prop="title" required>
         <el-input v-model="form.title"   @focus="inputClick(form,'title')" />
       </el-form-item>
@@ -58,6 +63,7 @@ import QuestionShow from '../components/Show'
 import Ueditor from '@/components/Ueditor'
 import { mapGetters, mapState, mapActions } from 'vuex'
 import questionApi from '@/api/question'
+import examPaperApi from '@/api/examPaper'
 
 export default {
   components: {
@@ -81,6 +87,7 @@ export default {
         difficult: 0
       },
       subjectFilter: null,
+      paperList: null,
       formLoading: false,
       rules: {
         gradeLevel: [
@@ -129,6 +136,9 @@ export default {
         _this.formLoading = false
       })
     }
+    examPaperApi.selectList().then(re => {
+      this.paperList = re
+    })
   },
   methods: {
     editorReady (instance) {
