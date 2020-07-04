@@ -291,3 +291,6 @@ java.lang.NullPointerException: null
 2020-07-03 17:37:15.185  INFO 2740 --- [XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
 2020-07-03 17:37:15.366  INFO 2740 --- [XNIO-1 task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
 2020-07-03 17:37:15.478  INFO 2740 --- [XNIO-1 task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-07-03 17:43:37.782  INFO 2740 --- [Thread-19] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-07-03 17:43:37.789  INFO 2740 --- [Thread-19] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-07-03 17:43:38.920  INFO 2740 --- [Thread-19] io.undertow.servlet                      : Destroying Spring FrameworkServlet 'dispatcherServlet'

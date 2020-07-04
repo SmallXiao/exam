@@ -3,9 +3,7 @@ package com.alvis.exam.controller.admin;
 import com.alvis.exam.base.BaseApiController;
 import com.alvis.exam.base.RestResponse;
 import com.alvis.exam.base.SystemCode;
-import com.alvis.exam.domain.Question;
-import com.alvis.exam.domain.Subject;
-import com.alvis.exam.domain.TextContent;
+import com.alvis.exam.domain.*;
 import com.alvis.exam.domain.enums.QuestionTypeEnum;
 import com.alvis.exam.domain.question.QuestionObject;
 import com.alvis.exam.service.ITQuestionService;
@@ -18,6 +16,7 @@ import com.alvis.exam.viewmodel.admin.education.SubjectResponseVM;
 import com.alvis.exam.viewmodel.admin.question.QuestionEditRequestVM;
 import com.alvis.exam.viewmodel.admin.question.QuestionPageRequestVM;
 import com.alvis.exam.viewmodel.admin.question.QuestionResponseVM;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.github.pagehelper.PageInfo;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
@@ -25,6 +24,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 @RestController("AdminQuestionController")
@@ -110,6 +112,16 @@ public class QuestionController extends BaseApiController {
         Question question = questionService.selectById(id);
         question.setDeleted(true);
         questionService.updateByIdFilter(question);
+        return RestResponse.ok();
+    }
+
+    @RequestMapping(value = "/deletebatch/{ids}", method = RequestMethod.POST)
+    public RestResponse deletebatch(@PathVariable String ids) {
+        List<String> list = new ArrayList(Arrays.asList(ids.split(",")));
+        for (String str : list) {
+            int i = Integer.parseInt(str);
+            tquestionService.update(new LambdaUpdateWrapper<TQuestion>().set(TQuestion::getDeleted,"1").eq(TQuestion::getId,i));
+        }
         return RestResponse.ok();
     }
 

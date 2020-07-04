@@ -11,6 +11,7 @@ import com.alvis.exam.viewmodel.admin.exam.ExamPaperEditRequestVM;
 import com.alvis.exam.viewmodel.admin.exam.ExamPaperPageRequestVM;
 import com.alvis.exam.viewmodel.admin.exam.ExamResponseVM;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -136,7 +137,7 @@ public class ExamPaperController extends BaseApiController {
 
     @RequestMapping(value = "/select/", method = RequestMethod.POST)
     public List<TExamPaper> select() {
-        List<TExamPaper> list = texamPaperService.list();
+        List<TExamPaper> list = texamPaperService.list(new LambdaUpdateWrapper<TExamPaper>().eq(TExamPaper::getDeleted,"0"));
         return list;
     }
 
@@ -148,9 +149,22 @@ public class ExamPaperController extends BaseApiController {
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     public RestResponse delete(@PathVariable Integer id) {
-        ExamPaper examPaper = examPaperService.selectById(id);
+        subjectService.update(new LambdaUpdateWrapper<TSubject>().set(TSubject::getDeleted,"1").eq(TSubject::getId,id));
+        /*ExamPaper examPaper = examPaperService.selectById(id);
         examPaper.setDeleted(true);
-        examPaperService.updateByIdFilter(examPaper);
+        examPaperService.updateByIdFilter(examPaper);*/
+        return RestResponse.ok();
+    }
+
+    @RequestMapping(value = "/deletebatch/{ids}", method = RequestMethod.POST)
+    public RestResponse deletebatch(@PathVariable String ids) {
+        List<String> list = new ArrayList(Arrays.asList(ids.split(",")));
+        for (String str : list) {
+            int i = Integer.parseInt(str);
+            subjectService.update(new LambdaUpdateWrapper<TSubject>().set(TSubject::getDeleted,"1").eq(TSubject::getId,i));
+            texamPaperService.update(new LambdaUpdateWrapper<TExamPaper>().set(TExamPaper::getDeleted,"1").eq(TExamPaper::getSubjectId,i));
+            questionService.update(new LambdaUpdateWrapper<TQuestion>().set(TQuestion::getDeleted,"1").eq(TQuestion::getSubjectId,i));
+        }
         return RestResponse.ok();
     }
 

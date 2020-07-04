@@ -7,5 +7,6 @@ export default {
   edit1: query => post('/api/admin/exam/paper/insert', query),
   select: id => post('/api/admin/exam/paper/select/' + id),
   selectList: () => post('/api/admin/exam/paper/select/'),
-  deletePaper: id => post('/api/admin/exam/paper/delete/' + id)
+  deletePaper: id => post('/api/admin/exam/paper/delete/' + id),
+  deleteData: ids => post('/api/admin/exam/paper/deletebatch/' + ids)
 }

@@ -34,11 +34,13 @@
                      @click="$router.push({path:item.value})">{{item.name}}
           </el-button>
           <el-button slot="reference" type="primary" class="link-left">添加</el-button>
-        </el-popover>
+        </el-popover>&emsp;
+        <el-button type="primary" @click="batchdelete">批量删除</el-button>
       </el-form-item>
     </el-form>
-    <el-table v-loading="listLoading" :data="tableData" border fit highlight-current-row style="width: 100%">
-      <el-table-column prop="id" label="Id" width="60px"/>
+    <el-table v-loading="listLoading" :data="tableData" border fit highlight-current-row style="width: 100%" ref="multipleTable">
+      <el-table-column type="selection" width="55"></el-table-column>
+      <!--<el-table-column prop="id" label="Id" width="60px"/>-->
       <el-table-column prop="subjectId" label="套题名称" :formatter="subjectFormatter" width="120px"/>
       <el-table-column prop="paperName" label="试卷名称" width="120px"/>
       <el-table-column prop="questionType" label="题型" :formatter="questionTypeFormatter" width="70px"/>
@@ -115,6 +117,22 @@ export default {
         this.total = re.total
         this.queryParam.pageIndex = re.pageNum
         this.listLoading = false
+      })
+    },
+    batchdelete () {
+      var arr = []
+      var data = this.$refs.multipleTable.selection
+      data.forEach(function (item) {
+        arr.push(item.id)
+      })
+      var ids = arr.join(',')
+      questionApi.deleteData(ids).then(data => {
+        this.search()
+        /* const re = data.response
+        this.tableData = re.list
+        this.total = re.total
+        this.queryParam.pageIndex = re.pageNum
+        this.listLoading = false */
       })
     },
     levelChange () {

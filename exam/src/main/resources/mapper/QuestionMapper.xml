@@ -237,6 +237,8 @@
       e.name paperName
       from t_question q left join t_subject s on q.subject_id = s.id left join t_exam_paper e on q.paper_id = e.id
     <where>
+      q.deleted = '0'
+      and s.deleted = '0'
       <if test="subjectId != null ">
         and q.subject_id = #{subjectId}
       </if>
