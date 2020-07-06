@@ -92,7 +92,14 @@ const constantRoutes = [
         path: 'paper/edit',
         component: () => import('@/views/exam/paper/edit'),
         name: 'ExamPaperEdit',
-        meta: { title: '套题编辑', noCache: true, activeMenu: '/exam/paper/list' },
+        meta: { title: '添加套题', noCache: true, activeMenu: '/exam/paper/list' },
+        hidden: true
+      },
+      {
+        path: 'paper/edit1',
+        component: () => import('@/views/exam/paper/edit1'),
+        name: 'ExamPaperEdit1',
+        meta: { title: '添加试卷', noCache: true, activeMenu: '/exam/paper/list1' },
         hidden: true
       },
       {

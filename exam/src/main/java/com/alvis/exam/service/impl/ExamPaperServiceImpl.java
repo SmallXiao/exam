@@ -88,7 +88,7 @@ public class ExamPaperServiceImpl extends BaseServiceImpl<ExamPaper> implements 
         ExamPaper examPaper;
         if (actionEnum == ActionEnum.ADD) {
             examPaper = modelMapper.map(examPaperEditRequestVM, ExamPaper.class);
-            TextContent frameTextContent = new TextContent(frameTextContentStr, now);
+            TextContent frameTextContent = new TextContent(frameTextContentStr);
             textContentService.insertByFilter(frameTextContent);
             examPaper.setFrameTextContentId(frameTextContent.getId());
             examPaper.setCreateTime(now);

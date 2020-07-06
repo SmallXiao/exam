@@ -49,6 +49,12 @@
       <if test="id != null">
         id,
       </if>
+      <if test="paperId != null">
+        paper_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
       <if test="questionType != null">
         question_type,
       </if>
@@ -86,6 +92,12 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=INTEGER},
+      </if>
+      <if test="paperId != null">
+        #{paperId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=INTEGER},
       </if>
       <if test="questionType != null">
         #{questionType,jdbcType=INTEGER},
@@ -225,6 +237,8 @@
       e.name paperName
       from t_question q left join t_subject s on q.subject_id = s.id left join t_exam_paper e on q.paper_id = e.id
     <where>
+      q.deleted = '0'
+      and s.deleted = '0'
       <if test="subjectId != null ">
         and q.subject_id = #{subjectId}
       </if>

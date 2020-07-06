@@ -6,12 +6,17 @@
           <el-option v-for="item in levelEnum" :key="item.key" :value="item.key" :label="item.value"></el-option>
         </el-select>
       </el-form-item>-->
-      <el-form-item label="试卷大纲：" prop="subjectId" required>
-        <el-select v-model="form.subjectId" placeholder="学科" >
+      <el-form-item label="套题列表：" prop="subjectId" required>
+        <el-select v-model="form.subjectId" placeholder="套题列表" >
           <el-option v-for="item in subjectFilter" :key="item.id" :value="item.id" :label="item.name"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="试卷名称：" prop="title" required>
+      <el-form-item label="试卷列表：" prop="paperId" required>
+        <el-select v-model="form.paperId" placeholder="试卷列表" >
+          <el-option v-for="item in paperList" :key="item.id" :value="item.id +'&'+ item.name" :label="item.name"></el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="题干：" prop="title" required>
         <el-input v-model="form.title"   @focus="inputClick(form,'title')" />
       </el-form-item>
       <el-form-item label="选项：" required>
@@ -60,6 +65,7 @@ import QuestionShow from '../components/Show'
 import Ueditor from '@/components/Ueditor'
 import { mapGetters, mapState, mapActions } from 'vuex'
 import questionApi from '@/api/question'
+import examPaperApi from '@/api/examPaper'
 
 export default {
   components: {
@@ -72,6 +78,7 @@ export default {
         questionType: 1,
         gradeLevel: null,
         subjectId: null,
+        paperId: null,
         title: '',
         items: [
           { prefix: 'A', content: '' },
@@ -85,6 +92,7 @@ export default {
         difficult: 0
       },
       subjectFilter: null,
+      paperList: null,
       formLoading: false,
       rules: {
         gradeLevel: [
@@ -133,6 +141,9 @@ export default {
         _this.formLoading = false
       })
     }
+    examPaperApi.selectList().then(re => {
+      this.paperList = re
+    })
   },
   methods: {
     editorReady (instance) {

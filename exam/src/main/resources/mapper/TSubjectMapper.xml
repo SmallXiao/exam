@@ -23,6 +23,9 @@
             </selectKey>
     -->
     <insert id="insertData">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
         insert into t_subject (name,supplier,flag) values(#{name},#{supplier},#{flag})
     </insert>
 </mapper>

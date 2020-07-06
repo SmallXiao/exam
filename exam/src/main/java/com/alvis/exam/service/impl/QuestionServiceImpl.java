@@ -68,6 +68,10 @@ public class QuestionServiceImpl extends BaseServiceImpl<Question> implements Qu
     @Override
     @Transactional
     public Question insertFullQuestion(QuestionEditRequestVM model, Integer userId) {
+        String paperId = model.getPaperId();
+        String paperName = paperId.split("&")[1];
+        paperId = paperId.split("&")[0];
+
         Date now = new Date();
         Integer gradeLevel = subjectService.levelBySubjectId(model.getSubjectId());
 
@@ -79,12 +83,22 @@ public class QuestionServiceImpl extends BaseServiceImpl<Question> implements Qu
 
         Question question = new Question();
         question.setSubjectId(model.getSubjectId());
+        question.setPaperId(Integer.parseInt(paperId));
+        question.setName(paperName);
         question.setGradeLevel(gradeLevel);
         question.setCreateTime(now);
         question.setQuestionType(model.getQuestionType());
         question.setStatus(QuestionStatusEnum.OK.getCode());
-        question.setCorrectFromVM(model.getCorrect(), model.getCorrectArray());
-        question.setScore(ExamUtil.scoreFromVM(model.getScore()));
+        question.setScore(1);
+        if(model.getQuestionType().toString().equals("3")){
+            if(model.getCorrect().equals("A")){
+                question.setCorrect("正确");
+            }else {
+                question.setCorrect("错误");
+            }
+        } else {
+            question.setCorrect(model.getCorrect());
+        }
         question.setDifficult(model.getDifficult());
         question.setInfoTextContentId(infoTextContent.getId());
         question.setCreateUser(userId);
@@ -96,13 +110,15 @@ public class QuestionServiceImpl extends BaseServiceImpl<Question> implements Qu
     @Override
     @Transactional
     public Question updateFullQuestion(QuestionEditRequestVM model) {
+        String paperId = model.getPaperId();
+        paperId = paperId.split("&")[0];
+        String paperName = paperId.split("&")[1];
+
         Integer gradeLevel = subjectService.levelBySubjectId(model.getSubjectId());
         Question question = questionMapper.selectByPrimaryKey(model.getId());
         question.setSubjectId(model.getSubjectId());
-        question.setGradeLevel(gradeLevel);
-        question.setScore(ExamUtil.scoreFromVM(model.getScore()));
-        question.setDifficult(model.getDifficult());
-        question.setCorrectFromVM(model.getCorrect(), model.getCorrectArray());
+        question.setPaperId(Integer.parseInt(paperId));
+
         questionMapper.updateByPrimaryKeySelective(question);
 
         //题干、解析、选项等 更新
@@ -172,6 +188,7 @@ public class QuestionServiceImpl extends BaseServiceImpl<Question> implements Qu
     }
 
     public void setQuestionInfoFromVM(TextContent infoTextContent, QuestionEditRequestVM model) {
+
         List<QuestionItemObject> itemObjects = model.getItems().stream().map(i ->
                 {
                     QuestionItemObject item = new QuestionItemObject();

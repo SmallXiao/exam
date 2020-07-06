@@ -126,6 +126,7 @@
     <include refid="Base_Column_List"/>
     FROM t_subject
     <where>
+      deleted = '0'
       <if test="id != null ">
         and id= #{id}
       </if>

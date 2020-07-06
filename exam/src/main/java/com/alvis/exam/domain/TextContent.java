@@ -1,19 +1,19 @@
 package com.alvis.exam.domain;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
-
+@Data
 public class TextContent implements Serializable {
 
     private static final long serialVersionUID = -1279530310964668131L;
 
-    public TextContent(){
-
+    public TextContent( ) {
     }
 
-    public TextContent(String content, Date createTime) {
+    public TextContent(String content) {
         this.content = content;
-        this.createTime = createTime;
     }
 
     private Integer id;
@@ -22,36 +22,9 @@ public class TextContent implements Serializable {
 
     private Date createTime;
 
-    public Integer getId() {
-        return id;
-    }
+    private String question;
+    private String choose;
+    private String flag;
+    private String answer;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    @Override
-    public String toString() {
-        return "TextContent{" +
-                "id=" + id +
-                ", content='" + content + '\'' +
-                ", createTime=" + createTime +
-                '}';
-    }
 }

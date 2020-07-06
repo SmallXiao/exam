@@ -44,13 +44,18 @@
       <el-form-item>
         <el-button type="primary" @click="submitForm">查询</el-button>
         <!--<el-button @click="resetForm">重置</el-button>-->
-        <!--<router-link :to="{path:'/exam/paper/edit'}" class="link-left">
-          <el-button type="primary">添加</el-button>
-        </router-link>-->
+        <router-link :to="{path:'/exam/paper/edit'}" class="link-left">
+          <el-button type="primary">添加套题</el-button>
+        </router-link>
+        <router-link :to="{path:'/exam/paper/edit1'}" class="link-left">
+          <el-button type="primary">添加试卷</el-button>
+        </router-link>&emsp;
+        <el-button type="primary" @click="batchdelete">批量删除</el-button>
       </el-form-item>
     </el-form>
-    <el-table v-loading="listLoading" :data="tableData" border fit highlight-current-row style="width: 100%">
-      <el-table-column prop="id" label="Id" width="90px"/>
+    <el-table v-loading="listLoading" :data="tableData" border fit highlight-current-row style="width: 100%"  ref="multipleTable">
+      <el-table-column type="selection" width="55"></el-table-column>
+      <!--<el-table-column prop="id" label="Id" width="90px"/>-->
       <el-table-column prop="subjectName" label="套题名称"  /> <!-- :formatter="subjectFormatter" -->
       <el-table-column prop="questionCount" label="内含题数"  width="160px"/>
       <el-table-column prop="supplier" label="套题提供方"  width="160px"/>
@@ -89,7 +94,8 @@ export default {
       subjectFilter: null,
       listLoading: true,
       tableData: [],
-      total: 0
+      total: 0,
+      ids: null
     }
   },
   created () {
@@ -97,6 +103,22 @@ export default {
     this.search()
   },
   methods: {
+    batchdelete () {
+      var arr = []
+      var data = this.$refs.multipleTable.selection
+      data.forEach(function (item) {
+        arr.push(item.id)
+      })
+      var ids = arr.join(',')
+      examPaperApi.deleteData(ids).then(data => {
+        this.search()
+        /* const re = data.response
+        this.tableData = re.list
+        this.total = re.total
+        this.queryParam.pageIndex = re.pageNum
+        this.listLoading = false */
+      })
+    },
     handleAvatarSuccess (res, file) {
       alert('上传成功')
     },

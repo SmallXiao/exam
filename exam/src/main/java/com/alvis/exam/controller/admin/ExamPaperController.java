@@ -11,6 +11,7 @@ import com.alvis.exam.viewmodel.admin.exam.ExamPaperEditRequestVM;
 import com.alvis.exam.viewmodel.admin.exam.ExamPaperPageRequestVM;
 import com.alvis.exam.viewmodel.admin.exam.ExamResponseVM;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -26,7 +27,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.Valid;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -116,10 +116,17 @@ public class ExamPaperController extends BaseApiController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public RestResponse<ExamPaperEditRequestVM> edit(@RequestBody @Valid ExamPaperEditRequestVM model) {
-        ExamPaper examPaper = examPaperService.savePaperFromVM(model, getCurrentUser());
-        ExamPaperEditRequestVM newVM = examPaperService.examPaperToVM(examPaper.getId());
-        return RestResponse.ok(newVM);
+    public RestResponse edit(@RequestBody TSubject subject) {
+        /*ExamPaper examPaper = examPaperService.savePaperFromVM(model, getCurrentUser());
+        ExamPaperEditRequestVM newVM = examPaperService.examPaperToVM(examPaper.getId());*/
+        subjectService.updateById(subject);
+
+        /*TExamPaper texamPaper = new TExamPaper();
+        texamPaper.setSubjectId(tSubject.getId());
+        texamPaper.setName(model.getPaperName());
+
+        texamPaperService.save(texamPaper);*/
+        return RestResponse.ok();
     }
 
     @RequestMapping(value = "/select/{id}", method = RequestMethod.POST)
@@ -128,11 +135,36 @@ public class ExamPaperController extends BaseApiController {
         return RestResponse.ok(vm);
     }
 
+    @RequestMapping(value = "/select/", method = RequestMethod.POST)
+    public List<TExamPaper> select() {
+        List<TExamPaper> list = texamPaperService.list(new LambdaUpdateWrapper<TExamPaper>().eq(TExamPaper::getDeleted,"0"));
+        return list;
+    }
+
+    @RequestMapping(value = "/insert", method = RequestMethod.POST)
+    public RestResponse<ExamPaperEditRequestVM> insert(@RequestBody TExamPaper texamPaper) {
+        texamPaperService.save(texamPaper);
+        return RestResponse.ok();
+    }
+
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     public RestResponse delete(@PathVariable Integer id) {
-        ExamPaper examPaper = examPaperService.selectById(id);
+        subjectService.update(new LambdaUpdateWrapper<TSubject>().set(TSubject::getDeleted,"1").eq(TSubject::getId,id));
+        /*ExamPaper examPaper = examPaperService.selectById(id);
         examPaper.setDeleted(true);
-        examPaperService.updateByIdFilter(examPaper);
+        examPaperService.updateByIdFilter(examPaper);*/
+        return RestResponse.ok();
+    }
+
+    @RequestMapping(value = "/deletebatch/{ids}", method = RequestMethod.POST)
+    public RestResponse deletebatch(@PathVariable String ids) {
+        List<String> list = new ArrayList(Arrays.asList(ids.split(",")));
+        for (String str : list) {
+            int i = Integer.parseInt(str);
+            subjectService.update(new LambdaUpdateWrapper<TSubject>().set(TSubject::getDeleted,"1").eq(TSubject::getId,i));
+            texamPaperService.update(new LambdaUpdateWrapper<TExamPaper>().set(TExamPaper::getDeleted,"1").eq(TExamPaper::getSubjectId,i));
+            questionService.update(new LambdaUpdateWrapper<TQuestion>().set(TQuestion::getDeleted,"1").eq(TQuestion::getSubjectId,i));
+        }
         return RestResponse.ok();
     }
 
