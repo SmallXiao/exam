@@ -32,4 +32,15 @@
         update t_question set info_text_content_id = #{id} where id = #{id}
     </update>
 
+    <select id="selectRandomList" resultType="com.alvis.exam.viewmodel.api.question.QuestionVM">
+        SELECT q.name,q.correct,t.supplier,ttc.choose
+        FROM t_question q
+        JOIN t_subject t ON q.subject_id=t.id
+        JOIN t_text_content ttc ON ttc.id=q.id
+        WHERE subject_id IN(<foreach collection="subjectIdList" item="subject_id" separator=",">#{subject_id}</foreach>)
+        AND q.deleted=0 AND t.deleted=0
+        ORDER BY RAND()
+        LIMIT #{count}
+    </select>
+
 </mapper>

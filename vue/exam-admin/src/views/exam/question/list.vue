@@ -1,28 +1,41 @@
-<template>
+<template style="background: #f0f2f5;">
   <div class="app-container">
+  <div class="y-bot2" style="background: #fff; padding: 20px; height: 236px; min-height: 296px; margin-bottom: 0;">
+    <p><span style="color: #999;">题库管理</span>/<span>套题详情</span></p>
+    <div style="display: flex; justify-content: space-between;">
+        <div style="display: flex; align-items: center;padding: 15px 0; ">
+            <span><img src="/assets/gh-dd.png" width="30"/></span>
+            <span class="gh-danhao">套题名称：<t data-data="orderVo.orderNo">1111111</t></span>
+        </div>
+        <div class="gh-btn">
+          <el-button size="medium"  type="danger" @click="deleteQuestion(row)" class="link-left">删除套题</el-button>
+          <el-button size="medium"  type="primary" @click="deleteQuestion(row)" class="link-left">编辑套题信息</el-button>
+        </div>
+    </div>
+    <div class="gh-info">
+        <div class="gh-info-left">
+            <div style="width: 280px; float: left;">
+                <p>创建人：<t data-data="orderVo.createUserName"></t></p>
+                <p>创建时间：<t data-data="orderVo.createDate"></t></p>
+                <p>素材提供方：<t data-data="orderVo.collectionType"></t></p>
+            </div>
+            <div style="width: 420px; float: left;">
+                <p>套题说明：<span style="color: #007aff;" data-data="orderVo.symbolMsg"></span></p>
+            </div>
+        </div>
+    </div>
+</div>
     <el-form :model="queryParam" ref="queryForm" :inline="true">
-      <!--<el-form-item label="题目ID：">
-        <el-input v-model="queryParam.id" clearable></el-input>
-      </el-form-item>-->
-      <!--<el-form-item label="年级：">
-        <el-select v-model="queryParam.level" placeholder="年级"  @change="levelChange" clearable>
-          <el-option v-for="item in levelEnum" :key="item.key" :value="item.key" :label="item.value"></el-option>
-        </el-select>
-      </el-form-item>-->
-      <el-form-item label="试卷大纲：">
-        <el-input v-model="queryParam.subjectName" clearable></el-input>
-        <!--<el-select v-model="queryParam.subjectId" clearable>
-          <el-option v-for="item in subjectFilter" :key="item.id" :value="item.id"
-                     :label="item.name+' ( '+item.levelName+' )'"></el-option>
-        </el-select>-->
-      </el-form-item>
-      <el-form-item label="试卷名称：">
-        <el-input v-model="queryParam.paperName" clearable></el-input>
-      </el-form-item>
+      <el-button size="medium"  type="primary" @click="deleteQuestion(row)" class="link-left">新建</el-button>
+      <el-button size="medium"  type="info" @click="deleteQuestion(row)" class="link-left">批量导入</el-button>
+      <el-button size="medium"  type="danger" @click="deleteQuestion(row)" class="link-left">删除</el-button>&nbsp;
       <el-form-item label="题型：">
         <el-select v-model="queryParam.questionType" clearable>
           <el-option v-for="item in questionType" :key="item.key" :value="item.key" :label="item.value"></el-option>
         </el-select>
+      </el-form-item>
+      <el-form-item label="题目名称：">
+        <el-input v-model="queryParam.questionName" clearable></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitForm">查询</el-button>
@@ -30,16 +43,16 @@
           <el-button type="warning" size="mini" v-for="item in editUrlEnum" :key="item.key"
                      @click="$router.push({path:item.value})">{{item.name}}
           </el-button>
-          <el-button slot="reference" type="primary" class="link-left">添加</el-button>
+          <!--<el-button slot="reference" type="primary" class="link-left">添加</el-button>-->
         </el-popover>
       </el-form-item>
     </el-form>
     <el-table v-loading="listLoading" :data="tableData" border fit highlight-current-row style="width: 100%">
       <el-table-column prop="id" label="Id" width="60px"/>
-      <el-table-column prop="subjectId" label="试卷大纲" :formatter="subjectFormatter" width="120px"/>
-      <el-table-column prop="paperName" label="试卷名称" width="120px"/>
+      <el-table-column prop="subjectId" label="套题名称" :formatter="subjectFormatter" width="120px"/>
       <el-table-column prop="questionType" label="题型" :formatter="questionTypeFormatter" width="70px"/>
       <el-table-column prop="shortTitle" label="题干" show-overflow-tooltip/>
+      <el-table-column prop="correct" label="正确答案" width="80px"/>
       <!--<el-table-column prop="score" label="分数" width="60px"/>
       <el-table-column prop="difficult" label="难度" width="60px"/>
       <el-table-column prop="createTime" label="创建时间" width="160px"/>-->
@@ -58,7 +71,11 @@
     </el-dialog>
   </div>
 </template>
-
+<style scoped>
+  @import '/styles/iconfont/style.css';
+  @import '/styles/iconfont/step.css';
+  @import '/styles/iconfont/imgAmplify.css';
+</style>
 <script>
 import { mapGetters, mapState, mapActions } from 'vuex'
 import Pagination from '@/components/Pagination'
@@ -72,7 +89,8 @@ export default {
       queryParam: {
         id: null,
         subjectName: null,
-        paperName: null,
+        questionName: null,
+        supplier: null,
         questionType: null,
         level: null,
         subjectId: null,
@@ -92,6 +110,7 @@ export default {
     }
   },
   created () {
+    this.queryParam.subjectId = this.$route.query.id
     this.initSubject()
     this.search()
   },

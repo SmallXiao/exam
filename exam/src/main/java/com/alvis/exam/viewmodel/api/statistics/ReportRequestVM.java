@@ -14,13 +14,19 @@ import lombok.Setter;
 @Setter
 public class ReportRequestVM {
 
+    @ApiModelProperty(value = "统计年")
+    private Integer year;
+
+    @ApiModelProperty(value = "统计月")
+    private Integer month;
+
     @ApiModelProperty(value = "统计时间，格式：yyyyMMdd")
     private Integer date;
 
-    @ApiModelProperty(value = "开始时间")
+    @ApiModelProperty(value = "开始时间，格式：yyyyMMdd")
     private Integer startDate;
 
-    @ApiModelProperty(value = "结束时间")
+    @ApiModelProperty(value = "结束时间，格式：yyyyMMdd")
     private Integer endDate;
 
     @ApiModelProperty(value = "搜索姓名")

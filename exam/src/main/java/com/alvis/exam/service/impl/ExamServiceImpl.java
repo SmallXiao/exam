@@ -1,20 +1,18 @@
 package com.alvis.exam.service.impl;
 
+import com.alvis.exam.domain.ExamSet;
 import com.alvis.exam.domain.statistics.ExamMainLog;
 import com.alvis.exam.domain.statistics.ExamSubLog;
-import com.alvis.exam.service.ExamMainLogService;
-import com.alvis.exam.service.ExamService;
-import com.alvis.exam.service.ExamSubLogService;
+import com.alvis.exam.service.*;
 import com.alvis.exam.viewmodel.api.exam.ExamMainLogVM;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.alvis.exam.viewmodel.api.question.QuestionVM;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -28,9 +26,15 @@ public class ExamServiceImpl implements ExamService {
 
     private final ExamSubLogService examSubLogService;
 
-    public ExamServiceImpl(ExamMainLogService examMainLogService, ExamSubLogService examSubLogService) {
+    private final ExamSetService examSetService;
+
+    private final ITQuestionService itQuestionService;
+
+    public ExamServiceImpl(ExamMainLogService examMainLogService, ExamSubLogService examSubLogService, ExamSetService examSetService, ITQuestionService itQuestionService) {
         this.examMainLogService = examMainLogService;
         this.examSubLogService = examSubLogService;
+        this.examSetService = examSetService;
+        this.itQuestionService = itQuestionService;
     }
 
     @Override
@@ -59,6 +63,16 @@ public class ExamServiceImpl implements ExamService {
             item.setMainId(examMainLog.getMainId());
             examSubLogService.save(item);
         });
+
+    }
+
+    @Override
+    public List<QuestionVM> selectRandomList(ExamSet examSet) {
+
+        List subjectIdList = Arrays.asList(examSet.getScope().split(","));
+
+
+        return itQuestionService.selectRandomList(subjectIdList, examSet.getPerCorrectCount());
 
     }
 }

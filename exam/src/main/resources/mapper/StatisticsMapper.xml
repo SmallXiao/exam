@@ -8,7 +8,7 @@
             user_name userName,
             MIN( spend_time ) spendTime,
             error_count errorCount
-        FROM (SELECT * FROM t_exam_main_log WHERE YEAR = #{year} AND month=#{month} AND day=#{day} AND status=1 ORDER BY error_count,spend_time LIMIT 1000) t
+        FROM (SELECT * FROM t_exam_main_log WHERE date=#{date} AND status=1 ORDER BY error_count,spend_time LIMIT 1000) t
         GROUP BY t.user_id
     </select>
 

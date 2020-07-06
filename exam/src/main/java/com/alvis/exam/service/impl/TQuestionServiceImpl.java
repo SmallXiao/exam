@@ -4,9 +4,12 @@ package com.alvis.exam.service.impl;
 import com.alvis.exam.domain.TQuestion;
 import com.alvis.exam.repository.TQuestionMapper;
 import com.alvis.exam.service.ITQuestionService;
+import com.alvis.exam.viewmodel.api.question.QuestionVM;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -30,5 +33,10 @@ public class TQuestionServiceImpl extends ServiceImpl<TQuestionMapper, TQuestion
     @Override
     public void updateInfoTextContentId(Integer id) {
         questionMapper.updateInfoTextContentId(id);
+    }
+
+    @Override
+    public List<QuestionVM> selectRandomList(List<Integer> subjectIdList, int count) {
+        return questionMapper.selectRandomList(subjectIdList, count);
     }
 }

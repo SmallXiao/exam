@@ -2,7 +2,7 @@
     "name": "exam-admin",
     "version": "3.0.3",
     "author": "alvis",
-    "description": "学之思管理系统",
+    "description": "车管练兵管理系统",
     "license": "MIT",
     "private": true,
     "scripts": {
