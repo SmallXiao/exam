@@ -36,7 +36,7 @@ public class ExamMainLogVM {
     @ApiModelProperty(value = "错题个数")
     private Integer errorCount;
 
-    @ApiModelProperty(value = "从表")
+    @ApiModelProperty(value = "题目列表")
     private List<ExamSubLog> list;
 
 

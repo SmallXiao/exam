@@ -1,9 +1,6 @@
 package com.alvis.exam.service;
 
-import com.alvis.exam.viewmodel.api.statistics.MonthlyReportResponseVM;
-import com.alvis.exam.viewmodel.api.statistics.ReportRequestVM;
-import com.alvis.exam.viewmodel.api.statistics.ReportResponseVM;
-import com.alvis.exam.viewmodel.api.statistics.WrongQuestionResponseVM;
+import com.alvis.exam.viewmodel.api.statistics.*;
 
 import java.util.List;
 
@@ -12,20 +9,20 @@ public interface StatisticsService {
 
     /**
      * 每日挑战答题情况
-     * @param reportRequestVM
+     * @param requestVM
      */
-    List<ReportResponseVM> dailyReport(ReportRequestVM reportRequestVM);
+    List<ReportResponseVM> dailyReport(DailyReportRequestVM requestVM);
 
 
-    List<MonthlyReportResponseVM> monthlyReport(ReportRequestVM reportRequestVM);
+    List<MonthlyReportResponseVM> monthlyReport(MonthlyReportRequestVM reportRequestVM);
 
     /**
      * 部门报表
      * @param reportRequestVM
      * @return
      */
-    List deptReport(ReportRequestVM reportRequestVM);
+    List deptReport(DeptReportRequestVM reportRequestVM);
 
-    List<WrongQuestionResponseVM> wrongQuestionReport(ReportRequestVM reportRequestVM);
+    List<WrongQuestionResponseVM> wrongQuestionReport(WrongQuestionRequestVM reportRequestVM);
 
 }

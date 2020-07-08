@@ -9,13 +9,13 @@ import java.util.List;
 public interface StatisticsMapper {
 
 
-    List<ReportResponseVM> dailyReport(ReportRequestVM reportRequestVM);
+    List<ReportResponseVM> dailyReport(DailyReportRequestVM requestVM);
 
-    List<MonthlyReportResponseVM> monthlyReport(ReportRequestVM reportRequestVM);
+    List<MonthlyReportResponseVM> monthlyReport(MonthlyReportRequestVM reportRequestVM);
 
-    List<DeptReportResponseVM> deptReport(ReportRequestVM reportRequestVM);
+    List<DeptReportResponseVM> deptReport(DeptReportRequestVM reportRequestVM);
 
 
-    List<WrongQuestionResponseVM> wrongQuestionReport(ReportRequestVM reportRequestVM);
+    List<WrongQuestionResponseVM> wrongQuestionReport(WrongQuestionRequestVM reportRequestVM);
 
 }

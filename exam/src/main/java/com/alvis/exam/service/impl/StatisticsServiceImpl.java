@@ -2,10 +2,7 @@ package com.alvis.exam.service.impl;
 
 import com.alvis.exam.repository.StatisticsMapper;
 import com.alvis.exam.service.StatisticsService;
-import com.alvis.exam.viewmodel.api.statistics.MonthlyReportResponseVM;
-import com.alvis.exam.viewmodel.api.statistics.ReportRequestVM;
-import com.alvis.exam.viewmodel.api.statistics.ReportResponseVM;
-import com.alvis.exam.viewmodel.api.statistics.WrongQuestionResponseVM;
+import com.alvis.exam.viewmodel.api.statistics.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,26 +19,26 @@ public class StatisticsServiceImpl implements StatisticsService {
     private StatisticsMapper statisticsMapper;
 
     @Override
-    public List<ReportResponseVM> dailyReport(ReportRequestVM reportRequestVM) {
+    public List<ReportResponseVM> dailyReport(DailyReportRequestVM requestVM) {
 
-        return statisticsMapper.dailyReport(reportRequestVM);
+        return statisticsMapper.dailyReport(requestVM);
     }
 
     @Override
-    public List<MonthlyReportResponseVM> monthlyReport(ReportRequestVM reportRequestVM) {
+    public List<MonthlyReportResponseVM> monthlyReport(MonthlyReportRequestVM reportRequestVM) {
 
         return statisticsMapper.monthlyReport(reportRequestVM);
     }
 
     @Override
-    public List deptReport(ReportRequestVM reportRequestVM) {
+    public List deptReport(DeptReportRequestVM reportRequestVM) {
 
 
         return statisticsMapper.deptReport(reportRequestVM);
     }
 
     @Override
-    public List<WrongQuestionResponseVM> wrongQuestionReport(ReportRequestVM reportRequestVM) {
+    public List<WrongQuestionResponseVM> wrongQuestionReport(WrongQuestionRequestVM reportRequestVM) {
 
         return statisticsMapper.wrongQuestionReport(reportRequestVM);
     }

@@ -2,10 +2,7 @@ package com.alvis.exam.controller.api;
 
 import com.alvis.exam.base.RestResponse;
 import com.alvis.exam.service.StatisticsService;
-import com.alvis.exam.viewmodel.api.statistics.MonthlyReportResponseVM;
-import com.alvis.exam.viewmodel.api.statistics.ReportRequestVM;
-import com.alvis.exam.viewmodel.api.statistics.ReportResponseVM;
-import com.alvis.exam.viewmodel.api.statistics.WrongQuestionResponseVM;
+import com.alvis.exam.viewmodel.api.statistics.*;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +29,9 @@ public class StatisticsController {
      * @return
      */
     @PostMapping(value = "/dailyReport")
-    public RestResponse dailyReport(@RequestBody ReportRequestVM reportRequestVM) {
+    public RestResponse dailyReport(@RequestBody DailyReportRequestVM requestVM) {
 
-        List<ReportResponseVM> list = statisticsService.dailyReport(reportRequestVM);
+        List<ReportResponseVM> list = statisticsService.dailyReport(requestVM);
         return RestResponse.ok(list);
     }
 
@@ -43,7 +40,7 @@ public class StatisticsController {
      * @return
      */
     @PostMapping(value = "/monthlyReport")
-    public RestResponse monthlyReport(@RequestBody ReportRequestVM reportRequestVM) {
+    public RestResponse monthlyReport(@RequestBody MonthlyReportRequestVM reportRequestVM) {
 
         List<MonthlyReportResponseVM> list = statisticsService.monthlyReport(reportRequestVM);
         return RestResponse.ok(list);
@@ -54,7 +51,7 @@ public class StatisticsController {
      * 服务站综合排名
      */
     @PostMapping(value = "/deptReport")
-    public RestResponse deptReport(@RequestBody ReportRequestVM reportRequestVM) {
+    public RestResponse deptReport(@RequestBody DeptReportRequestVM reportRequestVM) {
 
         List<MonthlyReportResponseVM> list = statisticsService.deptReport(reportRequestVM);
         return RestResponse.ok(list);
@@ -64,7 +61,7 @@ public class StatisticsController {
      * 错题报告
      */
     @PostMapping(value = "/wrongQuestionReport")
-    public RestResponse wrongQuestionReport(@RequestBody ReportRequestVM reportRequestVM) {
+    public RestResponse wrongQuestionReport(@RequestBody WrongQuestionRequestVM reportRequestVM) {
 
         List<WrongQuestionResponseVM> list = statisticsService.wrongQuestionReport(reportRequestVM);
         return RestResponse.ok(list);
