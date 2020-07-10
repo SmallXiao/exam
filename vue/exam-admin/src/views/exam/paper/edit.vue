@@ -13,51 +13,6 @@
       <el-form-item label="套题提供者："  prop="supplier">
         <el-input v-model="form.supplier"/>
       </el-form-item>
-      <!--<el-form-item label="年级：" prop="level" required>
-        <el-select v-model="form.level" placeholder="年级"  @change="levelChange">
-          <el-option v-for="item in levelEnum" :key="item.key" :value="item.key" :label="item.value"></el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="学科：" prop="subjectId" required>
-        <el-select v-model="form.subjectId" placeholder="学科">
-          <el-option v-for="item in subjectFilter" :key="item.id" :value="item.id"
-                     :label="item.name+' ( '+item.levelName+' )'"></el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="试卷类型：" prop="paperType" required>
-        <el-select v-model="form.paperType" placeholder="试卷类型">
-          <el-option v-for="item in paperTypeEnum" :key="item.key" :value="item.key" :label="item.value"></el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="时间限制：" required v-show="form.paperType===4">
-        <el-date-picker v-model="form.limitDateTime" value-format="yyyy-MM-dd HH:mm:ss" type="datetimerange"
-                        range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
-        </el-date-picker>
-      </el-form-item>
-      <el-form-item :key="index" :label="'标题'+(index+1)+'：'" required v-for="(titleItem,index) in form.titleItems">
-        <el-input v-model="titleItem.name" style="width: 80%"/>
-        <el-button type="text" class="link-left" style="margin-left: 20px" size="mini" @click="addQuestion(titleItem)">
-          添加题目
-        </el-button>
-        <el-button type="text" class="link-left" size="mini" @click="form.titleItems.splice(index,1)">删除</el-button>
-        <el-card class="exampaper-item-box" v-if="titleItem.questionItems.length!==0">
-          <el-form-item :key="questionIndex" :label="'题目'+(questionIndex+1)+'：'"
-                        v-for="(questionItem,questionIndex) in titleItem.questionItems" style="margin-bottom: 15px">
-            <el-row>
-              <el-col :span="23">
-                <QuestionShow :qType="questionItem.questionType" :question="questionItem"/>
-              </el-col>
-              <el-col :span="1">
-                <el-button type="text" size="mini" @click="titleItem.questionItems.splice(questionIndex,1)">删除
-                </el-button>
-              </el-col>
-            </el-row>
-          </el-form-item>
-        </el-card>
-      </el-form-item>
-      <el-form-item label="建议时长：" prop="suggestTime" required>
-        <el-input v-model="form.suggestTime" placeholder="分钟"/>
-      </el-form-item>-->
       <el-form-item>
         <el-button type="primary" @click="submitForm">提交</el-button>
         <el-button @click="resetForm">重置</el-button>

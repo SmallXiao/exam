@@ -1,0 +1,15 @@
+/* 弹窗 */
+.m-xloginPanel {width: 600px;height: 400px;left: 800px;top: 0px;position: fixed; background: #fff;z-index: 10002;}
+.m-xloginPanel i {position:absolute;z-index:2;}
+.m-xloginPanel i.bart,.m-xloginPanel i.barb {height:4px;left:-1px;right:-1px;/cursor:n-resize;}
+.m-xloginPanel i.bart {top:-1px;}
+.m-xloginPanel i.barb {bottom:-1px;}
+.m-xloginPanel i.barr,.m-xloginPanel i.barl {width:4px;top:-1px;bottom:-1px;cursor:e-resize;}
+.m-xloginPanel i.barl {left:-1px;}
+.m-xloginPanel i.barr {right:-1px;}
+.m-xloginPanel i.bar {width:14px;height:14px;cursor:nw-resize;bottom:-1px;right:-1px;}
+.m-xloginPanel .content {position:absolute;width:100%;height: 100%;background-color: #ffffff;}
+.m-xloginPanel .content>div{position:absolute;width:100%;height: 100%;overflow: hidden;background-color: azure;border: 1px solid #3683cb;}
+.m-xloginPanel .content p {text-indent:44px;line-height:36px;margin:0;z-index:3;width: 100%;height: 100%;}
+.m-xloginPanel .content h3 {font-weight: normal;color: #fff;font-size: 16px;text-align: left;background: #00152a;height: 31px;line-height: 32px;overflow: hidden;padding-left: 20px;cursor: move;z-index: 10;margin-right: -2px;}
+.m-xloginPanel .content h3 img {float: right;width: 30px;background-image: url("u184.png");}

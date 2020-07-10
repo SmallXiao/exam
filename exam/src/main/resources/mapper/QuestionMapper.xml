@@ -231,7 +231,7 @@
       q.info_text_content_id infoTextContentId,
       q.deleted ,
       q.flag,
-      q.name,
+      q.name shortTitle,
       q.correct,
       s.name subjectName,
       e.name paperName

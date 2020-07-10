@@ -18,5 +18,4 @@ public class QuestionPageRequestVM extends BasePage {
     private Integer startIndex;
 
 
-
 }

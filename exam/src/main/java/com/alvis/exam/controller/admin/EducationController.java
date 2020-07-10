@@ -62,7 +62,7 @@ public class EducationController extends BaseApiController {
 
     @RequestMapping(value = "/subject/select/{id}", method = RequestMethod.POST)
     public RestResponse<SubjectEditRequestVM> select(@PathVariable String id) {
-        if (id.equals("undefined") ) {
+        if ("undefined".equals(id) ) {
             return RestResponse.ok();
         }
         TSubject subject = tsubjectService.getById(id);
