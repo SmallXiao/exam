@@ -96,7 +96,7 @@ export default {
       listLoading: true,
       tableData: [],
       total: 0,
-      sels: [], // 选中的值显示
+      sels: [],//选中的值显示
       questionShow: {
         qType: 0,
         dialog: false,
@@ -137,7 +137,7 @@ export default {
             }
           })
         }
-        that.$message.success('删除成功')
+        that.$message.success("删除成功")
         this.search()
       })
     },
