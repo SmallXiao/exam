@@ -44,7 +44,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitForm">查询</el-button>
-        
+
       </el-form-item>
     </el-form>
     <el-table @selection-change="handleSelectionChange" v-loading="listLoading" :data="tableData" border fit highlight-current-row style="width: 100%">
@@ -96,7 +96,7 @@ export default {
       listLoading: true,
       tableData: [],
       total: 0,
-      sels: [],//选中的值显示
+      sels: [], // 选中的值显示
       questionShow: {
         qType: 0,
         dialog: false,
@@ -129,15 +129,15 @@ export default {
         type: 'warning'
       }).then(() => {
         var ids= that.sels.map(item => item.id)
-        for(var i = 0; i < ids.length; i ++){
+        for (var i = 0; i < ids.length; i ++){
           questionApi.deleteQuestion(ids[i]).then(re => {
             if (re.code !== 1) {
+              // eslint-disable-next-line no-undef
               _this.$message.error(re.message)
-              return;
             }
           })
         }
-        that.$message.success("删除成功")
+        that.$message.success('删除成功')
         this.search()
       })
     },
