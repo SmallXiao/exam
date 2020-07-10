@@ -38,5 +38,6 @@ public class TSubject implements Serializable {
 
     private String flag;
     private String supplier;
+    private String describe;
 
 }

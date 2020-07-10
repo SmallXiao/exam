@@ -43,7 +43,10 @@
       </el-form-item>-->
       <el-form-item>
         <el-button type="primary" @click="submitForm">查询</el-button>
-        <!--<el-button @click="resetForm">重置</el-button>-->
+        <el-button type="primary" @click="resetForm">重置</el-button>
+      </el-form-item>
+      <br>
+      <el-form-item>
         <router-link :to="{path:'/exam/paper/edit'}" class="link-left">
           <el-button type="primary">添加套题</el-button>
         </router-link>
@@ -51,9 +54,14 @@
           <el-button type="primary">添加试卷</el-button>
         </router-link>&emsp;
         <el-button type="primary" @click="batchdelete">批量删除</el-button>
+      </el-form-item><br>
+      <el-form-item>
+        已选择<el-input v-model="queryParam.selectedNum" style="width:40px" disabled></el-input> 项
+        包含问题总计：<el-input v-model="queryParam.questionNum" style="width:40px" disabled></el-input> 个
       </el-form-item>
     </el-form>
-    <el-table v-loading="listLoading" :data="tableData" border fit highlight-current-row style="width: 100%"  ref="multipleTable">
+
+    <el-table v-loading="listLoading" :data="tableData" border fit highlight-current-row style="width: 100%"  ref="multipleTable" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55"></el-table-column>
       <!--<el-table-column prop="id" label="Id" width="90px"/>-->
       <el-table-column prop="subjectName" label="套题名称"  /> <!-- :formatter="subjectFormatter" -->
@@ -88,12 +96,15 @@ export default {
         subjectId: null,
         subjectName: null,
         supplier: null,
+        selectedNum: 0,
+        questionNum: 0,
         pageIndex: 1,
         pageSize: 10
       },
       subjectFilter: null,
       listLoading: true,
       tableData: [],
+      selectData: [],
       total: 0,
       ids: null
     }
@@ -103,6 +114,16 @@ export default {
     this.search()
   },
   methods: {
+    handleSelectionChange (val) {
+      this.queryParam.questionNum = 0
+      var data = this.$refs.multipleTable.selection
+      var num = 0
+      data.forEach(function (item) {
+        num += item.questionCount
+      })
+      this.queryParam.questionNum += num
+      this.queryParam.selectedNum = data.length
+    },
     batchdelete () {
       var arr = []
       var data = this.$refs.multipleTable.selection
@@ -118,6 +139,10 @@ export default {
         this.queryParam.pageIndex = re.pageNum
         this.listLoading = false */
       })
+    },
+    resetForm () {
+      this.queryParam.subjectName = null
+      this.queryParam.supplier = null
     },
     handleAvatarSuccess (res, file) {
       alert('上传成功')

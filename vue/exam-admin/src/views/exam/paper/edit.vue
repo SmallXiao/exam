@@ -10,8 +10,14 @@
       <!--<el-form-item label="试卷名称："  prop="paperName" required>
         <el-input v-model="form.paperName"/>
       </el-form-item>-->
+      <el-form-item label="套题添加者："  prop="creator">
+        <el-input v-model="form.creator"/>
+      </el-form-item>
       <el-form-item label="套题提供者："  prop="supplier">
         <el-input v-model="form.supplier"/>
+      </el-form-item>
+      <el-form-item label="套题描述："  prop="describe">
+        <el-input v-model="form.describe"/>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitForm">提交</el-button>
@@ -72,6 +78,8 @@ export default {
         limitDateTime: [],
         name: null,
         supplier: null,
+        describe: null,
+        creator: null,
         suggestTime: null,
         titleItems: []
       },

@@ -5,6 +5,6 @@ export default {
   pageList: query => post('/api/admin/education/subject/page', query),
   edit: query => post('/api/admin/education/subject/edit', query),
   select: id => post('/api/admin/education/subject/select/' + id),
-  insert: query => post('/api/admin/education/subject/insert/', query),
+  insert: query => post('/api/admin/education/subject/insert', query),
   deleteSubject: id => post('/api/admin/education/subject/delete/' + id)
 }
