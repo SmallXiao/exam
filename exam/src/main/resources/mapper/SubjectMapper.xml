@@ -10,9 +10,11 @@
     <result column="item_order" jdbcType="INTEGER" property="itemOrder" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
     <result column="flag" jdbcType="VARCHAR" property="flag" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="show_content" jdbcType="VARCHAR" property="showContent" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name,supplier, level, level_name, item_order, deleted ,flag,create_time createTime, update_time updateTime
+    id, name,supplier,show_content showContent,creator, level, level_name, item_order, deleted ,flag,create_time createTime, update_time updateTime
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select

@@ -17,7 +17,7 @@
         <el-input v-model="form.supplier"/>
       </el-form-item>
       <el-form-item label="套题描述："  prop="describe">
-        <el-input v-model="form.describe"/>
+        <el-input v-model="form.showContent"/>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitForm">提交</el-button>
@@ -78,7 +78,7 @@ export default {
         limitDateTime: [],
         name: null,
         supplier: null,
-        describe: null,
+        showContent: null,
         creator: null,
         suggestTime: null,
         titleItems: []

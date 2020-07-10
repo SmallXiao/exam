@@ -23,6 +23,8 @@ public class Subject implements Serializable {
     private Boolean deleted;
     private String flag;
     private String supplier;
+    private String showContent;
+    private String creator;
 
     private Date createTime;
     private Date updateTime;
