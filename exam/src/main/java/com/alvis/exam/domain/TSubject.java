@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -37,7 +38,16 @@ public class TSubject implements Serializable {
     private String deleted;
 
     private String flag;
+
+    // 套题提供者
     private String supplier;
+
+    // 套题说明
     private String showContent;
+
+    // 创建人
+    private String creator;
+
+    private Date createTime;
 
 }

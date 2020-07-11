@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Data
 public class SubjectEditRequestVM extends BaseVM {
@@ -21,5 +22,13 @@ public class SubjectEditRequestVM extends BaseVM {
 
     @NotBlank
     private String levelName;
+
+    // 套题说明
+    private String showContent;
+
+    // 创建人
+    private String creator;
+
+    private Date createTime;
 
 }

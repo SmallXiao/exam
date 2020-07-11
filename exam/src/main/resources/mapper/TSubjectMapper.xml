@@ -11,6 +11,10 @@
         <result column="item_order" property="itemOrder" />
         <result column="deleted" property="deleted" />
         <result column="flag" property="flag" />
+        <result column="show_content" property="showContent" />
+        <result column="supplier" property="supplier" />
+        <result column="creator" property="creator" />
+        <result column="create_time" property="createTime" />
     </resultMap>
 
     <!-- 通用查询结果列 -->

@@ -78,9 +78,10 @@ const constantRoutes = [
     component: Layout,
     name: 'ExamPage',
     meta: {
-      title: '卷题管理',
+      title: '题库管理',
       icon: 'exam'
     },
+    alwaysShow: true,
     children: [
       {
         path: 'paper/list',
@@ -106,7 +107,8 @@ const constantRoutes = [
         path: 'question/list',
         component: () => import('@/views/exam/question/list'),
         name: 'ExamQuestionPageList',
-        meta: { title: '题目列表', noCache: true }
+        meta: { title: '题目列表', noCache: true, activeMenu: '/exam/paper/list' },
+        hidden: true
       },
       {
         path: 'question/edit/singleChoice',

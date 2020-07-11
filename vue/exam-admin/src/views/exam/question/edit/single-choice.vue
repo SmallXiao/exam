@@ -181,7 +181,7 @@ export default {
             if (re.code === 1) {
               _this.$message.success(re.message)
               _this.delCurrentView(_this).then(() => {
-                _this.$router.push('/exam/question/list')
+                _this.$router.push('/exam/question/list?id=' + _this.form.subjectId)
               })
             } else {
               _this.$message.error(re.message)
