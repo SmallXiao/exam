@@ -31,8 +31,18 @@
                      @click="$router.push({path:item.value})">{{item.name}}
           </el-button>
           <el-button slot="reference" type="primary" class="link-left">新建</el-button>
-        </el-popover>
-      <el-button size="medium"  type="info" @click="" class="link-left" plain>批量导入</el-button>&nbsp;
+        </el-popover>&nbsp;
+      <el-form-item>
+        <el-upload class="upload-demo"
+                   :show-file-list="true"
+                   :on-success="handleAvatarSuccess"
+                   name="file"
+                   :data = "queryParam"
+                   action="/api/admin/exam/paper/upload">
+          <el-button size="medium" type="primary">批量导入</el-button>
+        </el-upload>
+      </el-form-item>
+      <!--<el-button size="medium"  type="info" @click="" class="link-left" plain>批量导入</el-button>-->
       <el-button size="medium"  type="danger" @click="batchDelete(sels)" class="link-left" plain>批量删除</el-button>&nbsp;
       <el-form-item label="题型：">
         <el-select v-model="queryParam.questionType" clearable>
