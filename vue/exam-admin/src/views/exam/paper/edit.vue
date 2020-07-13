@@ -86,9 +86,6 @@ export default {
       subjectFilter: null,
       formLoading: false,
       rules: {
-        level: [
-          { required: true, message: '请选择年级', trigger: 'change' }
-        ],
         subjectId: [
           { required: true, message: '请选择学科', trigger: 'change' }
         ],
@@ -120,25 +117,22 @@ export default {
     }
   },
   created () {
-    /* this.form.id = this.$route.query.id
-    let id = this.$route.query.id */
-    /* subjectApi.insert().then(re => {
-      this.form = re.response
-      alert(this.form.name)
-      this.formLoading = false
-    }) */
-    /* let id = this.$route.query.id
-    let _this = this
-    this.initSubject(function () {
-      _this.subjectFilter = _this.subjects
-    })
-    if (id && parseInt(id) !== 0) {
-      _this.formLoading = true
-      examPaperApi.select(id).then(re => {
-        _this.form = re.response
-        _this.formLoading = false
-      })
-    } */
+     let that = this;
+     if (that.$route.query.id != null) {// 存在ID，套题编辑
+        that.form.id = that.$route.query.id
+        subjectApi.select(that.form.id).then(re => {
+          let data = re.response
+          that.form.subjectId = data.id
+          // 套题名称
+          that.form.name = data.name
+          // 套题提供者
+          that.form.supplier = data.supplier
+          // 套题说明
+          that.form.showContent = data.showContent
+          // 套题添加者
+          that.form.creator = data.creator
+        })
+     }
   },
   methods: {
     submitForm () {
@@ -146,19 +140,35 @@ export default {
       this.$refs.form.validate((valid) => {
         if (valid) {
           this.formLoading = true
-          subjectApi.insert(this.form).then(re => {
-            if (re.code === 1) {
-              _this.$message.success(re.message)
-              _this.delCurrentView(_this).then(() => {
-                _this.$router.push('/exam/paper/list')
-              })
-            } else {
-              _this.$message.error(re.message)
+          if (this.form.id > 0) {// 更新
+            subjectApi.edit(this.form).then(re => {
+              if (re.code === 1) {
+                _this.$message.success(re.message)
+                _this.delCurrentView(_this).then(() => {
+                  _this.$router.push('/exam/paper/list')
+                })
+              } else {
+                _this.$message.error(re.message)
+                this.formLoading = false
+              }
+            }).catch(e => {
               this.formLoading = false
-            }
-          }).catch(e => {
-            this.formLoading = false
-          })
+            })
+          } else {// 插入
+            subjectApi.insert(this.form).then(re => {
+              if (re.code === 1) {
+                _this.$message.success(re.message)
+                _this.delCurrentView(_this).then(() => {
+                  _this.$router.push('/exam/paper/list')
+                })
+              } else {
+                _this.$message.error(re.message)
+                this.formLoading = false
+              }
+            }).catch(e => {
+              this.formLoading = false
+            })
+          }
         } else {
           return false
         }

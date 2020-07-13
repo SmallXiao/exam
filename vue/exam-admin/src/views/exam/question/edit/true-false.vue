@@ -72,6 +72,7 @@ export default {
         gradeLevel: null,
         subjectId: null,
         title: '',
+        name: null,
         items: [
           { id: null, prefix: 'A', content: '是' },
           { id: null, prefix: 'B', content: '否' }
@@ -131,16 +132,6 @@ export default {
         _this.formLoading = false
       })
     }
-
-    debugger;
-    examPaperApi.select(id).then(re => {
-    debugger;
-      this.paperList = re
-    })
-
-    examPaperApi.selectList().then(re => {
-      this.paperList = re
-    })
   },
   methods: {
     editorReady (instance) {

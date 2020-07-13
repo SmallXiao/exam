@@ -9,18 +9,18 @@
         </div>
         <div class="gh-btn">
           <el-button size="medium"  type="danger" @click="deleteSubject" class="link-left" plain>删除套题</el-button>
-          <el-button size="medium"  type="primary" @click="deleteQuestion" class="link-left">编辑套题信息</el-button>
+          <el-button size="medium"  type="primary" @click="editSubject" class="link-left">编辑套题信息</el-button>
         </div>
     </div>
     <div class="gh-info">
         <div class="gh-info-left">
             <div style="width: 280px; float: left;">
-                <p>创建人：<t>{{subjectShow.supplier}}</t></p>
-                <p>创建时间：<t>{{subjectShow.create_time}}</t></p>
+                <p>创建人：<t>{{subjectShow.creator}}</t></p>
+                <p>创建时间：<t>{{subjectShow.createTime}}</t></p>
                 <p>素材提供方：<t>{{subjectShow.supplier}}</t></p>
             </div>
             <div style="width: 420px; float: left;">
-                <p>套题说明：<span style="color: #007aff;" data-data="orderVo.symbolMsg"></span></p>
+                <p>套题说明：<span>{{subjectShow.showContent}}</span></p>
             </div>
         </div>
     </div>
@@ -31,8 +31,18 @@
                      @click="$router.push({path:item.value})">{{item.name}}
           </el-button>
           <el-button slot="reference" type="primary" class="link-left">新建</el-button>
-        </el-popover>
-      <el-button size="medium"  type="info" @click="" class="link-left" plain>批量导入</el-button>&nbsp;
+        </el-popover>&nbsp;
+      <el-form-item>
+        <el-upload class="upload-demo"
+                   :show-file-list="true"
+                   :on-success="handleAvatarSuccess"
+                   name="file"
+                   :data = "queryParam"
+                   action="/api/admin/exam/paper/upload">
+          <el-button size="medium" type="info" plain>批量导入</el-button>
+        </el-upload>
+      </el-form-item>
+      <!--<el-button size="medium"  type="info" @click="" class="link-left" plain>批量导入</el-button>-->
       <el-button size="medium"  type="danger" @click="batchDelete(sels)" class="link-left" plain>批量删除</el-button>&nbsp;
       <el-form-item label="题型：">
         <el-select v-model="queryParam.questionType" clearable>
@@ -45,9 +55,12 @@
       <el-form-item>
         <el-button type="primary" @click="submitForm">查询</el-button>
 
+      </el-form-item><br>
+      <el-form-item>
+        已选择<el-input v-model="queryParam.selectedNum" style="width:50px" disabled></el-input> 项
       </el-form-item>
     </el-form>
-    <el-table @selection-change="handleSelectionChange" v-loading="listLoading" :data="tableData" border fit highlight-current-row style="width: 100%">
+    <el-table @selection-change="handleSelectionChange" v-loading="listLoading" :data="tableData" border fit highlight-current-row style="width: 100%" ref="multipleTable">
       <el-table-column type="selection" width="55"></el-table-column>
       <el-table-column prop="questionType" label="题型" :formatter="questionTypeFormatter" width="70px"/>
       <el-table-column prop="shortTitle" label="题干" show-overflow-tooltip/>
@@ -90,7 +103,8 @@ export default {
         questionType: null,
         level: null,
         pageIndex: 1,
-        pageSize: 10
+        pageSize: 10,
+        selectedNum: 0// 已选择问题数目
       },
       subjectFilter: null,
       listLoading: true,
@@ -103,6 +117,7 @@ export default {
         question: null,
         loading: false
       },
+      name: null,
       subjectShow: {
         name: null,
         supplier: null,
@@ -119,7 +134,10 @@ export default {
   },
   methods: {
     handleSelectionChange(sels) {
+    debugger;
       this.sels = sels
+      var data = this.$refs.multipleTable.selection
+      this.queryParam.selectedNum = data.length
     },
     batchDelete () {// 批量删除题目
       let that = this
@@ -152,6 +170,7 @@ export default {
       let that = this;
       subjectApi.select(id).then(data => {
         that.subjectShow = data.response
+        that.subjectShow.createTime = this.formatDate(new Date(data.response.createTime), 'yyyy-MM-dd')
       })
     },
     search () {
@@ -181,7 +200,7 @@ export default {
         _this.questionShow.loading = false
       })
     },
-    editQuestion () {
+    editQuestion (row) {
       let url = this.enumFormat(this.editUrlEnum, row.questionType)
       this.$router.push({ path: url, query: { id: row.id } })
     },
@@ -196,6 +215,9 @@ export default {
         }
       })
     },
+    editSubject() {// 编辑套题
+      this.$router.push('/exam/paper/edit?id=' + this.queryParam.subjectId)
+    },
     deleteQuestion (row) {
       let _this = this
       questionApi.deleteQuestion(row.id).then(re => {
@@ -207,6 +229,28 @@ export default {
         }
       })
     },
+    formatDate (date, fmt) {
+      if (/(y+)/.test(fmt)) {
+       fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
+      }
+      let o = {
+       'M+': date.getMonth() + 1,
+       'd+': date.getDate(),
+       'h+': date.getHours(),
+       'm+': date.getMinutes(),
+       's+': date.getSeconds()
+      };
+      for (let k in o) {
+       if (new RegExp(`(${k})`).test(fmt)) {
+        let str = o[k] + '';
+        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : this.padLeftZero(str));
+       }
+      }
+      return fmt;
+     },
+     padLeftZero (str) {
+      return ('00' + str).substr(str.length);
+     },
     questionTypeFormatter (row, column, cellValue, index) {
       return this.enumFormat(this.questionType, cellValue)
     },
