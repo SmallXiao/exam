@@ -39,7 +39,7 @@
                    name="file"
                    :data = "queryParam"
                    action="/api/admin/exam/paper/upload">
-          <el-button size="medium" type="info" plain>批量导入</el-button>
+          <el-button size="medium" type="primary">批量导入</el-button>
         </el-upload>
       </el-form-item>
       <!--<el-button size="medium"  type="info" @click="" class="link-left" plain>批量导入</el-button>-->
@@ -134,7 +134,6 @@ export default {
   },
   methods: {
     handleSelectionChange(sels) {
-    debugger;
       this.sels = sels
       var data = this.$refs.multipleTable.selection
       this.queryParam.selectedNum = data.length
