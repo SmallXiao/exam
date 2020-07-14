@@ -25,7 +25,7 @@
     </sql>
 
     <insert id="insertData">
-        insert into t_question (name,flag) values(#{name},#{flag})
+        insert into t_question (name,flag,subject_id) values(#{name},#{flag},#{subjectId})
     </insert>
 
     <update id="updateInfoTextContentId">

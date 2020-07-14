@@ -10,7 +10,6 @@ import com.alvis.exam.utility.YamlUtil;
 import com.alvis.exam.viewmodel.admin.exam.ExamPaperEditRequestVM;
 import com.alvis.exam.viewmodel.admin.exam.ExamPaperPageRequestVM;
 import com.alvis.exam.viewmodel.admin.exam.ExamResponseVM;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
@@ -299,6 +298,7 @@ public class ExamPaperController extends BaseApiController {
         List<TQuestion> insertTQuestionlist = new ArrayList<>();
         List<TExamPaper> inserttExamPaperlist = new ArrayList<>();
         List<TSubject> inserttSubjectlist = new ArrayList<>();
+        TSubject tSubject = new TSubject();
         for (XWPFParagraph graph : paras) {
             String text = graph.getParagraphText();
             if (StringUtils.isBlank(text)){
@@ -310,13 +310,12 @@ public class ExamPaperController extends BaseApiController {
             String content = StringUtils.substringBefore(text,"[");
 
             if ("1".equals(style)) {
-                TSubject tSubject = new TSubject();
                 content = content.replace("一级标题", "");
                 tSubject.setName(content);
                 tSubject.setFlag(flag);
                 tSubject.setSupplier(supplier);
-                inserttSubjectlist.add(tSubject);
-
+                //inserttSubjectlist.add(tSubject);
+                subjectService.insertData(tSubject);
                 //System.out.println(text+"--["+style+"]");
             }else if ("2".equals(style)) {
                 String s = flag.split(",")[1] + ".";
@@ -338,8 +337,10 @@ public class ExamPaperController extends BaseApiController {
                 TQuestion tQuestion = new TQuestion();
                 tQuestion.setName(content);
                 tQuestion.setFlag(flag);
+                tQuestion.setSubjectId(tSubject.getId());
 
-                insertTQuestionlist.add(tQuestion);
+                questionService.insertData(tQuestion);
+                //insertTQuestionlist.add(tQuestion);
                 //System.out.println(text+"--["+style+"]");
             }else {
                 TTextContent textContent = new TTextContent();
@@ -355,9 +356,15 @@ public class ExamPaperController extends BaseApiController {
                 }
             }
         }
-        subjectService.saveBatch(inserttSubjectlist);
+        //subjectService.saveBatch(inserttSubjectlist);
+        List<TSubject> list = subjectService.list();
+        for (TSubject t : list) {
+            t.setFlag(tSubject.getId().toString());
+            subjectService.updateById(t);
+        }
+
         texamPaperService.saveBatch(inserttExamPaperlist);
-        questionService.saveBatch(insertTQuestionlist);
+        //questionService.saveBatch(insertTQuestionlist);
         textContentService.saveBatch(insertTTextContentlist);
 
         List<TQuestion> questionlist = questionService.list();
@@ -384,9 +391,9 @@ public class ExamPaperController extends BaseApiController {
     public String datahandle() {
 
         //同步 t_subject 和 t_exam_paper
-        List<TExamPaper> examPaperlist = texamPaperService.list();
-        List<TExamPaper> updateexamPaperlist = new ArrayList<>();
-        for (TExamPaper tExamPaper : examPaperlist) {
+        //List<TExamPaper> examPaperlist = texamPaperService.list();
+        //List<TExamPaper> updateexamPaperlist = new ArrayList<>();
+        /*for (TExamPaper tExamPaper : examPaperlist) {
             TExamPaper tExamPaper1 = new TExamPaper();
             String flag = tExamPaper.getFlag();
             Integer examPaperid = tExamPaper.getId();
@@ -401,12 +408,12 @@ public class ExamPaperController extends BaseApiController {
             updateexamPaperlist.add(tExamPaper1);
             //examPaperService.update(new LambdaUpdateWrapper<TExamPaper>().set(TExamPaper::getSubjectId,subjectId).eq(TExamPaper::getId,examPaperid));
 
-        }
-        texamPaperService.updateBatchById(updateexamPaperlist,1000);
+        }*/
+        //texamPaperService.updateBatchById(updateexamPaperlist,1000);
 
-        List<TQuestion> questionlist = questionService.list();
-        List<TQuestion> updateTQuestionlist = new ArrayList<>();
-        for (TQuestion tQuestion : questionlist) {
+        //List<TQuestion> questionlist = questionService.list();
+        //List<TQuestion> updateTQuestionlist = new ArrayList<>();
+        /*for (TQuestion tQuestion : questionlist) {
             TQuestion tQuestion1 = new TQuestion();
             Integer questionid = tQuestion.getId();
             String flag = tQuestion.getFlag();
@@ -414,19 +421,19 @@ public class ExamPaperController extends BaseApiController {
             String[] split = flag.split(",");
             String examPaperflag = split[0] + "," + split[1];
 
-            TExamPaper exampaper = texamPaperService.getOne(new LambdaQueryWrapper<TExamPaper>().eq(TExamPaper::getFlag, examPaperflag));
+            *//*TExamPaper exampaper = texamPaperService.getOne(new LambdaQueryWrapper<TExamPaper>().eq(TExamPaper::getFlag, examPaperflag));
             Integer examPaperid = exampaper.getId();
-            Integer subjectId = exampaper.getSubjectId();
+            Integer subjectId = exampaper.getSubjectId();*//*
 
             tQuestion1.setId(questionid);
             tQuestion1.setSubjectId(subjectId);
-            tQuestion1.setPaperId(examPaperid);
+            //tQuestion1.setPaperId(examPaperid);
 
-            updateTQuestionlist.add(tQuestion1);
+            //updateTQuestionlist.add(tQuestion1);
 
             //questionService.update(new LambdaUpdateWrapper<TQuestion>().set(TQuestion::getInfoTextContentId,id).eq(TQuestion::getId,tQuestion.getId()));
         }
-        questionService.updateBatchById(updateTQuestionlist,1000);
+        questionService.updateBatchById(updateTQuestionlist,1000);*/
 
         List<TTextContent> textContentlist = textContentService.list();
         List<TTextContent> textContentlist1 = new ArrayList<>();
