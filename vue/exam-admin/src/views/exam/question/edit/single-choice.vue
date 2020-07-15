@@ -11,11 +11,11 @@
           <el-option v-for="item in subjectFilter" :key="item.id" :value="item.id" :label="item.name"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="试卷列表：" prop="paperId" required>
+      <!--<el-form-item label="试卷列表：" prop="paperId" required>
         <el-select v-model="form.paperId" placeholder="试卷列表" >
           <el-option v-for="item in paperList" :key="item.id" :value="item.id +'&'+ item.name" :label="item.name"></el-option>
         </el-select>
-      </el-form-item>
+      </el-form-item>-->
       <el-form-item label="题干：" prop="title" required>
         <el-input v-model="form.title"   @focus="inputClick(form,'title')" />
       </el-form-item>

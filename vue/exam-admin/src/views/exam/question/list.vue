@@ -104,13 +104,14 @@ export default {
         level: null,
         pageIndex: 1,
         pageSize: 10,
-        selectedNum: 0// 已选择问题数目
+        selectedNum: 0, // 已选择问题数目
+        subjectId: null
       },
       subjectFilter: null,
       listLoading: true,
       tableData: [],
       total: 0,
-      sels: [],//选中的值显示
+      sels: [], // 选中的值显示
       questionShow: {
         qType: 0,
         dialog: false,

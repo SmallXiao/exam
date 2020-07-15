@@ -1,5 +1,6 @@
 package com.alvis.exam.controller.admin;
 
+import cn.hutool.core.util.StrUtil;
 import com.alvis.exam.base.BaseApiController;
 import com.alvis.exam.base.RestResponse;
 import com.alvis.exam.domain.*;
@@ -181,7 +182,8 @@ public class ExamPaperController extends BaseApiController {
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public RestResponse upload(MultipartFile file,@RequestParam Map map) throws IOException {
-        String supplier = map.get("supplier").toString();
+        String subjectId = map.get("subjectId").toString();
+        String supplier = ""; //map.get("supplier").toString();
         File newFile = new File(filePath);
         if (!newFile.exists()) {
             newFile.mkdirs();
@@ -208,68 +210,29 @@ public class ExamPaperController extends BaseApiController {
             if (StringUtils.isBlank(wordTitle)){
                 continue;
             }
-
-            boolean two = false;
-            boolean three = false;
-            boolean four = false;
-            boolean firstNum = StringUtils.isNumeric(wordTitle.trim().charAt(0) + "");
-            if(firstNum){
-                String substring = wordTitle.trim().substring(0, 8);
-
-                int i = substring.trim().indexOf(".");
-                String substring1 = wordTitle.substring(i+1);
-                String s = substring1.charAt(0) + "";
-                if(!StringUtils.isNumeric(s)){
-                    two = true;
-                }else {
-                   String[] split = substring.split("\\.");
-                    if(split.length == 2){
-                        three = true;
-                    }else {
-                        four = true;
-                    }
-                }
+            int count = 0;
+            if(StringUtils.isNumeric(wordTitle.trim().charAt(0)+"")){
+                count = StrUtil.count(wordTitle.substring(0,8), ".");
             }
 
-            if (wordTitle.trim().startsWith("一级标题")) {
-                XWPFParagraph para1 = doc.createParagraph();
-                para1.setStyle("1");
-                XWPFRun run1 = para1.createRun();
-                subject += 1;
-                examPaper = 0;
-                question = 0;
-                textContent = 0;
-                run1.setText(wordTitle+"["+subject+"]");
-            }
-
-            if (two) {
-                question = 0;
-                textContent = 0;
-                XWPFParagraph para2 = doc.createParagraph();
-                para2.setStyle("2");
-                XWPFRun run2 = para2.createRun();
-                examPaper += 1;
-                run2.setText(wordTitle+"["+subject+","+examPaper+"]");
-            }else if (three) {
+            if(count == 1){
                 textContent = 0;
                 XWPFParagraph para3 = doc.createParagraph();
                 para3.setStyle("3");
                 XWPFRun run3 = para3.createRun();
                 question += 1;
                 run3.setText(wordTitle+"["+subject+","+examPaper+","+question+"]");
-            }else if (four) {
+            }else if(count == 2){
                 XWPFParagraph para4 = doc.createParagraph();
                 para4.setStyle("4");
                 XWPFRun run4 = para4.createRun();
 
                 textContent += 1;
                 run4.setText(wordTitle+"["+subject+","+examPaper+","+question+","+textContent+"]");
-            }else {
-                if (wordTitle.contains("A、") || wordTitle.contains("B、") || wordTitle.contains("C、") || wordTitle.contains("D、")|| wordTitle.contains("答案：")) {
-                    XWPFParagraph paraX = doc.createParagraph();
-                    XWPFRun runX = paraX.createRun();
-                    runX.setText(wordTitle+"["+subject+","+examPaper+","+question+","+textContent+"]");
-                }
+            }else if (wordTitle.contains("A、") || wordTitle.contains("B、") || wordTitle.contains("C、") || wordTitle.contains("D、")|| wordTitle.contains("答案：")) {
+                XWPFParagraph paraX = doc.createParagraph();
+                XWPFRun runX = paraX.createRun();
+                runX.setText(wordTitle+"["+subject+","+examPaper+","+question+","+textContent+"]");
             }
         }
 
@@ -278,14 +241,14 @@ public class ExamPaperController extends BaseApiController {
         doc.write(fos);
         fos.close();
 
-        getWordTitles(allpath,supplier);
+        getWordTitles(allpath,subjectId);
         datahandle();
         return RestResponse.ok();
     }
 
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     @GetMapping("/word")
-    public void getWordTitles(String path,String supplier) throws IOException {
+    public void getWordTitles(String path,String subjectId) throws IOException {
         //String path= "D:/myDoc.docx";
         InputStream is = new FileInputStream(path);
 
@@ -295,12 +258,9 @@ public class ExamPaperController extends BaseApiController {
         String contentAll = "";
 
         List<TTextContent> insertTTextContentlist = new ArrayList<>();
-        List<TQuestion> insertTQuestionlist = new ArrayList<>();
-        List<TExamPaper> inserttExamPaperlist = new ArrayList<>();
-        List<TSubject> inserttSubjectlist = new ArrayList<>();
-        TSubject tSubject = new TSubject();
         for (XWPFParagraph graph : paras) {
             String text = graph.getParagraphText();
+            text = text.trim();
             if (StringUtils.isBlank(text)){
                 continue;
             }
@@ -309,35 +269,14 @@ public class ExamPaperController extends BaseApiController {
             String flag = StringUtils.substringBetween(text,"[","]");
             String content = StringUtils.substringBefore(text,"[");
 
-            if ("1".equals(style)) {
-                content = content.replace("一级标题", "");
-                tSubject.setName(content);
-                tSubject.setFlag(flag);
-                tSubject.setSupplier(supplier);
-                //inserttSubjectlist.add(tSubject);
-                subjectService.insertData(tSubject);
-                //System.out.println(text+"--["+style+"]");
-            }else if ("2".equals(style)) {
-                String s = flag.split(",")[1] + ".";
-                content = StringUtils.substringAfter(content,s);
-
-                TExamPaper tExamPaper = new TExamPaper();
-                tExamPaper.setName(content);
-                tExamPaper.setFlag(flag);
-                inserttExamPaperlist.add(tExamPaper);
-
-                //System.out.println(text+"--["+style+"]");
-            }else if ("3".equals(style)) {
+            if ("3".equals(style)) {
                 //System.out.println(text+"--["+style+"]");
             }else if ("4".equals(style)) {
-                int i = flag.lastIndexOf(",");
-                String substring = flag.substring(0,i).replace(",",".");
-
-                content = StringUtils.substringAfter(content,substring);
+                content = content.substring(5);
                 TQuestion tQuestion = new TQuestion();
                 tQuestion.setName(content);
                 tQuestion.setFlag(flag);
-                tQuestion.setSubjectId(tSubject.getId());
+                tQuestion.setSubjectId(Integer.parseInt(subjectId));
 
                 questionService.insertData(tQuestion);
                 //insertTQuestionlist.add(tQuestion);
@@ -356,14 +295,7 @@ public class ExamPaperController extends BaseApiController {
                 }
             }
         }
-        //subjectService.saveBatch(inserttSubjectlist);
-        List<TSubject> list = subjectService.list();
-        for (TSubject t : list) {
-            t.setFlag(tSubject.getId().toString());
-            subjectService.updateById(t);
-        }
 
-        texamPaperService.saveBatch(inserttExamPaperlist);
         //questionService.saveBatch(insertTQuestionlist);
         textContentService.saveBatch(insertTTextContentlist);
 
@@ -389,51 +321,6 @@ public class ExamPaperController extends BaseApiController {
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     @GetMapping("/datahandle")
     public String datahandle() {
-
-        //同步 t_subject 和 t_exam_paper
-        //List<TExamPaper> examPaperlist = texamPaperService.list();
-        //List<TExamPaper> updateexamPaperlist = new ArrayList<>();
-        /*for (TExamPaper tExamPaper : examPaperlist) {
-            TExamPaper tExamPaper1 = new TExamPaper();
-            String flag = tExamPaper.getFlag();
-            Integer examPaperid = tExamPaper.getId();
-
-            String subjectflag = flag.split(",")[0];
-
-            TSubject subject = subjectService.getOne(new LambdaQueryWrapper<TSubject>().eq(TSubject::getFlag, subjectflag));
-            Integer subjectId = subject.getId();
-
-            tExamPaper1.setId(examPaperid);
-            tExamPaper1.setSubjectId(subjectId);
-            updateexamPaperlist.add(tExamPaper1);
-            //examPaperService.update(new LambdaUpdateWrapper<TExamPaper>().set(TExamPaper::getSubjectId,subjectId).eq(TExamPaper::getId,examPaperid));
-
-        }*/
-        //texamPaperService.updateBatchById(updateexamPaperlist,1000);
-
-        //List<TQuestion> questionlist = questionService.list();
-        //List<TQuestion> updateTQuestionlist = new ArrayList<>();
-        /*for (TQuestion tQuestion : questionlist) {
-            TQuestion tQuestion1 = new TQuestion();
-            Integer questionid = tQuestion.getId();
-            String flag = tQuestion.getFlag();
-
-            String[] split = flag.split(",");
-            String examPaperflag = split[0] + "," + split[1];
-
-            *//*TExamPaper exampaper = texamPaperService.getOne(new LambdaQueryWrapper<TExamPaper>().eq(TExamPaper::getFlag, examPaperflag));
-            Integer examPaperid = exampaper.getId();
-            Integer subjectId = exampaper.getSubjectId();*//*
-
-            tQuestion1.setId(questionid);
-            tQuestion1.setSubjectId(subjectId);
-            //tQuestion1.setPaperId(examPaperid);
-
-            //updateTQuestionlist.add(tQuestion1);
-
-            //questionService.update(new LambdaUpdateWrapper<TQuestion>().set(TQuestion::getInfoTextContentId,id).eq(TQuestion::getId,tQuestion.getId()));
-        }
-        questionService.updateBatchById(updateTQuestionlist,1000);*/
 
         List<TTextContent> textContentlist = textContentService.list();
         List<TTextContent> textContentlist1 = new ArrayList<>();
