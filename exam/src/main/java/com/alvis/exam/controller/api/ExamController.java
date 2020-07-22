@@ -39,9 +39,9 @@ public class ExamController {
      * 随机获取套题
      * @return
      */
-    @GetMapping(value = "randomList/{count}")
+    @GetMapping(value = "randomList")
     @ApiOperation("随机获取挑战题")
-    public RestResponse<SubjectVM> randomList(@PathVariable(required = false) Integer count) {
+    public RestResponse<SubjectVM> randomList(@RequestParam(required = false) Integer count) {
         // 获取考察范围
         ExamSet examSet = examSetService.select(1);
         if (count == null) {
