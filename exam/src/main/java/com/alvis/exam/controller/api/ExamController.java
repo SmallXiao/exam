@@ -5,9 +5,11 @@ import com.alvis.exam.base.RestResponse;
 import com.alvis.exam.domain.ExamSet;
 import com.alvis.exam.service.ExamService;
 import com.alvis.exam.service.ExamSetService;
-import com.alvis.exam.viewmodel.api.exam.ExamMainLogVM;
+import com.alvis.exam.service.StatisticsService;
+import com.alvis.exam.viewmodel.api.exam.ExamRequestVM;
 import com.alvis.exam.viewmodel.api.question.QuestionVM;
 import com.alvis.exam.viewmodel.api.question.SubjectVM;
+import com.alvis.exam.viewmodel.api.statistics.DailyRankResponseVM;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
@@ -15,6 +17,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -34,6 +38,8 @@ public class ExamController {
     @Autowired
     private ExamSetService examSetService;
 
+    @Autowired
+    private StatisticsService statisticsService;
 
     /**
      * 随机获取套题
@@ -90,10 +96,27 @@ public class ExamController {
      */
     @PostMapping(value = "save")
     @ApiOperation("保存答题结果")
-    public RestResponse save(@RequestBody ExamMainLogVM examMainLog) {
+    public RestResponse save(@RequestBody ExamRequestVM examRequest) {
+        // 保存答题情况
+        examService.save(examRequest);
 
-        examService.save(examMainLog);
-        return RestResponse.ok();
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMdd");
+        //格式化字符串
+        String dateStr = LocalDate.now().format(format);
+        // 获取今日答题排行情况
+        List<DailyRankResponseVM> userList = statisticsService.getUserDailyRankList(Integer.parseInt(dateStr));
+
+        JSONObject resultObject = new JSONObject();
+        int index = 1;
+        if (userList != null && userList.size() > 0) {
+            DailyRankResponseVM data = userList.stream().filter(item -> item.getErrorCount().equals(examRequest.getErrorCount()) && item.getSpendTime() > examRequest.getSpendTime()
+                    || item.getErrorCount() > examRequest.getErrorCount()).findFirst().get();
+
+            index = data.getRank() - 1;
+        }
+        resultObject.put("rank", index);
+
+        return RestResponse.ok(resultObject);
     }
 
 

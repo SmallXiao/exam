@@ -42,4 +42,11 @@ public class StatisticsServiceImpl implements StatisticsService {
 
         return statisticsMapper.wrongQuestionReport(reportRequestVM);
     }
+
+    @Override
+    public List<DailyRankResponseVM> getUserDailyRankList(int date) {
+        return statisticsMapper.getUserDailyRankList(date);
+    }
+
+
 }

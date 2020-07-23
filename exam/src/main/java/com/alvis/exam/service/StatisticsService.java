@@ -25,4 +25,7 @@ public interface StatisticsService {
 
     List<WrongQuestionResponseVM> wrongQuestionReport(WrongQuestionRequestVM reportRequestVM);
 
+
+
+    List<DailyRankResponseVM> getUserDailyRankList(int date);
 }

@@ -20,9 +20,9 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.alvis.exam.domain.TextContent" useGeneratedKeys="true" keyProperty="id">
-    insert into t_text_content (id, content, create_time
+    insert into t_text_content (id, content, create_time, question,choose,answer
       )
-    values (#{id,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+    values (#{id,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{question,jdbcType=VARCHAR}, #{choose,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.alvis.exam.domain.TextContent" useGeneratedKeys="true" keyProperty="id">
@@ -37,6 +37,15 @@
       <if test="createTime != null">
         create_time,
       </if>
+      <if test="question != null">
+        question,
+      </if>
+      <if test="choose != null">
+        choose,
+      </if>
+      <if test="answer != null">
+        answer,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -48,6 +57,16 @@
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="question != null">
+        #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="choose != null">
+        #{choose,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null">
+        #{answer,jdbcType=VARCHAR},
+      </if>
+
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.alvis.exam.domain.TextContent">
@@ -59,13 +78,25 @@
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="question != null">
+        question = #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="choose != null">
+        choose = #{choose,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null">
+        answer = #{answer,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.alvis.exam.domain.TextContent">
     update t_text_content
     set content = #{content,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP}
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        question = #{question,jdbcType=VARCHAR},
+        choose = #{choose,jdbcType=VARCHAR},
+        answer = #{answer,jdbcType=VARCHAR},
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

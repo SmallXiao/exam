@@ -25,6 +25,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -68,9 +69,6 @@ public class QuestionServiceImpl extends BaseServiceImpl<Question> implements Qu
     @Override
     @Transactional
     public Question insertFullQuestion(QuestionEditRequestVM model, Integer userId) {
-        String paperId = model.getPaperId();
-        String paperName = paperId.split("&")[1];
-        paperId = paperId.split("&")[0];
 
         Date now = new Date();
         Integer gradeLevel = subjectService.levelBySubjectId(model.getSubjectId());
@@ -78,13 +76,20 @@ public class QuestionServiceImpl extends BaseServiceImpl<Question> implements Qu
         //题干、解析、选项等 插入
         TextContent infoTextContent = new TextContent();
         infoTextContent.setCreateTime(now);
+        infoTextContent.setQuestion(model.getTitle());
         setQuestionInfoFromVM(infoTextContent, model);
         textContentService.insertByFilter(infoTextContent);
 
         Question question = new Question();
         question.setSubjectId(model.getSubjectId());
-        question.setPaperId(Integer.parseInt(paperId));
-        question.setName(paperName);
+        if (!StringUtils.isEmpty(model.getPaperId())) {
+            String paperId = model.getPaperId();
+            String paperName = paperId.split("&")[1];
+            paperId = paperId.split("&")[0];
+
+            question.setPaperId(Integer.parseInt(paperId));
+            question.setName(paperName);
+        }
         question.setGradeLevel(gradeLevel);
         question.setCreateTime(now);
         question.setQuestionType(model.getQuestionType());
@@ -103,6 +108,7 @@ public class QuestionServiceImpl extends BaseServiceImpl<Question> implements Qu
         question.setInfoTextContentId(infoTextContent.getId());
         question.setCreateUser(userId);
         question.setDeleted(false);
+        question.setName(model.getTitle());
         questionMapper.insertSelective(question);
         return question;
     }
@@ -110,17 +116,20 @@ public class QuestionServiceImpl extends BaseServiceImpl<Question> implements Qu
     @Override
     @Transactional
     public Question updateFullQuestion(QuestionEditRequestVM model) {
-        String paperId = model.getPaperId();
-        paperId = paperId.split("&")[0];
-        String paperName = paperId.split("&")[1];
 
-        Integer gradeLevel = subjectService.levelBySubjectId(model.getSubjectId());
         Question question = questionMapper.selectByPrimaryKey(model.getId());
+        if (!StringUtils.isEmpty(model.getPaperId())) {
+            String paperId = model.getPaperId();
+            paperId = paperId.split("&")[0];
+            question.setPaperId(Integer.parseInt(paperId));
+
+            String paperName = paperId.split("&")[1];
+            question.setName(paperName);
+        }
         question.setSubjectId(model.getSubjectId());
-        question.setPaperId(Integer.parseInt(paperId));
+//        Integer gradeLevel = subjectService.levelBySubjectId(model.getSubjectId());
 
         questionMapper.updateByPrimaryKeySelective(question);
-
         //题干、解析、选项等 更新
         TextContent infoTextContent = textContentService.selectById(question.getInfoTextContentId());
         setQuestionInfoFromVM(infoTextContent, model);
@@ -189,20 +198,37 @@ public class QuestionServiceImpl extends BaseServiceImpl<Question> implements Qu
 
     public void setQuestionInfoFromVM(TextContent infoTextContent, QuestionEditRequestVM model) {
 
+        StringBuilder choose = new StringBuilder(128);
         List<QuestionItemObject> itemObjects = model.getItems().stream().map(i ->
                 {
                     QuestionItemObject item = new QuestionItemObject();
                     item.setPrefix(i.getPrefix());
                     item.setContent(i.getContent());
                     item.setScore(ExamUtil.scoreFromVM(i.getScore()));
+
+                    String content = i.getContent();
+                    if (i.getContent().contains(">") && i.getContent().split(">").length > 1) {
+                        content = i.getContent().split(">")[1].split("<")[0];
+                    }
+                    choose.append(i.getPrefix()).append("、").append(content);
                     return item;
                 }
         ).collect(Collectors.toList());
+
+        String title = model.getTitle();
+        if (title.contains(">") && title.split(">").length > 1) {
+            title = model.getTitle().split(">")[1].split("<")[0];
+        }
+
         QuestionObject questionObject = new QuestionObject();
         questionObject.setQuestionItemObjects(itemObjects);
         questionObject.setAnalyze(model.getAnalyze());
-        questionObject.setTitleContent(model.getTitle());
+        questionObject.setTitleContent(title);
         questionObject.setCorrect(model.getCorrect());
+
+        infoTextContent.setQuestion(title);
+        infoTextContent.setChoose(choose.toString());
+        infoTextContent.setAnswer(model.getCorrect());
         infoTextContent.setContent(JsonUtil.toJsonStr(questionObject));
     }
 

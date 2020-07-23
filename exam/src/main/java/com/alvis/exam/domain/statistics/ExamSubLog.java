@@ -18,6 +18,8 @@ import java.io.Serializable;
 @ApiModel(value = "ExamSubLog", description = "日志从表")
 public class ExamSubLog implements Serializable {
 
+    private Integer subId;
+
     private Integer mainId;
 
     @ApiModelProperty(value = "题库ID")
@@ -25,6 +27,15 @@ public class ExamSubLog implements Serializable {
 
     @ApiModelProperty(value = "问题ID")
     private Integer questionId;
+
+    @ApiModelProperty(value = "日期（yyyyMMdd）")
+    private Integer date;
+
+    @ApiModelProperty(value = "登录用户名")
+    private String userName;
+
+    @ApiModelProperty(value = "部门名称")
+    private String deptName;
 
     @ApiModelProperty(value = "用户回答")
     private String answer;

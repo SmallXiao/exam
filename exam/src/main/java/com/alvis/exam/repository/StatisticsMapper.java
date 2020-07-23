@@ -18,4 +18,11 @@ public interface StatisticsMapper {
 
     List<WrongQuestionResponseVM> wrongQuestionReport(WrongQuestionRequestVM reportRequestVM);
 
+    /**
+     * 用户排名列表
+     * @param date
+     * @return
+     */
+    List<DailyRankResponseVM> getUserDailyRankList(int date);
+
 }

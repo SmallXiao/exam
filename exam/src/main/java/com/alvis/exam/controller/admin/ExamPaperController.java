@@ -189,8 +189,10 @@ public class ExamPaperController extends BaseApiController {
             newFile.mkdirs();
         }
 
-        String originalFilename = file.getOriginalFilename();
-        String allpath = filePath + originalFilename;
+        String[] array = file.getOriginalFilename().split("\\.");
+        StringBuilder fileName = new StringBuilder(128);
+        fileName.append(array[0]).append("_").append(System.currentTimeMillis()).append(".").append(array[1]);
+        String allpath = filePath + fileName;
         File newFile1 = new File(allpath);
 
         file.transferTo(newFile1);

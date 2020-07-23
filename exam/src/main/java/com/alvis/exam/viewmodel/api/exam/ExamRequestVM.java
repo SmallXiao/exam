@@ -1,21 +1,22 @@
 package com.alvis.exam.viewmodel.api.exam;
 
-import com.alvis.exam.domain.statistics.ExamSubLog;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 /**
  * @Author sunxiao
- * @Date 2020/6/17
+ * @Date 2020/7/23
  **/
 @Getter
 @Setter
-public class ExamMainLogVM {
+@ApiModel(value = "ExamMainLog", description = "日志主表")
+public class ExamRequestVM implements Serializable {
 
     @ApiModelProperty(value = "用户ID")
     private Integer userId;
@@ -36,8 +37,6 @@ public class ExamMainLogVM {
     private Integer errorCount;
 
     @ApiModelProperty(value = "题目列表")
-    private List<ExamSubLog> list;
-
-
+    private List<ExamSubRequestVM> list;
 
 }

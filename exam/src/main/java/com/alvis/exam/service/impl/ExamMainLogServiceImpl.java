@@ -5,6 +5,8 @@ import com.alvis.exam.repository.ExamMainLogMapper;
 import com.alvis.exam.service.ExamMainLogService;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 /**
  * @Author sunxiao
  * @Date 2020/6/17
@@ -23,6 +25,7 @@ public class ExamMainLogServiceImpl extends BaseServiceImpl<ExamMainLog> impleme
 
     @Override
     public void save(ExamMainLog examMainLog) {
+        examMainLog.setCreateTime(new Date());
         examMainLogMapper.insert(examMainLog);
     }
 }

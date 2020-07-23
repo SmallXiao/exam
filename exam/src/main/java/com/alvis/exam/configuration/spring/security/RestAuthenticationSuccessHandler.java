@@ -37,8 +37,20 @@ public class RestAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
         userEventLog.setContent(user.getUserName() + " 登录了车管考试系统");
         eventPublisher.publishEvent(new UserEvent(userEventLog));
         com.alvis.exam.domain.User newUser = new com.alvis.exam.domain.User();
+        newUser.setId(user.getId());
+        newUser.setUserUuid(user.getUserUuid());
         newUser.setUserName(user.getUserName());
+        newUser.setRealName(user.getRealName());
+        newUser.setAge(user.getAge());
+        newUser.setSex(user.getSex());
+        newUser.setBirthDay(user.getBirthDay());
+        newUser.setUserLevel(user.getUserLevel());
+        newUser.setPhone(user.getPhone());
+        newUser.setRole(user.getRole());
+        newUser.setStatus(user.getStatus());
         newUser.setImagePath(user.getImagePath());
+        newUser.setDeleted(user.getDeleted());
+        newUser.setWxOpenId(user.getWxOpenId());
         RestUtil.response(response, SystemCode.OK.getCode(), SystemCode.OK.getMessage(), newUser);
     }
 }

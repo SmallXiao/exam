@@ -33,7 +33,7 @@
     </update>
 
     <select id="selectRandomList" resultType="com.alvis.exam.viewmodel.api.question.QuestionVM">
-        SELECT q.name,q.correct,t.supplier,ttc.choose
+        SELECT q.id questionId, q.name,q.correct,t.id, subjectId, t.supplier,ttc.choose
         FROM t_question q
         JOIN t_subject t ON q.subject_id=t.id
         JOIN t_text_content ttc ON ttc.id=q.id

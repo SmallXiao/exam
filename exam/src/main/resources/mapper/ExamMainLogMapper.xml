@@ -3,11 +3,11 @@
 <mapper namespace="com.alvis.exam.repository.ExamMainLogMapper">
 
     <insert id="insert" parameterType="com.alvis.exam.domain.statistics.ExamMainLog"
-            useGeneratedKeys="true" keyProperty="id">
+            useGeneratedKeys="true" keyProperty="mainId">
         insert into t_exam_main_log
-            (year,month,day,user_id,user_name, department_id, department_name, start_time, end_time, spend_time, status, error_count, create_time)
+            (year,month,day,date,user_id,user_name, dept_id, dept_name, start_time, end_time, spend_time, status, error_count, create_time)
         values
-        (#{year},#{month},#{day},#{userId},#{userName},#{departmentId}, #{departmentName}, #{startTime},
+        (#{year},#{month},#{day},#{date},#{userId},#{userName},#{deptId}, #{deptName}, #{startTime},
          #{endTime}, #{spendTime},#{status}, #{errorCount},#{createTime})
     </insert>
 

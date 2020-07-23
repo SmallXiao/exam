@@ -15,6 +15,12 @@ import lombok.Setter;
 @ApiModel(value = "Question", description = "问题")
 public class QuestionVM {
 
+    @ApiModelProperty(value = "套题ID")
+    private String subjectId;
+
+
+    @ApiModelProperty(value = "题目ID")
+    private String questionId;
 
     @ApiModelProperty(value = "题目")
     private String name;

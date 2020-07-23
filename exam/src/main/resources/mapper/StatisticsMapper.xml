@@ -75,5 +75,12 @@
         GROUP BY question_id;
     </select>
 
+   <select id="getUserDailyRankList" resultType="com.alvis.exam.viewmodel.api.statistics.DailyRankResponseVM">
+       SELECT @rank:=@rank+1 AS rank,user_id,error_count,spend_time FROM
+        (SELECT MAX(user_id) user_id, MIN(error_count) error_count, MIN(spend_time) spend_time FROM `t_exam_main_log` WHERE date=#{date} GROUP BY user_id) a,(SELECT @rank:=0) r
+
+       order by error_count,spend_time
+   </select>
+
 
 </mapper>

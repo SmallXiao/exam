@@ -3,11 +3,11 @@
 <mapper namespace="com.alvis.exam.repository.ExamSubLogMapper">
 
     <insert id="insert" parameterType="com.alvis.exam.domain.statistics.ExamSubLog"
-            useGeneratedKeys="true" keyProperty="id">
+            useGeneratedKeys="true" keyProperty="subId">
         insert into t_exam_sub_log
-        (main_id, subject_id, question_id, answer, iscorrect)
+        (main_id, subject_id, question_id, date, user_name, dept_name, answer, iscorrect)
         values
-        (#{mainId},#{subjectId},#{questionId},#{answer},#{iscorrect})
+        (#{mainId},#{subjectId},#{questionId},#{date}, #{userName}, #{deptName}, #{answer},#{iscorrect})
     </insert>
 
 

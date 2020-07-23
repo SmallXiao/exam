@@ -30,6 +30,9 @@ public class ExamMainLog implements Serializable {
     @ApiModelProperty(value = "日")
     private Integer day;
 
+    @ApiModelProperty(value = "日期")
+    private Integer date;
+
     @ApiModelProperty(value = "登录用户唯一标识")
     private Integer userId;
 
@@ -37,10 +40,10 @@ public class ExamMainLog implements Serializable {
     private String userName;
 
     @ApiModelProperty(value = "部门ID")
-    private Integer departmentId;
+    private Integer deptId;
 
     @ApiModelProperty(value = "部门名称")
-    private String departmentName;
+    private String deptName;
 
     @ApiModelProperty(value = "开始答题时间")
     private Date startTime;
@@ -57,5 +60,5 @@ public class ExamMainLog implements Serializable {
     @ApiModelProperty(value = "错题个数")
     private Integer errorCount;
 
-
+    private Date createTime;
 }

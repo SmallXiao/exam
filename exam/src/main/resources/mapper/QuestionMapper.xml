@@ -170,12 +170,16 @@
       <if test="deleted != null">
         deleted = #{deleted,jdbcType=BIT},
       </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.alvis.exam.domain.Question">
     update t_question
-    set question_type = #{questionType,jdbcType=INTEGER},
+    set name = #{name,jdbcType=VARCHAR},
+        question_type = #{questionType,jdbcType=INTEGER},
       subject_id = #{subjectId,jdbcType=INTEGER},
       score = #{score,jdbcType=INTEGER},
       grade_level = #{gradeLevel,jdbcType=INTEGER},
