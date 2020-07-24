@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 考试设置相关
@@ -107,14 +108,29 @@ public class ExamController {
         List<DailyRankResponseVM> userList = statisticsService.getUserDailyRankList(Integer.parseInt(dateStr));
 
         JSONObject resultObject = new JSONObject();
-        int index = 1;
+        int currentRank = 1;// 本次答题排名
+        Integer lastRank = null;// 上次答题排名
         if (userList != null && userList.size() > 0) {
-            DailyRankResponseVM data = userList.stream().filter(item -> item.getErrorCount().equals(examRequest.getErrorCount()) && item.getSpendTime() > examRequest.getSpendTime()
-                    || item.getErrorCount() > examRequest.getErrorCount()).findFirst().get();
-
-            index = data.getRank() - 1;
+            // 当前用户有无排名
+            Optional<DailyRankResponseVM> userOptional = userList.stream().filter(item -> item.getUserId().equals(examRequest.getUserId())).findFirst();
+            if (userOptional.isPresent()) {// 当前用户已答过题，取上次答题排名
+                DailyRankResponseVM data = userOptional.get();
+                lastRank = data.getRank();
+            }
+            // 本次答题排名情况
+            Optional<DailyRankResponseVM> optional = userList.stream().filter(item -> item.getErrorCount().equals(examRequest.getErrorCount()) && item.getSpendTime() > examRequest.getSpendTime()
+                    || item.getErrorCount() > examRequest.getErrorCount()).findFirst();
+            if (optional.isPresent()) {// 存在答题情况不如的，排名在他前面
+                DailyRankResponseVM data = optional.get();
+                currentRank = data.getRank() - 1;
+            } else {// 未找到，排在最后一名
+                currentRank = userList.size() + 1;
+            }
+            if (lastRank != null && lastRank < currentRank) {
+                currentRank = lastRank;
+            }
         }
-        resultObject.put("rank", index);
+        resultObject.put("rank", currentRank);
 
         return RestResponse.ok(resultObject);
     }
