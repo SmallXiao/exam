@@ -26,7 +26,7 @@ public class ExamMainLogVM {
     @ApiModelProperty(value = "结束时间")
     private Date endTime;
 
-    @ApiModelProperty(value = "耗时（秒）")
+    @ApiModelProperty(value = "耗时（毫秒）")
     private Integer spendTime;
 
     @ApiModelProperty(value = "答题状态（1：有效 0：无效）")

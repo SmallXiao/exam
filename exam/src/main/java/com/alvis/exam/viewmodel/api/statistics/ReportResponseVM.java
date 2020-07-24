@@ -20,7 +20,7 @@ public class ReportResponseVM implements Serializable {
     @ApiModelProperty(value = "用户姓名")
     private String userName;
 
-    @ApiModelProperty(value = "答题时间")
+    @ApiModelProperty(value = "答题时间，耗时（毫秒）")
     private String spendTime;
 
     @ApiModelProperty(value = "错题量")

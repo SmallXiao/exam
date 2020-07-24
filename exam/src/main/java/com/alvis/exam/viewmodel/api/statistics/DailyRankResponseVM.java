@@ -1,5 +1,6 @@
 package com.alvis.exam.viewmodel.api.statistics;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,6 +21,6 @@ public class DailyRankResponseVM {
     // 错题个数
     private Integer errorCount;
 
-    // 花费时间
+    @ApiModelProperty(value = "答题时间，耗时（毫秒）")
     private Integer spendTime;
 }
