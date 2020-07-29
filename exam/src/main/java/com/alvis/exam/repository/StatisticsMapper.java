@@ -18,6 +18,7 @@ public interface StatisticsMapper {
 
     List<WrongQuestionResponseVM> wrongQuestionReport(WrongQuestionRequestVM reportRequestVM);
 
+    List<Integer> userAnswerDateReport(UserAnswerReportRequestVM requestVM);
     /**
      * 用户排名列表
      * @param date

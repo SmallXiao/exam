@@ -1,5 +1,6 @@
 package com.alvis.exam.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.alvis.exam.viewmodel.api.statistics.*;
 
 import java.util.List;
@@ -23,9 +24,19 @@ public interface StatisticsService {
      */
     List deptReport(DeptReportRequestVM reportRequestVM);
 
+    /**
+     * 错题统计
+     * @param reportRequestVM
+     * @return
+     */
     List<WrongQuestionResponseVM> wrongQuestionReport(WrongQuestionRequestVM reportRequestVM);
 
-
+    /**
+     * 用户答题情况统计
+     * @param requestVM
+     * @return
+     */
+    JSONObject userAnswerDateReport(UserAnswerReportRequestVM requestVM);
 
     List<DailyRankResponseVM> getUserDailyRankList(int date);
 }

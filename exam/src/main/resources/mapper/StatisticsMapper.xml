@@ -82,5 +82,19 @@
        order by error_count,spend_time
    </select>
 
+    <select id="userAnswerDateReport" resultType="java.lang.Integer">
+        SELECT MAX(date) date
+        FROM t_exam_main_log
+        WHERE user_id=#{userId}
+        <if test="startDate != null and startDate != ''">
+        AND date >= #{startDate}
+        </if>
+        <if test="endDate != null and endDate != ''">
+        AND date &lt;= #{endDate}
+        </if>
+        GROUP BY date
+
+    </select>
+
 
 </mapper>

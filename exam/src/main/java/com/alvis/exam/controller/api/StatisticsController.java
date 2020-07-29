@@ -1,5 +1,6 @@
 package com.alvis.exam.controller.api;
 
+import com.alibaba.fastjson.JSONObject;
 import com.alvis.exam.base.RestResponse;
 import com.alvis.exam.service.StatisticsService;
 import com.alvis.exam.viewmodel.api.statistics.*;
@@ -67,6 +68,15 @@ public class StatisticsController {
         return RestResponse.ok(list);
     }
 
+    /**
+     * 用户答题日期情况统计
+     */
+    @PostMapping(value = "/userAnswerDateReport")
+    public RestResponse userAnswerDateReport(@RequestBody UserAnswerReportRequestVM requestVM) {
+
+        JSONObject jsonObject = statisticsService.userAnswerDateReport(requestVM);
+        return RestResponse.ok(jsonObject);
+    }
 
 
 }
