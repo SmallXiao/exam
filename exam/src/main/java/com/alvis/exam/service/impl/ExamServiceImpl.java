@@ -1,6 +1,7 @@
 package com.alvis.exam.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.alvis.exam.domain.Dept;
 import com.alvis.exam.domain.ExamSet;
 import com.alvis.exam.domain.User;
 import com.alvis.exam.domain.statistics.ExamMainLog;
@@ -33,11 +34,14 @@ public class ExamServiceImpl implements ExamService {
 
     private final ITQuestionService itQuestionService;
 
-    public ExamServiceImpl(ExamMainLogService examMainLogService, ExamSubLogService examSubLogService, UserService userService, ITQuestionService itQuestionService) {
+    private final DeptService deptService;
+
+    public ExamServiceImpl(ExamMainLogService examMainLogService, ExamSubLogService examSubLogService, UserService userService, ITQuestionService itQuestionService, DeptService deptService) {
         this.examMainLogService = examMainLogService;
         this.examSubLogService = examSubLogService;
         this.userService = userService;
         this.itQuestionService = itQuestionService;
+        this.deptService = deptService;
     }
 
     @Override
@@ -67,6 +71,11 @@ public class ExamServiceImpl implements ExamService {
         User user = userService.getUserById(examRequest.getUserId());
         examMainLog.setUserName(user.getRealName());
 
+        // 部门
+        Dept dept = deptService.selectById(user.getDeptId());
+        examMainLog.setDeptId(dept.getId());
+        examMainLog.setDeptName(dept.getName());
+
         examMainLogService.save(examMainLog);
 
         // 日志从表
@@ -76,6 +85,7 @@ public class ExamServiceImpl implements ExamService {
             examSubLog.setMainId(examMainLog.getMainId());
             examSubLog.setDate(Integer.parseInt(localDateTime.format(format)));
             examSubLog.setUserName(user.getRealName());
+            examSubLog.setDeptName(dept.getName());
 
             examSubLogService.save(examSubLog);
         });

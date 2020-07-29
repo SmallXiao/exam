@@ -1,13 +1,20 @@
 package com.alvis.exam.service.impl;
 
 import com.alvis.exam.domain.Dept;
+import com.alvis.exam.repository.DeptMapper;
 import com.alvis.exam.service.DeptService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * @Author sunxiao
  * @Date 2020/7/23
  **/
+@Service
 public class DeptServiceImpl implements DeptService {
+
+    @Autowired
+    private DeptMapper deptMapper;
 
     @Override
     public int deleteById(Integer id) {
@@ -26,7 +33,7 @@ public class DeptServiceImpl implements DeptService {
 
     @Override
     public Dept selectById(Integer id) {
-        return null;
+        return deptMapper.selectByPrimaryKey(id);
     }
 
     @Override
@@ -36,6 +43,6 @@ public class DeptServiceImpl implements DeptService {
 
     @Override
     public int updateById(Dept record) {
-        return 0;
+        return deptMapper.updateByPrimaryKeySelective(record);
     }
 }

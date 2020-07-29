@@ -9,6 +9,8 @@ public class User implements Serializable {
 
     private Integer id;
 
+    private Integer deptId;// 部门ID
+
     private String userUuid;
 
     private String userName;
@@ -49,6 +51,14 @@ public class User implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getDeptId() {
+        return deptId;
+    }
+
+    public void setDeptId(Integer deptId) {
+        this.deptId = deptId;
     }
 
     public String getUserUuid() {

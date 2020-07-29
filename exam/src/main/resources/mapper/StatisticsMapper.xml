@@ -11,10 +11,10 @@
         FROM (SELECT *
                 FROM t_exam_main_log
                 WHERE date=#{date}
-                <if test="userName != null">
+                <if test="userName != null and userName != ''">
                     AND user_name=#{userName}
                 </if>
-                <if test="deptName != null">
+                <if test="deptName != null and deptName != ''">
                     AND dept_name=#{deptName}
                 </if>
                 AND status=1 ORDER BY error_count,spend_time LIMIT 1000) t
@@ -34,10 +34,10 @@
         FROM (SELECT *
                 FROM t_exam_main_log
                 WHERE YEAR = #{year} AND month=#{month}
-                <if test="userName != null">
+                <if test="userName != null and userName != ''">
                     AND user_name=#{userName}
                 </if>
-                <if test="deptName != null">
+                <if test="deptName != null and deptName != ''">
                     AND dept_name=#{deptName}
                 </if>
                 AND status=1 ORDER BY error_count,spend_time LIMIT 1000) t
@@ -46,19 +46,19 @@
     <select id="deptReport" resultType="com.alvis.exam.viewmodel.api.statistics.DeptReportResponseVM">
         SELECT
             MAX(dept_name) deptName,
-            AVG( spend_time ) spendTime,
-            AVG(error_count) errorCount,
+            AVG( spend_time ) avgSpendTime,
+            AVG(error_count) avgErrorCount,
             MAX(spend_time) spendTime
         FROM t_exam_main_log WHERE date BETWEEN #{startDate} AND #{endDate}
-            <if test="userName != null">
+            <if test="userName != null and userName != ''">
                 AND user_name=#{userName}
             </if>
-            <if test="deptName != null">
+            <if test="deptName != null and deptName != ''">
                 AND dept_name=#{deptName}
             </if>
             AND status=1
         GROUP BY dept_id
-        ORDER BY errorCount,spendTime
+        ORDER BY avgErrorCount,avgSpendTime
     </select>
 
 
@@ -66,10 +66,10 @@
         SELECT question_id,SUM(CASE WHEN t.iscorrect=0 THEN 1 ELSE 0 END) errorCount, COUNT(0) sumCount
         FROM t_exam_sub_log t
         WHERE date BETWEEN #{startDate} AND #{endDate}
-        <if test="userName != null">
+        <if test="userName != null and userName != ''">
             AND user_name=#{userName}
         </if>
-        <if test="deptName != null">
+        <if test="deptName != null and deptName != ''">
             AND dept_name=#{deptName}
         </if>
         GROUP BY question_id;

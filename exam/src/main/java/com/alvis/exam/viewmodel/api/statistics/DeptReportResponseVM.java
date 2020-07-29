@@ -1,5 +1,6 @@
 package com.alvis.exam.viewmodel.api.statistics;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,10 +14,12 @@ import java.io.Serializable;
 @Setter
 public class DeptReportResponseVM implements Serializable {
 
-    private Integer title;
+    private String deptName;
 
-    private Integer subjectName;
+    @ApiModelProperty(value = "平均错题数")
+    private Integer avgErrorCount;
 
-    private Integer errorCount;
+    @ApiModelProperty(value = "平均花费时间")
+    private Integer avgSpendTime;
 
 }
