@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.alvis.exam.domain.User">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_uuid" jdbcType="VARCHAR" property="userUuid" />
+    <result column="dept_id" jdbcType="INTEGER" property="deptId" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="real_name" jdbcType="VARCHAR" property="realName" />
@@ -22,7 +23,7 @@
     <result column="wx_open_id" jdbcType="VARCHAR" property="wxOpenId" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, user_uuid, user_name, password, real_name, age, sex, birth_day, user_level, phone,
+    id, user_uuid, dept_id, user_name, password, real_name, age, sex, birth_day, user_level, phone,
     role, status, image_path, create_time, modify_time, last_active_time, deleted, wx_open_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
