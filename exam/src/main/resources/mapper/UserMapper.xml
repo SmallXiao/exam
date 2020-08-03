@@ -5,6 +5,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_uuid" jdbcType="VARCHAR" property="userUuid" />
     <result column="dept_id" jdbcType="INTEGER" property="deptId" />
+    <result column="deptName" jdbcType="VARCHAR" property="deptName" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="real_name" jdbcType="VARCHAR" property="realName" />
@@ -37,14 +38,14 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.alvis.exam.domain.User"  useGeneratedKeys="true" keyProperty="id">
-    insert into t_user (id, user_uuid, user_name,
+    insert into t_user (id, user_uuid, dept_id, user_name,
       password, real_name, age,
       sex, birth_day, user_level,
       phone, role, status,
       image_path, create_time, modify_time,
       last_active_time, deleted, wx_open_id
       )
-    values (#{id,jdbcType=INTEGER}, #{userUuid,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR},
+    values (#{id,jdbcType=INTEGER}, #{userUuid,jdbcType=VARCHAR},  #{deptId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR},
       #{password,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER},
       #{sex,jdbcType=INTEGER}, #{birthDay,jdbcType=TIMESTAMP}, #{userLevel,jdbcType=INTEGER},
       #{phone,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, #{status,jdbcType=INTEGER},
@@ -60,6 +61,9 @@
       </if>
       <if test="userUuid != null">
         user_uuid,
+      </if>
+      <if test="deptId != null">
+        dept_id,
       </if>
       <if test="userName != null">
         user_name,
@@ -117,6 +121,9 @@
       <if test="userUuid != null">
         #{userUuid,jdbcType=VARCHAR},
       </if>
+      <if test="deptId != null">
+        #{deptId,jdbcType=INTEGER},
+      </if>
       <if test="userName != null">
         #{userName,jdbcType=VARCHAR},
       </if>
@@ -173,6 +180,9 @@
       <if test="userUuid != null">
         user_uuid = #{userUuid,jdbcType=VARCHAR},
       </if>
+      <if test="deptId != null">
+        dept_id = #{deptId,jdbcType=INTEGER},
+      </if>
       <if test="userName != null">
         user_name = #{userName,jdbcType=VARCHAR},
       </if>
@@ -227,6 +237,7 @@
   <update id="updateByPrimaryKey" parameterType="com.alvis.exam.domain.User">
     update t_user
     set user_uuid = #{userUuid,jdbcType=VARCHAR},
+      dept_id = #{deptId,jdbcType=INTEGER},
       user_name = #{userName,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       real_name = #{realName,jdbcType=VARCHAR},
@@ -314,15 +325,17 @@
 
   <select id="userPage" resultMap="BaseResultMap" parameterType="com.alvis.exam.viewmodel.admin.user.UserPageRequestVM">
     SELECT
-    <include refid="Base_Column_List"/>
-    FROM t_user
+    u.id, user_uuid, dept_id, t.name AS deptName, u.user_name, u.password, u.real_name, u.age, u.sex, u.birth_day, u.user_level, u.phone,
+    u.role, u.status, u.image_path, u.create_time, u.modify_time, u.last_active_time, u.deleted, u.wx_open_id
+
+    FROM t_user u JOIN t_dept t ON u.dept_id=t.id
     <where>
-        and deleted=0
+        and u.deleted=0
       <if test="userName != null and userName != ''">
-        and user_name like concat('%',#{userName},'%')
+        and u.user_name like concat('%',#{userName},'%')
       </if>
       <if test="role != null ">
-        and role= #{role}
+        and u.role= #{role}
       </if>
     </where>
   </select>

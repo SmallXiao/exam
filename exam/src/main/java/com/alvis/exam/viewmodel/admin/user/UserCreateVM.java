@@ -9,6 +9,8 @@ public class UserCreateVM {
 
     private Integer id;
 
+    private Integer deptId;
+
     @NotBlank
     private String userName;
 

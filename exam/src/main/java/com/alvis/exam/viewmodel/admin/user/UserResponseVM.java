@@ -14,6 +14,10 @@ public class UserResponseVM extends BaseVM {
 
     private Integer id;
 
+    private Integer deptId;
+
+    private String deptName;
+
     private String userUuid;
 
     private String userName;

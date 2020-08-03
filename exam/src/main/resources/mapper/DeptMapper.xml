@@ -20,5 +20,17 @@
         where id = #{id,jdbcType=INTEGER}
     </select>
 
+    <select id="deptPage" resultType="com.alvis.exam.domain.Dept">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_dept
+        <where>
+            and deleted=0
+            <if test="name != null and name != ''">
+                and name like concat('%',#{name},'%')
+            </if>
+        </where>
+    </select>
+
 
 </mapper>

@@ -11,6 +11,8 @@ public class User implements Serializable {
 
     private Integer deptId;// 部门ID
 
+    private String deptName;// 部门名称
+
     private String userUuid;
 
     private String userName;
@@ -59,6 +61,14 @@ public class User implements Serializable {
 
     public void setDeptId(Integer deptId) {
         this.deptId = deptId;
+    }
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
     }
 
     public String getUserUuid() {
