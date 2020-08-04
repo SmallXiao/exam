@@ -15,7 +15,7 @@ import java.io.Serializable;
 public class ReportResponseVM implements Serializable {
 
     @ApiModelProperty(value = "用户ID")
-    private String userId;
+    private Integer userId;
 
     @ApiModelProperty(value = "用户姓名")
     private String userName;

@@ -39,4 +39,14 @@ public interface StatisticsService {
     JSONObject userAnswerDateReport(UserAnswerReportRequestVM requestVM);
 
     List<DailyRankResponseVM> getUserDailyRankList(int date);
+
+    /**
+     * 每日用户是否答题统计
+     * @param requestVM
+     * @return
+     */
+    JSONObject dailyUserReport(DailyUserReportRequestVM requestVM);
+
+
+
 }

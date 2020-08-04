@@ -129,6 +129,9 @@ export default {
     }
   },
   created () {
+    let subjectId = this.$route.query.subjectId;
+    this.form.subjectId = subjectId;
+
     let id = this.$route.query.id
     let _this = this
     this.initSubject(function () {

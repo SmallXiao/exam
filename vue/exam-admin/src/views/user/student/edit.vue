@@ -5,6 +5,11 @@
       <el-form-item label="用户名："  prop="userName" required>
         <el-input v-model="form.userName"></el-input>
       </el-form-item>
+      <el-form-item label="部门：">
+        <el-select v-model="form.deptId" placeholder="部门" clearable>
+          <el-option v-for="item in deptList" :key="item.id" :value="item.id" :label="item.name"></el-option>
+        </el-select>
+      </el-form-item>
       <el-form-item label="密码："  required>
         <el-input v-model="form.password"></el-input>
       </el-form-item>
@@ -41,12 +46,14 @@
 <script>
 import { mapGetters, mapState, mapActions } from 'vuex'
 import userApi from '@/api/user'
+import deptApi from '@/api/dept'
 
 export default {
   data () {
     return {
       form: {
         id: null,
+        deptId: '',
         userName: '',
         password: '',
         realName: '',
@@ -65,12 +72,19 @@ export default {
         realName: [
           { required: true, message: '请输入真实姓名', trigger: 'blur' }
         ]
-      }
+      },
+      deptList: []
     }
   },
   created () {
     let id = this.$route.query.id
     let _this = this
+
+    deptApi.getDeptPageList({pageIndex: 1, pageSize: 10}).then(re => {
+      _this.deptList = re.response.list;
+
+    })
+
     if (id && parseInt(id) !== 0) {
       _this.formLoading = true
       userApi.selectUser(id).then(re => {
@@ -78,6 +92,8 @@ export default {
         _this.formLoading = false
       })
     }
+
+
   },
   methods: {
     submitForm () {

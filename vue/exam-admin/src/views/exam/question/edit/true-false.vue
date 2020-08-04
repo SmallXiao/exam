@@ -86,12 +86,6 @@ export default {
       paperList: null,
       formLoading: false,
       rules: {
-        gradeLevel: [
-          { required: true, message: '请选择年级', trigger: 'change' }
-        ],
-        subjectId: [
-          { required: true, message: '请选择学科', trigger: 'change' }
-        ],
         title: [
           { required: true, message: '请输入题干', trigger: 'blur' }
         ],
@@ -120,6 +114,10 @@ export default {
     }
   },
   created () {
+    let subjectId = this.$route.query.subjectId;
+    this.form.subjectId = subjectId;
+
+
     let id = this.$route.query.id
     let _this = this
     this.initSubject(function () {
@@ -160,7 +158,7 @@ export default {
             if (re.code === 1) {
               _this.$message.success(re.message)
               _this.delCurrentView(_this).then(() => {
-                _this.$router.push('/exam/question/list')
+                _this.$router.push('/exam/question/list?id=' + _this.form.subjectId)
               })
             } else {
               _this.$message.error(re.message)

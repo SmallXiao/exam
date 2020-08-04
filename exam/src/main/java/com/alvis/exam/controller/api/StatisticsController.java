@@ -78,5 +78,15 @@ public class StatisticsController {
         return RestResponse.ok(jsonObject);
     }
 
+    /**
+     * 每日用户统计
+     */
+    @PostMapping(value = "/dailyUserReport")
+    public RestResponse dailyUserReport(@RequestBody DailyUserReportRequestVM requestVM) {
+
+        JSONObject jsonObject = statisticsService.dailyUserReport(requestVM);
+        return RestResponse.ok(jsonObject);
+    }
+
 
 }

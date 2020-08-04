@@ -5,7 +5,7 @@
     <div style="display: flex; justify-content: space-between;">
         <div style="display: flex; align-items: center;padding: 15px 0; ">
             <span><img src="@/assets/gh-dd.png" width="30"/></span>
-            <span class="gh-danhao">套题名称：<t data-data="orderVo.orderNo">{{subjectShow.name}}</t></span>
+            <span class="gh-danhao">套题名称：<t>{{subjectShow.name}}</t></span>
         </div>
         <div class="gh-btn">
           <el-button size="medium"  type="danger" @click="deleteSubject" class="link-left" plain>删除套题</el-button>
@@ -28,7 +28,7 @@
     <el-form :model="queryParam" ref="queryForm" :inline="true">
       <el-popover placement="bottom" trigger="click">
           <el-button type="warning" size="mini" v-for="item in editUrlEnum" :key="item.key"
-                     @click="$router.push({path:item.value})">{{item.name}}
+                     @click="$router.push({path:item.value,query:{subjectId:queryParam.subjectId}})">{{item.name}}
           </el-button>
           <el-button slot="reference" type="primary" class="link-left">新建</el-button>
         </el-popover>&nbsp;
@@ -118,7 +118,6 @@ export default {
         question: null,
         loading: false
       },
-      name: null,
       subjectShow: {
         name: null,
         supplier: null,
@@ -161,6 +160,7 @@ export default {
     },
     handleAvatarSuccess (res, file) {
       alert('上传成功')
+      this.search()
     },
     submitForm () {
       this.queryParam.pageIndex = 1
@@ -188,7 +188,7 @@ export default {
       this.subjectFilter = this.subjects.filter(data => data.level === this.queryParam.level)
     },
     addQuestion () {
-      this.$router.push('/exam/question/edit/singleChoice')
+      this.$router.push('/exam/question/edit/singleChoice?subjectId=' + this.queryParam.subjectId)
     },
     showQuestion (row) {
       let _this = this
@@ -201,7 +201,7 @@ export default {
       })
     },
     editQuestion (row) {
-      let url = this.enumFormat(this.editUrlEnum, row.questionType)
+      let url = this.enumFormat(this.editUrlEnum, row.questionType) + "?subjectId=" + this.queryParam.subjectId
       this.$router.push({ path: url, query: { id: row.id } })
     },
     deleteSubject() {// 删除套题
