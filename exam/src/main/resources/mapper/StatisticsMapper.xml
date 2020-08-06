@@ -3,22 +3,12 @@
 <mapper namespace="com.alvis.exam.repository.StatisticsMapper">
 
     <select id="dailyReport" parameterType="com.alvis.exam.viewmodel.api.statistics.DailyReportRequestVM" resultType="com.alvis.exam.viewmodel.api.statistics.ReportResponseVM">
-        SELECT
-            user_id userId,
-            MAX(user_name) userName,
-            MIN( spend_time ) spendTime,
-            MAX(error_count) errorCount
-        FROM (SELECT *
-                FROM t_exam_main_log
-                WHERE date=#{date}
-                <if test="userName != null and userName != ''">
-                    AND user_name=#{userName}
-                </if>
-                <if test="deptName != null and deptName != ''">
-                    AND dept_name=#{deptName}
-                </if>
-                AND status=1 ORDER BY error_count,spend_time LIMIT 1000) t
-        GROUP BY t.user_id
+        SELECT @rownum := @rownum+1 as rank,date,user_id userId,user_name userName,dept_name deptName,spend_time spendTime,error_count errorCount
+        FROM (SELECT @rownum:=0)r,t_exam_main_log as a
+
+        WHERE date=#{date} AND status=1 AND 1 > (select count(user_id) from t_exam_main_log where date=#{date} AND status=1 AND user_id = a.user_id and (error_count &lt; a.error_count OR (error_count = a.error_count AND spend_time &lt; a.spend_time) ))
+
+        order by a.error_count ,a.spend_time
     </select>
 
     <select id="monthlyReport" resultType="com.alvis.exam.viewmodel.api.statistics.MonthlyReportResponseVM">

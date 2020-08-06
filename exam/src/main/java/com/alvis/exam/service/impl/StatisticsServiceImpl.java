@@ -34,8 +34,20 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public List<ReportResponseVM> dailyReport(DailyReportRequestVM requestVM) {
+        List<ReportResponseVM> result = statisticsMapper.dailyReport(requestVM);
 
-        return statisticsMapper.dailyReport(requestVM);
+        result = result.stream().filter(item -> {
+            if (!StringUtils.isEmpty(requestVM.getUserName()) && !item.getUserName().equals(requestVM.getUserName())) {
+                return false;
+            }
+            if (!StringUtils.isEmpty(requestVM.getDeptName()) && !item.getDeptName().equals(requestVM.getDeptName())) {
+                return false;
+            }
+
+            return true;
+
+        }).collect(Collectors.toList());
+        return result;
     }
 
     @Override
