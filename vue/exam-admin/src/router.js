@@ -36,6 +36,20 @@ const constantRoutes = [
       }
     ]
   },
+
+  {
+    path: '/statistics',
+    component: Layout,
+    redirect: '/statistics',
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/statistics/statistics'),
+        name: 'statistics',
+        meta: { title: '数据统计', icon: 'home', affix: true }
+      }
+    ]
+  },
   {
     path: '/user',
     component: Layout,
@@ -81,7 +95,7 @@ const constantRoutes = [
       title: '题库管理',
       icon: 'exam'
     },
-    alwaysShow: true,
+    //alwaysShow: true,
     children: [
       {
         path: 'paper/list',
@@ -155,7 +169,7 @@ const constantRoutes = [
       title: '日志中心',
       icon: 'log'
     },
-    alwaysShow: true,
+    //alwaysShow: true,
     children: [
       {
         path: 'user/list',

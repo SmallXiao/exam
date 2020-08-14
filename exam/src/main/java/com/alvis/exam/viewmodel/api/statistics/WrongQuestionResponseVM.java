@@ -14,10 +14,16 @@ import java.io.Serializable;
 @Setter
 public class WrongQuestionResponseVM implements Serializable {
 
+    @ApiModelProperty(value = "题干")
+    private String questionName;
+
+    @ApiModelProperty(value = "所属套题")
+    private String subjectName;
+
     @ApiModelProperty(value = "错题量")
     private Integer errorCount;
 
-    @ApiModelProperty(value = "总量")
+    @ApiModelProperty(value = "总答题量")
     private Integer sumCount;
 
 

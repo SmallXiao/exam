@@ -25,10 +25,12 @@
                 FROM t_exam_main_log
                 WHERE YEAR = #{year} AND month=#{month}
                 <if test="userName != null and userName != ''">
-                    AND user_name=#{userName}
+                    <bind name="likeUserName" value="'%'+param.userName+'%'"/>
+                    AND user_name=#{likeUserName}
                 </if>
                 <if test="deptName != null and deptName != ''">
-                    AND dept_name=#{deptName}
+                    <bind name="likeDeptName" value="'%'+param.deptName+'%'"/>
+                    AND dept_name=#{likeDeptName}
                 </if>
                 AND status=1 ORDER BY error_count,spend_time LIMIT 1000) t
         GROUP BY t.user_id
@@ -41,10 +43,12 @@
             MAX(spend_time) spendTime
         FROM t_exam_main_log WHERE date BETWEEN #{startDate} AND #{endDate}
             <if test="userName != null and userName != ''">
-                AND user_name=#{userName}
+                <bind name="likeUserName" value="'%'+param.userName+'%'"/>
+                AND user_name=#{likeUserName}
             </if>
             <if test="deptName != null and deptName != ''">
-                AND dept_name=#{deptName}
+                <bind name="likeDeptName" value="'%'+param.deptName+'%'"/>
+                AND dept_name=#{likeDeptName}
             </if>
             AND status=1
         GROUP BY dept_id
@@ -53,16 +57,22 @@
 
 
     <select id="wrongQuestionReport" resultType="com.alvis.exam.viewmodel.api.statistics.WrongQuestionResponseVM">
-        SELECT question_id,SUM(CASE WHEN t.iscorrect=0 THEN 1 ELSE 0 END) errorCount, COUNT(0) sumCount
-        FROM t_exam_sub_log t
-        WHERE date BETWEEN #{startDate} AND #{endDate}
-        <if test="userName != null and userName != ''">
-            AND user_name=#{userName}
-        </if>
-        <if test="deptName != null and deptName != ''">
-            AND dept_name=#{deptName}
-        </if>
-        GROUP BY question_id;
+        SELECT * FROM (
+            SELECT question_id,MAX(tb.name) subjectName,MAX(tq.name) questionName,SUM(CASE WHEN t.iscorrect=0 THEN 1 ELSE 0 END) errorCount, COUNT(0) sumCount
+            FROM t_exam_sub_log t JOIN t_subject tb ON t.subject_id=tb.id
+            JOIN t_question tq ON t.question_id=tq.id
+            WHERE date BETWEEN #{startDate} AND #{endDate}
+            <if test="userName != null and userName != ''">
+                <bind name="likeUserName" value="'%'+param.userName+'%'"/>
+                AND user_name=#{likeUserName}
+            </if>
+            <if test="deptName != null and deptName != ''">
+                <bind name="likeDeptName" value="'%'+param.deptName+'%'"/>
+                AND dept_name=#{likeDeptName}
+            </if>
+            GROUP BY question_id) t
+        WHERE errorCount > 0
+        ORDER BY errorCount DESC
     </select>
 
    <select id="getUserDailyRankList" resultType="com.alvis.exam.viewmodel.api.statistics.DailyRankResponseVM">

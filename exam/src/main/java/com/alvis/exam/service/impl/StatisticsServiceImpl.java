@@ -37,10 +37,10 @@ public class StatisticsServiceImpl implements StatisticsService {
         List<ReportResponseVM> result = statisticsMapper.dailyReport(requestVM);
 
         result = result.stream().filter(item -> {
-            if (!StringUtils.isEmpty(requestVM.getUserName()) && !item.getUserName().equals(requestVM.getUserName())) {
+            if (!StringUtils.isEmpty(requestVM.getUserName()) && !item.getUserName().contains(requestVM.getUserName())) {
                 return false;
             }
-            if (!StringUtils.isEmpty(requestVM.getDeptName()) && !item.getDeptName().equals(requestVM.getDeptName())) {
+            if (!StringUtils.isEmpty(requestVM.getDeptName()) && !item.getDeptName().contains(requestVM.getDeptName())) {
                 return false;
             }
 
@@ -98,6 +98,13 @@ public class StatisticsServiceImpl implements StatisticsService {
             request.setUserName(requestVM.getUserName());
         }
         List<ReportResponseVM> responseVM = statisticsMapper.dailyReport(request);
+        responseVM = responseVM.stream().filter(item -> {
+            if (!StringUtils.isEmpty(requestVM.getUserName()) && !item.getUserName().contains(requestVM.getUserName())) {
+                return false;
+            }
+            return true;
+
+        }).collect(Collectors.toList());
 
         // 已答题人
         Map<Integer, String> answerUser = responseVM.stream().collect(Collectors.toMap(ReportResponseVM::getUserId, ReportResponseVM::getUserName));
@@ -115,7 +122,7 @@ public class StatisticsServiceImpl implements StatisticsService {
         });
 
         if (!StringUtils.isEmpty(requestVM.getUserName())) {// 查询某人的答题情况
-            noAnswerUserList = noAnswerUserList.stream().filter(item -> item.getUserName().equals(requestVM.getUserName())).collect(Collectors.toList());
+            noAnswerUserList = noAnswerUserList.stream().filter(item -> item.getRealName().contains(requestVM.getUserName())).collect(Collectors.toList());
         }
 
         JSONObject jsonObject = new JSONObject(5);
