@@ -61,7 +61,7 @@ public class QuestionController extends BaseApiController {
         PageInfo<QuestionResponseVM> page = PageInfoHelper.copyMap(pageInfo, q -> {
             QuestionResponseVM vm = modelMapper.map(q, QuestionResponseVM.class);
             TextContent textContent = textContentService.selectById(q.getInfoTextContentId());
-            QuestionObject questionObject = JsonUtil.toJsonObject(textContent.getContent(), QuestionObject.class);
+            QuestionObject questionObject = JsonUtil.toJsonObject(textContent.getContent().replaceAll("\r|\n|\t", ""), QuestionObject.class);
             String clearHtml = HtmlUtil.clear(questionObject.getTitleContent());
             vm.setShortTitle(clearHtml);
             return vm;
